@@ -773,8 +773,8 @@ def generate_html_report(results, album_colors, taylor_version_mapping):
                 margin-bottom: 8px;
             }}
 
-            .total-minutes-text, .total-minutes-value{{
-                font-size: 1rem;
+            .total-minutes-text, .total-minutes-value, .body{{
+                font-size: 0.9rem;
             }}
         }}
 
@@ -844,7 +844,7 @@ def generate_html_report(results, album_colors, taylor_version_mapping):
                         <div class="album-color" style="background-color: var(--accent);"></div>
                         <span class="total-minutes-text">Total Listening Time</span>
                     </div>
-                    <div class="album-percentage total-minutes-value">{round(total_taylor_minutes)} minutes</div>
+                    <div class="album-percentage total-minutes-value">{round(total_taylor_minutes)} min</div>
                 </div>
             </div>
             
@@ -873,47 +873,47 @@ def generate_html_report(results, album_colors, taylor_version_mapping):
                         <div class="album-color" style="background-color: var(--accent);"></div>
                         <span class="total-minutes-text">Total Listening Time</span>
                     </div>
-                    <div class="album-percentage total-minutes-value">{round(results['taylor_minutes_by_year'][year])} minutes</div>
+                    <div class="album-percentage total-minutes-value">{round(results['taylor_minutes_by_year'][year])} min</div>
                 </div>
             </div>
             """ for year in sorted(results['taylor_minutes_by_year'].keys())])}
 
-            <h2>Songs</h2>
-            
-            <!-- All Time Songs View -->
-            <div id="all-time-songs-view" class="stats-view active">
-                <ul class="song-list">
-                    {"".join([f"""
-                    <li class="{'total-minutes-row' if i < 3 else 'song-item'}">
-                        <div class="album-info">
-                            <div class="song-number {'song-number-top' if i < 3 else ''}" 
-                                 style="background-color: var(--accent);">{i+1}</div>
-                            <span class="{'total-minutes-text' if i < 3 else 'song-title'}">{song}</span>
-                            <div class="{'album-percentage total-minutes-value' if i < 3 else 'play-count'}">{count} plays</div>
-                        </div>
-                    </li>
-                    """ for i, (song, count) in enumerate(top_songs)])}
-                </ul>
+<h2>Songs</h2>
+
+<!-- All Time Songs View -->
+<div id="all-time-songs-view" class="stats-view active">
+    <ul class="song-list">
+        {"".join([f"""
+        <li class="{'total-minutes-row' if i < 3 else 'song-item'}">
+            <div class="album-info">
+                <div class="song-number {'song-number-top' if i < 3 else ''}" 
+                     style="background-color: var(--accent);">{i+1}</div>
+                <span class="{'total-minutes-text' if i < 3 else 'song-title'}">{song}</span>
+                {f'<div class="album-percentage total-minutes-value">{count} <i class="fa-solid fa-play"></i></div>' if i < 3 else ''}
             </div>
-            
-            <!-- Yearly Songs Views -->
-            {"".join([f"""
-            <div id="{year}-songs-view" class="stats-view">
-                <ul class="song-list">
-                    {"".join([f"""
-                    <li class="{'total-minutes-row' if i < 3 else 'song-item'}">
-                        <div class="album-info">
-                            <div class="song-number {'song-number-top' if i < 3 else ''}" 
-                                 style="background-color: var(--accent);">{i+1}</div>
-                            <span class="{'total-minutes-text' if i < 3 else 'song-title'}">{song}</span>
-                            <div class="{'album-percentage total-minutes-value' if i < 3 else 'play-count'}"></div>
-                        </div>
-                    </li>
-                    """ for i, (song, count) in enumerate(get_top_songs_for_year(results, year, taylor_version_mapping))])}
-                </ul>
+        </li>
+        """ for i, (song, count) in enumerate(top_songs)])}
+    </ul>
+</div>
+
+<!-- Yearly Songs Views -->
+{"".join([f"""
+<div id="{year}-songs-view" class="stats-view">
+    <ul class="song-list">
+        {"".join([f"""
+        <li class="{'total-minutes-row' if i < 3 else 'song-item'}">
+            <div class="album-info">
+                <div class="song-number {'song-number-top' if i < 3 else ''}" 
+                     style="background-color: var(--accent);">{i+1}</div>
+                <span class="{'total-minutes-text' if i < 3 else 'song-title'}">{song}</span>
+                {f'<div class="album-percentage total-minutes-value">{count} <i class="fa-solid fa-play"></i></div>' if i < 3 else ''}
             </div>
-            """ for year in sorted(results['taylor_minutes_by_year'].keys())])}
-        </div>
+        </li>
+        """ for i, (song, count) in enumerate(get_top_songs_for_year(results, year, taylor_version_mapping))])}
+    </ul>
+</div>
+""" for year in sorted(results['taylor_minutes_by_year'].keys())])}
+</div>
 
 
     <!-- TAB2 - ERAS -->
@@ -938,7 +938,7 @@ def generate_html_report(results, album_colors, taylor_version_mapping):
                     <div class="album-color" style="background-color: {album_colors.get(album, '#FFFFFF')};"></div>
                     <span>{album}</span>
                 </div>
-                <div class="album-percentage">{round(minutes)} minutes</div>
+                <div class="album-percentage">{round(minutes)} min</div>
             </div>
             """ for album, minutes in sorted_albums])}
             
@@ -947,7 +947,7 @@ def generate_html_report(results, album_colors, taylor_version_mapping):
                     <div class="album-color" style="background-color: var(--accent);"></div>
                     <span class="total-minutes-text">Total Listening Time</span>
                 </div>
-                <div class="album-percentage total-minutes-value">{round(total_taylor_minutes)} minutes</div>
+                <div class="album-percentage total-minutes-value">{round(total_taylor_minutes)} min</div>
             </div>
         </div>
         
@@ -987,7 +987,7 @@ def generate_html_report(results, album_colors, taylor_version_mapping):
                 <div class="song-number {'song-number-top' if i < 3 else ''}" 
                     style="background-color: var(--accent);">{i+1}</div>
                 <span class="{'total-minutes-text' if i < 3 else 'song-title'}">{song}</span>
-                {f'<div class="album-percentage total-minutes-value">{count} plays</div>' if i < 3 else ''}
+                {f'<div class="album-percentage total-minutes-value">{count} <i class="fa-solid fa-play"></i></div>' if i < 3 else ''}
             </div>
         </li>
         """ for i, (song, count) in enumerate(top_songs)])}
@@ -1004,7 +1004,7 @@ def generate_html_report(results, album_colors, taylor_version_mapping):
                 <div class="song-number {'song-number-top' if i < 3 else ''}" 
                     style="background-color: {album_colors.get(album, '#FFFFFF')};">{i+1}</div>
                 <span class="{'total-minutes-text' if i < 3 else 'song-title'}">{song}</span>
-                {f'<div class="album-percentage total-minutes-value">{count} plays</div>' if i < 3 else ''}
+                {f'<div class="album-percentage total-minutes-value">{count} <i class="fa-solid fa-play"></i></div>' if i < 3 else ''}
             </div>
         </li>
         """ for i, (song, count) in enumerate(get_top_songs_for_album(results, album, taylor_version_mapping))])}
@@ -1052,7 +1052,7 @@ def generate_html_report(results, album_colors, taylor_version_mapping):
                     <div class="album-color" style="background-color: var(--accent);"></div>
                     <span class="total-minutes-text">Total Listening Time</span>
                 </div>
-                <div class="album-percentage total-minutes-value">{monthly_stats[month]['minutes']} minutes</div>
+                <div class="album-percentage total-minutes-value">{monthly_stats[month]['minutes']} min</div>
             </div>
 
 
