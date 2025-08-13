@@ -147,7 +147,7 @@ def get_top_songs_for_year(results, year, taylor_version_mapping):
             if artist == "Taylor Swift" and song:
                 unified_song = taylor_version_mapping.get(song, song)
                 yearly_songs[unified_song] += 1
-    return yearly_songs.most_common()
+    return yearly_songs.most_common(13)
 
 def get_top_songs_for_album(results, album_name, taylor_version_mapping):
     """Get top songs for a specific album"""
@@ -224,15 +224,15 @@ def generate_html_report(results, album_colors, taylor_version_mapping):
         
         if current_pos < prev_pos:  # Moved up
             if pos_diff > 5:
-                return f'<span class="trend-indicator up">↑↑</span>'
+                return f'<span class="trend-indicator up"><i class="fa-solid fa-caret-up"></i><i class="fa-solid fa-caret-up"></i></span>'
             else:
-                return f'<span class="trend-indicator up">↑</span>'
+                return f'<span class="trend-indicator up"><i class="fa-solid fa-caret-up"></i></span>'
         elif current_pos > prev_pos:  # Moved down
             if pos_diff > 5:
-                return f'<span class="trend-indicator down">↓↓</span>'
+                return f'<span class="trend-indicator down"><i class="fa-solid fa-caret-down"></i><i class="fa-solid fa-caret-down"></i></span>'
             else:
-                return f'<span class="trend-indicator down">↓</span>'
-        return '<span class="trend-indicator same">=</span>'
+                return f'<span class="trend-indicator down"><i class="fa-solid fa-caret-down"></i></span>'
+        return '<span class="trend-indicator same"><i class="fa-solid fa-equals"></i></span>'
 
     html = f"""
 <!DOCTYPE html>
@@ -249,7 +249,7 @@ def generate_html_report(results, album_colors, taylor_version_mapping):
         :root {{
             --primary: #000000;
             --secondary: #ffd1a3;
-            --accent: #FF8E1B;
+            --accent: #7FB069;
             --highlight: #ADEBB3;
             --border: 3px solid var(--primary);
             --shadow: 8px 8px 0px var(--primary);
@@ -773,7 +773,11 @@ def generate_html_report(results, album_colors, taylor_version_mapping):
                 margin-bottom: 8px;
             }}
 
-            .total-minutes-text, .total-minutes-value, .body{{
+            .total-minutes-text, .total-minutes-value {{
+                font-size: 0.9rem;
+            }}
+
+            body {{
                 font-size: 0.9rem;
             }}
         }}
@@ -812,7 +816,7 @@ def generate_html_report(results, album_colors, taylor_version_mapping):
         <div id="years-view" class="stats-view">
             <!-- Year Navigation Tabs -->
             <div class="nav-tabs">
-                <button class="nav-tab active" onclick="showYearView('all-time')">All Years</button>
+                <button class="nav-tab active" onclick="showYearView('all-time')">Forever & Always</button>
                 {"".join([f"""
                 <button class="nav-tab" onclick="showYearView('{year}')">{year}</button>
                 """ for year in sorted(results['taylor_minutes_by_year'].keys(), reverse=True)])}
@@ -920,7 +924,7 @@ def generate_html_report(results, album_colors, taylor_version_mapping):
     <div id="albums-view" class="stats-view">
         <!-- Album Navigation Tabs -->
         <div class="nav-tabs">
-            <button class="nav-tab active" onclick="showAlbumView('all-albums')">All Eras</button>
+            <button class="nav-tab active" onclick="showAlbumView('all-albums')">Swiftie Era</button>
             {"".join([f"""
             <button class="nav-tab" onclick="showAlbumView('{album}')">{album}</button>
             """ for album, _ in sorted_albums])}
@@ -962,7 +966,7 @@ def generate_html_report(results, album_colors, taylor_version_mapping):
                     <div class="album-color" style="background-color: {album_colors.get(album, '#FFFFFF')};"></div>
                     <span>{year}</span>
                 </div>
-                <div class="album-percentage">{round(minutes)} minutes</div>
+                <div class="album-percentage">{round(minutes)} min</div>
             </div>
             """ for year, minutes in sorted((y, m) for y, albums in results['album_minutes_by_year'].items() for album_name, m in albums.items() if album_name == album)])}
             
@@ -971,7 +975,7 @@ def generate_html_report(results, album_colors, taylor_version_mapping):
                     <div class="album-color" style="background-color: {album_colors.get(album, '#FFFFFF')};"></div>
                     <span class="total-minutes-text">Total Listening Time</span>
                 </div>
-                <div class="album-percentage total-minutes-value">{round(results['total_album_minutes'][album])} minutes</div>
+                <div class="album-percentage total-minutes-value">{round(results['total_album_minutes'][album])} min</div>
             </div>
         </div>
         """ for album, _ in sorted_albums])}
@@ -1052,8 +1056,7 @@ def generate_html_report(results, album_colors, taylor_version_mapping):
                     <div class="album-color" style="background-color: var(--accent);"></div>
                     <span class="total-minutes-text">Total Listening Time</span>
                 </div>
-                <div class="album-percentage total-minutes-value">{monthly_stats[month]['minutes']} min</div>
-            </div>
+<div class="album-percentage total-minutes-value">{round(monthly_stats[month]['minutes'])} min</div>            </div>
 
 
         
@@ -1083,7 +1086,7 @@ def generate_html_report(results, album_colors, taylor_version_mapping):
                     <div class="{'album-percentage total-minutes-value' if i < 3 else 'play-count'}">{get_position_trend(month, song, 'songs', monthly_stats, prev_month_stats)}</div>
                 </div>
             </li>
-            """ for i, (song, count) in enumerate(monthly_stats[month]['songs'].most_common(50))])}
+            """ for i, (song, count) in enumerate(monthly_stats[month]['songs'].most_common(31))])}
         </ul>
         </div>
         """ for i, year in enumerate(years) 
