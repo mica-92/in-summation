@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>In Summation</title>
+    <title><a href="#" onclick="openPopup('insummation_poem.jpeg'); return false;" class="popup-link" title="Click!">In Summation</a></title>
     <link rel="icon" href="fav.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -335,34 +335,34 @@
 
 
         .calendar-list {
-    list-style-type: none;
-    padding: 0;
-}
+            list-style-type: none;
+            padding: 0;
+        }
 
-.calendar-list h2 {
-    border-bottom: var(--border);
-    padding-bottom: 5px;
-    margin-top: 30px;
-}
+        .calendar-list h2 {
+            border-bottom: var(--border);
+            padding-bottom: 5px;
+            margin-top: 30px;
+        }
 
-.calendar-item {
-    display: flex;
-    align-items: center;
-    padding: 12px 15px;
-    border-bottom: 2px solid #f0f0f0;
-    gap: 20px;
-}
+        .calendar-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            border-bottom: 2px solid #f0f0f0;
+            gap: 20px;
+        }
 
-.calendar-date {
-    font-weight: bold;
-    min-width: 100px;
-    text-align: center;
-    
-}
+        .calendar-date {
+            font-weight: bold;
+            min-width: 100px;
+            text-align: center;
+            
+        }
 
-.calendar-event {
-    flex-grow: 1;
-}
+        .calendar-event {
+            flex-grow: 1;
+        }
 
 
         .legend {
@@ -389,7 +389,7 @@
         .month-section {
             margin-bottom: 40px;
             background-color: white;
-   
+
         }
         
         .month-header {
@@ -546,16 +546,99 @@
             }
         }
 
-    .fa-heart, .fa-music{
-        margin: 0 5px; /* Spacing */
-    }
+        .fa-heart, .fa-music{
+            margin: 0 5px; /* Spacing */
+        }
 
+        /* Brutalist Popup Link Styles */
+        .popup-link {
+            color: inherit;
+            text-decoration: underline;
+            text-decoration-style: dotted;
+            cursor: pointer;
+            position: relative;
+        }
 
+        .popup-link:hover {
+            color: var(--accent);
+            text-decoration: none;
+            background-color: var(--highlight);
+        }
+
+        /* Brutalist Egg Tooltip */
+        .popup-link:hover::before {
+            content: "7fb"; /* Unicode for fa-egg */
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--highlight);
+            color: var(--primary);
+            padding: 8px;
+            border: 3px solid var(--primary);
+            font-size: 1rem;
+            line-height: 1;
+            z-index: 100;
+            box-shadow: 2px 2px 0px var(--primary);
+            margin-bottom: 5px;
+        }
+
+        /* Popup styles */
+        #popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #popup > div {
+            position: relative;
+            max-width: 90vw;  /* 90% of viewport width */
+            max-height: 90vh; /* 90% of viewport height */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #popup-image {
+            max-width: 100%;  /* Constrained by parent's max-width */
+            max-height: 100%; /* Constrained by parent's max-height */
+            object-fit: contain;
+            border: 8px solid var(--primary);
+            box-shadow: var(--shadow);
+        }
+
+        #popup button {
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            background: white;
+            border: var(--border);
+            border-radius: 0;
+            width: 30px;
+            height: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+        }
+
+        #popup button:hover {
+            background-color: var(--accent);
+            color: white;
+        }
     </style>
 </head>
 <body>
     <header>
-        <h1>In Summation</h1>
+        <h1><a href="#" onclick="openPopup('insummation_poem.jpeg'); return false;" class="popup-link" title="Click!">In Summation</a></h1>
                 <p><i>A brutalist breakdown of your Taylor Swift listening habits</i></p>
 
     </header>
@@ -572,7 +655,7 @@
 
         <!-- Home View -->
         <div id="home-view" class="stats-view active">
-            <h3>Welcome to <i>In Summation</i></h3>
+            <h3>Welcome to <i><a href="#" onclick="openPopup('insummation_poem.jpeg'); return false;" class="popup-link" title="Click!">In Summation</a></i></h3>
             <p>The most comprehensive musical report of your Swiftly listening habits.</p>
         </div>
 
@@ -1704,7 +1787,7 @@
             <div class="album-info">
                 <div class="song-number song-number-top" 
                      style="background-color: var(--accent);">2</div>
-                <span class="total-minutes-text">cardigan</span>
+                <span class="total-minutes-text"><a href="#" onclick="openPopup('cardigan.jpeg'); return false;" class="popup-link" title="Click!">cardigan</a></span>
                 <div class="album-percentage total-minutes-value">447 <i class="fa-solid fa-play"></i></div>
             </div>
         </li>
@@ -2181,7 +2264,7 @@
             <div class="album-info">
                 <div class="song-number " 
                      style="background-color: var(--accent);">55</div>
-                <span class="song-title">Cornelia Street</span>
+                <span class="song-title"><a href="#" onclick="openPopup('ee8.jpg'); return false;" class="popup-link" title="Click!">Cornelia Street</a></span>
                 
             </div>
         </li>
@@ -2208,7 +2291,7 @@
             <div class="album-info">
                 <div class="song-number " 
                      style="background-color: var(--accent);">58</div>
-                <span class="song-title">End Game</span>
+                <span class="song-title"><a href="#" onclick="openPopup('4J.jpg'); return false;" class="popup-link" title="Click!">End Game</a></span>
                 
             </div>
         </li>
@@ -2235,7 +2318,7 @@
             <div class="album-info">
                 <div class="song-number " 
                      style="background-color: var(--accent);">61</div>
-                <span class="song-title">‘tis the damn season</span>
+                <span class="song-title">‘<a href="#" onclick="openPopup('EE1.png'); return false;" class="popup-link" title="Click!">tis the damn season</a></span>
                 
             </div>
         </li>
@@ -2550,7 +2633,7 @@
             <div class="album-info">
                 <div class="song-number " 
                      style="background-color: var(--accent);">96</div>
-                <span class="song-title">I Can Do It With a Broken Heart</span>
+                <span class="song-title"><a href="#" onclick="openPopup('ee7.jpg'); return false;" class="popup-link" title="Click!">I Can Do It With a Broken Heart</a></span>
                 
             </div>
         </li>
@@ -2685,7 +2768,7 @@
             <div class="album-info">
                 <div class="song-number " 
                      style="background-color: var(--accent);">111</div>
-                <span class="song-title">The Bolter</span>
+                <span class="song-title"><a href="#" onclick="openPopup('ee6.jpg'); return false;" class="popup-link" title="Click!">The Bolter</a></span>
                 
             </div>
         </li>
@@ -3000,7 +3083,7 @@
             <div class="album-info">
                 <div class="song-number " 
                      style="background-color: var(--accent);">146</div>
-                <span class="song-title">marjorie</span>
+                <span class="song-title"><a href="#" onclick="openPopup('marjorie.jpeg'); return false;" class="popup-link" title="Click!">marjorie</a></span>
                 
             </div>
         </li>
@@ -3135,7 +3218,7 @@
             <div class="album-info">
                 <div class="song-number " 
                      style="background-color: var(--accent);">161</div>
-                <span class="song-title">Cassandra</span>
+                <span class="song-title"><a href="#" onclick="openPopup('ee5.jpg'); return false;" class="popup-link" title="Click!">Cassandra</a></span>
                 
             </div>
         </li>
@@ -3252,7 +3335,7 @@
             <div class="album-info">
                 <div class="song-number " 
                      style="background-color: var(--accent);">174</div>
-                <span class="song-title">The Manuscript</span>
+                <span class="song-title"><a href="#" onclick="openPopup('ee4.jpg'); return false;" class="popup-link" title="Click!">The Manuscript</a></span>
                 
             </div>
         </li>
@@ -4067,7 +4150,7 @@
             <div class="album-info">
                 <div class="song-number song-number-top" 
                      style="background-color: var(--accent);">3</div>
-                <span class="total-minutes-text">End Game</span>
+                <span class="total-minutes-text"><a href="#" onclick="openPopup('4J.jpg'); return false;" class="popup-link" title="Click!">End Game</a></span>
                 <div class="album-percentage total-minutes-value">42 <i class="fa-solid fa-play"></i></div>
             </div>
         </li>
@@ -4304,7 +4387,7 @@
             <div class="album-info">
                 <div class="song-number song-number-top" 
                      style="background-color: var(--accent);">2</div>
-                <span class="total-minutes-text">cardigan</span>
+                <span class="total-minutes-text"><a href="#" onclick="openPopup('cardigan.jpeg'); return false;" class="popup-link" title="Click!">cardigan</a></span>
                 <div class="album-percentage total-minutes-value">144 <i class="fa-solid fa-play"></i></div>
             </div>
         </li>
@@ -4436,7 +4519,7 @@
             <div class="album-info">
                 <div class="song-number song-number-top" 
                      style="background-color: var(--accent);">3</div>
-                <span class="total-minutes-text">cardigan</span>
+                <span class="total-minutes-text"><a href="#" onclick="openPopup('cardigan.jpeg'); return false;" class="popup-link" title="Click!">cardigan</a></span>
                 <div class="album-percentage total-minutes-value">167 <i class="fa-solid fa-play"></i></div>
             </div>
         </li>
@@ -4868,7 +4951,7 @@
             <div class="album-info">
                 <div class="song-number " 
                      style="background-color: var(--accent);">10</div>
-                <span class="song-title">I Can Do It With a Broken Heart</span>
+                <span class="song-title"><a href="#" onclick="openPopup('ee7.jpg'); return false;" class="popup-link" title="Click!">I Can Do It With a Broken Heart</a></span>
                 
             </div>
         </li>
@@ -5825,7 +5908,7 @@
             <div class="album-info">
                 <div class="song-number song-number-top" 
                     style="background-color: var(--accent);">2</div>
-                <span class="total-minutes-text">cardigan</span>
+                <span class="total-minutes-text"><a href="#" onclick="openPopup('cardigan.jpeg'); return false;" class="popup-link" title="Click!">cardigan</a></span>
                 <div class="album-percentage total-minutes-value">447 <i class="fa-solid fa-play"></i></div>
             </div>
         </li>
@@ -6302,7 +6385,7 @@
             <div class="album-info">
                 <div class="song-number " 
                     style="background-color: var(--accent);">55</div>
-                <span class="song-title">Cornelia Street</span>
+                <span class="song-title"><a href="#" onclick="openPopup('ee8.jpg'); return false;" class="popup-link" title="Click!">Cornelia Street</a></span>
                 
             </div>
         </li>
@@ -6329,7 +6412,7 @@
             <div class="album-info">
                 <div class="song-number " 
                     style="background-color: var(--accent);">58</div>
-                <span class="song-title">End Game</span>
+                <span class="song-title"><a href="#" onclick="openPopup('4J.jpg'); return false;" class="popup-link" title="Click!">End Game</a></span>
                 
             </div>
         </li>
@@ -6356,7 +6439,7 @@
             <div class="album-info">
                 <div class="song-number " 
                     style="background-color: var(--accent);">61</div>
-                <span class="song-title">‘tis the damn season</span>
+                <span class="song-title">‘<a href="#" onclick="openPopup('EE1.png'); return false;" class="popup-link" title="Click!">tis the damn season</a></span>
                 
             </div>
         </li>
@@ -6671,7 +6754,7 @@
             <div class="album-info">
                 <div class="song-number " 
                     style="background-color: var(--accent);">96</div>
-                <span class="song-title">I Can Do It With a Broken Heart</span>
+                <span class="song-title"><a href="#" onclick="openPopup('ee7.jpg'); return false;" class="popup-link" title="Click!">I Can Do It With a Broken Heart</a></span>
                 
             </div>
         </li>
@@ -6806,7 +6889,7 @@
             <div class="album-info">
                 <div class="song-number " 
                     style="background-color: var(--accent);">111</div>
-                <span class="song-title">The Bolter</span>
+                <span class="song-title"><a href="#" onclick="openPopup('ee6.jpg'); return false;" class="popup-link" title="Click!">The Bolter</a></span>
                 
             </div>
         </li>
@@ -7121,7 +7204,7 @@
             <div class="album-info">
                 <div class="song-number " 
                     style="background-color: var(--accent);">146</div>
-                <span class="song-title">marjorie</span>
+                <span class="song-title"><a href="#" onclick="openPopup('marjorie.jpeg'); return false;" class="popup-link" title="Click!">marjorie</a></span>
                 
             </div>
         </li>
@@ -7256,7 +7339,7 @@
             <div class="album-info">
                 <div class="song-number " 
                     style="background-color: var(--accent);">161</div>
-                <span class="song-title">Cassandra</span>
+                <span class="song-title"><a href="#" onclick="openPopup('ee5.jpg'); return false;" class="popup-link" title="Click!">Cassandra</a></span>
                 
             </div>
         </li>
@@ -7373,7 +7456,7 @@
             <div class="album-info">
                 <div class="song-number " 
                     style="background-color: var(--accent);">174</div>
-                <span class="song-title">The Manuscript</span>
+                <span class="song-title"><a href="#" onclick="openPopup('ee4.jpg'); return false;" class="popup-link" title="Click!">The Manuscript</a></span>
                 
             </div>
         </li>
@@ -8047,7 +8130,7 @@
             <div class="album-info">
                 <div class="song-number song-number-top" 
                     style="background-color: #D3D3D3;">1</div>
-                <span class="total-minutes-text">cardigan</span>
+                <span class="total-minutes-text"><a href="#" onclick="openPopup('cardigan.jpeg'); return false;" class="popup-link" title="Click!">cardigan</a></span>
                 <div class="album-percentage total-minutes-value">447 <i class="fa-solid fa-play"></i></div>
             </div>
         </li>
@@ -8563,7 +8646,7 @@
             <div class="album-info">
                 <div class="song-number " 
                     style="background-color: #333333;">10</div>
-                <span class="song-title">I Can Do It With a Broken Heart</span>
+                <span class="song-title"><a href="#" onclick="openPopup('ee7.jpg'); return false;" class="popup-link" title="Click!">I Can Do It With a Broken Heart</a></span>
                 
             </div>
         </li>
@@ -8608,7 +8691,7 @@
             <div class="album-info">
                 <div class="song-number " 
                     style="background-color: #333333;">15</div>
-                <span class="song-title">The Bolter</span>
+                <span class="song-title"><a href="#" onclick="openPopup('ee6.jpg'); return false;" class="popup-link" title="Click!">The Bolter</a></span>
                 
             </div>
         </li>
@@ -8716,7 +8799,7 @@
             <div class="album-info">
                 <div class="song-number " 
                     style="background-color: #333333;">27</div>
-                <span class="song-title">Cassandra</span>
+                <span class="song-title"><a href="#" onclick="openPopup('ee5.jpg'); return false;" class="popup-link" title="Click!">Cassandra</a></span>
                 
             </div>
         </li>
@@ -8743,7 +8826,7 @@
             <div class="album-info">
                 <div class="song-number " 
                     style="background-color: #333333;">30</div>
-                <span class="song-title">The Manuscript</span>
+                <span class="song-title"><a href="#" onclick="openPopup('ee4.jpg'); return false;" class="popup-link" title="Click!">The Manuscript</a></span>
                 
             </div>
         </li>
@@ -9220,7 +9303,7 @@
             <div class="album-info">
                 <div class="song-number " 
                     style="background-color: #FFC0CB;">7</div>
-                <span class="song-title">Cornelia Street</span>
+                <span class="song-title"><a href="#" onclick="openPopup('ee8.jpg'); return false;" class="popup-link" title="Click!">Cornelia Street</a></span>
                 
             </div>
         </li>
@@ -9388,7 +9471,7 @@
             <div class="album-info">
                 <div class="song-number song-number-top" 
                     style="background-color: #800000;">3</div>
-                <span class="total-minutes-text">‘tis the damn season</span>
+                <span class="total-minutes-text">‘<a href="#" onclick="openPopup('EE1.png'); return false;" class="popup-link" title="Click!">tis the damn season</a></span>
                 <div class="album-percentage total-minutes-value">167 <i class="fa-solid fa-play"></i></div>
             </div>
         </li>
@@ -9487,7 +9570,7 @@
             <div class="album-info">
                 <div class="song-number " 
                     style="background-color: #800000;">14</div>
-                <span class="song-title">marjorie</span>
+                <span class="song-title"><a href="#" onclick="openPopup('marjorie.jpeg'); return false;" class="popup-link" title="Click!">marjorie</a></span>
                 
             </div>
         </li>
@@ -9556,7 +9639,7 @@
             <div class="album-info">
                 <div class="song-number " 
                     style="background-color: #000000;">4</div>
-                <span class="song-title">End Game</span>
+                <span class="song-title"><a href="#" onclick="openPopup('4J.jpg'); return false;" class="popup-link" title="Click!">End Game</a></span>
                 
             </div>
         </li>
@@ -11153,7 +11236,7 @@
                 <div class="album-info">
                     <div class="song-number " 
                         style="background-color: var(--accent);">11</div>
-                    <span class="song-title">The Bolter</span>
+                    <span class="song-title"><a href="#" onclick="openPopup('ee6.jpg'); return false;" class="popup-link" title="Click!">The Bolter</a></span>
                     <div class="play-count"><span class="trend-indicator up"><i class="fa-solid fa-caret-up"></i><i class="fa-solid fa-caret-up"></i></span></div>
                 </div>
             </li>
@@ -11631,7 +11714,7 @@
                 <div class="album-info">
                     <div class="song-number " 
                         style="background-color: var(--accent);">17</div>
-                    <span class="song-title">I Can Do It With a Broken Heart</span>
+                    <span class="song-title"><a href="#" onclick="openPopup('ee7.jpg'); return false;" class="popup-link" title="Click!">I Can Do It With a Broken Heart</a></span>
                     <div class="play-count"><span class="trend-indicator down"><i class="fa-solid fa-caret-down"></i><i class="fa-solid fa-caret-down"></i></span></div>
                 </div>
             </li>
@@ -11667,7 +11750,7 @@
                 <div class="album-info">
                     <div class="song-number " 
                         style="background-color: var(--accent);">21</div>
-                    <span class="song-title">Cassandra</span>
+                    <span class="song-title"><a href="#" onclick="openPopup('ee5.jpg'); return false;" class="popup-link" title="Click!">Cassandra</a></span>
                     <div class="play-count"><span class="trend-indicator up"><i class="fa-solid fa-caret-up"></i></span></div>
                 </div>
             </li>
@@ -11676,7 +11759,7 @@
                 <div class="album-info">
                     <div class="song-number " 
                         style="background-color: var(--accent);">22</div>
-                    <span class="song-title">The Manuscript</span>
+                    <span class="song-title"><a href="#" onclick="openPopup('ee4.jpg'); return false;" class="popup-link" title="Click!">The Manuscript</a></span>
                     <div class="play-count"><span class="trend-indicator up"><i class="fa-solid fa-caret-up"></i></span></div>
                 </div>
             </li>
@@ -11703,7 +11786,7 @@
                 <div class="album-info">
                     <div class="song-number " 
                         style="background-color: var(--accent);">25</div>
-                    <span class="song-title">The Bolter</span>
+                    <span class="song-title"><a href="#" onclick="openPopup('ee6.jpg'); return false;" class="popup-link" title="Click!">The Bolter</a></span>
                     <div class="play-count"><span class="trend-indicator down"><i class="fa-solid fa-caret-down"></i><i class="fa-solid fa-caret-down"></i></span></div>
                 </div>
             </li>
@@ -11973,7 +12056,7 @@
                 <div class="album-info">
                     <div class="song-number " 
                         style="background-color: var(--accent);">9</div>
-                    <span class="song-title">The Bolter</span>
+                    <span class="song-title"><a href="#" onclick="openPopup('ee6.jpg'); return false;" class="popup-link" title="Click!">The Bolter</a></span>
                     <div class="play-count"><span class="trend-indicator up"><i class="fa-solid fa-caret-up"></i></span></div>
                 </div>
             </li>
@@ -11982,7 +12065,7 @@
                 <div class="album-info">
                     <div class="song-number " 
                         style="background-color: var(--accent);">10</div>
-                    <span class="song-title">I Can Do It With a Broken Heart</span>
+                    <span class="song-title"><a href="#" onclick="openPopup('ee7.jpg'); return false;" class="popup-link" title="Click!">I Can Do It With a Broken Heart</a></span>
                     <div class="play-count"><span class="trend-indicator down"><i class="fa-solid fa-caret-down"></i><i class="fa-solid fa-caret-down"></i></span></div>
                 </div>
             </li>
@@ -12099,7 +12182,7 @@
                 <div class="album-info">
                     <div class="song-number " 
                         style="background-color: var(--accent);">23</div>
-                    <span class="song-title">The Manuscript</span>
+                    <span class="song-title"><a href="#" onclick="openPopup('ee4.jpg'); return false;" class="popup-link" title="Click!">The Manuscript</a></span>
                     <div class="play-count"><span class="trend-indicator up"><i class="fa-solid fa-caret-up"></i><i class="fa-solid fa-caret-up"></i></span></div>
                 </div>
             </li>
@@ -12108,7 +12191,7 @@
                 <div class="album-info">
                     <div class="song-number " 
                         style="background-color: var(--accent);">24</div>
-                    <span class="song-title">Cassandra</span>
+                    <span class="song-title"><a href="#" onclick="openPopup('ee5.jpg'); return false;" class="popup-link" title="Click!">Cassandra</a></span>
                     <div class="play-count"><span class="trend-indicator up"><i class="fa-solid fa-caret-up"></i><i class="fa-solid fa-caret-up"></i></span></div>
                 </div>
             </li>
@@ -12333,7 +12416,7 @@
                 <div class="album-info">
                     <div class="song-number song-number-top" 
                         style="background-color: var(--accent);">3</div>
-                    <span class="total-minutes-text">I Can Do It With a Broken Heart</span>
+                    <span class="total-minutes-text"><a href="#" onclick="openPopup('ee7.jpg'); return false;" class="popup-link" title="Click!">I Can Do It With a Broken Heart</a></span>
                     <div class="album-percentage total-minutes-value"><span class="trend-indicator up"><i class="fa-solid fa-caret-up"></i><i class="fa-solid fa-caret-up"></i></span></div>
                 </div>
             </li>
@@ -12405,7 +12488,7 @@
                 <div class="album-info">
                     <div class="song-number " 
                         style="background-color: var(--accent);">11</div>
-                    <span class="song-title">The Bolter</span>
+                    <span class="song-title"><a href="#" onclick="openPopup('ee6.jpg'); return false;" class="popup-link" title="Click!">The Bolter</a></span>
                     <div class="play-count"><span class="trend-indicator down"><i class="fa-solid fa-caret-down"></i><i class="fa-solid fa-caret-down"></i></span></div>
                 </div>
             </li>
@@ -12775,7 +12858,7 @@
                 <div class="album-info">
                     <div class="song-number " 
                         style="background-color: var(--accent);">5</div>
-                    <span class="song-title">The Bolter</span>
+                    <span class="song-title"><a href="#" onclick="openPopup('ee6.jpg'); return false;" class="popup-link" title="Click!">The Bolter</a></span>
                     <div class="play-count"><span class="trend-indicator up"><i class="fa-solid fa-caret-up"></i><i class="fa-solid fa-caret-up"></i></span></div>
                 </div>
             </li>
@@ -12919,7 +13002,7 @@
                 <div class="album-info">
                     <div class="song-number " 
                         style="background-color: var(--accent);">21</div>
-                    <span class="song-title">I Can Do It With a Broken Heart</span>
+                    <span class="song-title"><a href="#" onclick="openPopup('ee7.jpg'); return false;" class="popup-link" title="Click!">I Can Do It With a Broken Heart</a></span>
                     <div class="play-count"><span class="trend-indicator down"><i class="fa-solid fa-caret-down"></i><i class="fa-solid fa-caret-down"></i></span></div>
                 </div>
             </li>
@@ -12955,7 +13038,7 @@
                 <div class="album-info">
                     <div class="song-number " 
                         style="background-color: var(--accent);">25</div>
-                    <span class="song-title">Cassandra</span>
+                    <span class="song-title"><a href="#" onclick="openPopup('ee5.jpg'); return false;" class="popup-link" title="Click!">Cassandra</a></span>
                     <div class="play-count"><span class="trend-indicator up"><i class="fa-solid fa-caret-up"></i></span></div>
                 </div>
             </li>
@@ -12982,7 +13065,7 @@
                 <div class="album-info">
                     <div class="song-number " 
                         style="background-color: var(--accent);">28</div>
-                    <span class="song-title">The Manuscript</span>
+                    <span class="song-title"><a href="#" onclick="openPopup('ee4.jpg'); return false;" class="popup-link" title="Click!">The Manuscript</a></span>
                     <div class="play-count"><span class="trend-indicator up"><i class="fa-solid fa-caret-up"></i></span></div>
                 </div>
             </li>
@@ -13226,7 +13309,7 @@
                 <div class="album-info">
                     <div class="song-number " 
                         style="background-color: var(--accent);">8</div>
-                    <span class="song-title">I Can Do It With a Broken Heart</span>
+                    <span class="song-title"><a href="#" onclick="openPopup('ee7.jpg'); return false;" class="popup-link" title="Click!">I Can Do It With a Broken Heart</a></span>
                     <div class="play-count"><span class="trend-indicator down"><i class="fa-solid fa-caret-down"></i></span></div>
                 </div>
             </li>
@@ -13316,7 +13399,7 @@
                 <div class="album-info">
                     <div class="song-number " 
                         style="background-color: var(--accent);">18</div>
-                    <span class="song-title">The Bolter</span>
+                    <span class="song-title"><a href="#" onclick="openPopup('ee6.jpg'); return false;" class="popup-link" title="Click!">The Bolter</a></span>
                     <div class="play-count"><span class="trend-indicator down"><i class="fa-solid fa-caret-down"></i></span></div>
                 </div>
             </li>
@@ -13415,7 +13498,7 @@
                 <div class="album-info">
                     <div class="song-number " 
                         style="background-color: var(--accent);">29</div>
-                    <span class="song-title">Cassandra</span>
+                    <span class="song-title"><a href="#" onclick="openPopup('ee5.jpg'); return false;" class="popup-link" title="Click!">Cassandra</a></span>
                     <div class="play-count"><span class="trend-indicator up"><i class="fa-solid fa-caret-up"></i></span></div>
                 </div>
             </li>
@@ -13424,7 +13507,7 @@
                 <div class="album-info">
                     <div class="song-number " 
                         style="background-color: var(--accent);">30</div>
-                    <span class="song-title">The Manuscript</span>
+                    <span class="song-title"><a href="#" onclick="openPopup('ee4.jpg'); return false;" class="popup-link" title="Click!">The Manuscript</a></span>
                     <div class="play-count"><span class="trend-indicator up"><i class="fa-solid fa-caret-up"></i><i class="fa-solid fa-caret-up"></i></span></div>
                 </div>
             </li>
@@ -13641,7 +13724,7 @@
                 <div class="album-info">
                     <div class="song-number " 
                         style="background-color: var(--accent);">7</div>
-                    <span class="song-title">I Can Do It With a Broken Heart</span>
+                    <span class="song-title"><a href="#" onclick="openPopup('ee7.jpg'); return false;" class="popup-link" title="Click!">I Can Do It With a Broken Heart</a></span>
                     <div class="play-count"><span class="trend-indicator up"><i class="fa-solid fa-caret-up"></i><i class="fa-solid fa-caret-up"></i></span></div>
                 </div>
             </li>
@@ -13704,7 +13787,7 @@
                 <div class="album-info">
                     <div class="song-number " 
                         style="background-color: var(--accent);">14</div>
-                    <span class="song-title">The Bolter</span>
+                    <span class="song-title"><a href="#" onclick="openPopup('ee6.jpg'); return false;" class="popup-link" title="Click!">The Bolter</a></span>
                     <div class="play-count"><span class="trend-indicator up"><i class="fa-solid fa-caret-up"></i></span></div>
                 </div>
             </li>
@@ -13812,7 +13895,7 @@
                 <div class="album-info">
                     <div class="song-number " 
                         style="background-color: var(--accent);">26</div>
-                    <span class="song-title">‘tis the damn season</span>
+                    <span class="song-title">‘<a href="#" onclick="openPopup('EE1.png'); return false;" class="popup-link" title="Click!">tis the damn season</a></span>
                     <div class="play-count"><span class="trend-indicator up"><i class="fa-solid fa-caret-up"></i><i class="fa-solid fa-caret-up"></i></span></div>
                 </div>
             </li>
@@ -13857,7 +13940,7 @@
                 <div class="album-info">
                     <div class="song-number " 
                         style="background-color: var(--accent);">31</div>
-                    <span class="song-title">Cassandra</span>
+                    <span class="song-title"><a href="#" onclick="openPopup('ee5.jpg'); return false;" class="popup-link" title="Click!">Cassandra</a></span>
                     <div class="play-count"><span class="trend-indicator down"><i class="fa-solid fa-caret-down"></i><i class="fa-solid fa-caret-down"></i></span></div>
                 </div>
             </li>
@@ -14049,7 +14132,7 @@
                 <div class="album-info">
                     <div class="song-number " 
                         style="background-color: var(--accent);">13</div>
-                    <span class="song-title">I Can Do It With a Broken Heart</span>
+                    <span class="song-title"><a href="#" onclick="openPopup('ee7.jpg'); return false;" class="popup-link" title="Click!">I Can Do It With a Broken Heart</a></span>
                     <div class="play-count"><span class="trend-indicator up"><i class="fa-solid fa-caret-up"></i></span></div>
                 </div>
             </li>
@@ -14067,7 +14150,7 @@
                 <div class="album-info">
                     <div class="song-number " 
                         style="background-color: var(--accent);">15</div>
-                    <span class="song-title">The Bolter</span>
+                    <span class="song-title"><a href="#" onclick="openPopup('ee6.jpg'); return false;" class="popup-link" title="Click!">The Bolter</a></span>
                     <div class="play-count"><span class="trend-indicator up"><i class="fa-solid fa-caret-up"></i><i class="fa-solid fa-caret-up"></i></span></div>
                 </div>
             </li>
@@ -14148,7 +14231,7 @@
                 <div class="album-info">
                     <div class="song-number " 
                         style="background-color: var(--accent);">24</div>
-                    <span class="song-title">Cassandra</span>
+                    <span class="song-title"><a href="#" onclick="openPopup('ee5.jpg'); return false;" class="popup-link" title="Click!">Cassandra</a></span>
                     <div class="play-count"><span class="trend-indicator up"><i class="fa-solid fa-caret-up"></i></span></div>
                 </div>
             </li>
@@ -14202,7 +14285,7 @@
                 <div class="album-info">
                     <div class="song-number " 
                         style="background-color: var(--accent);">30</div>
-                    <span class="song-title">The Manuscript</span>
+                    <span class="song-title"><a href="#" onclick="openPopup('ee4.jpg'); return false;" class="popup-link" title="Click!">The Manuscript</a></span>
                     <div class="play-count"><span class="trend-indicator up"><i class="fa-solid fa-caret-up"></i></span></div>
                 </div>
             </li>
@@ -14480,7 +14563,7 @@
                 <div class="album-info">
                     <div class="song-number " 
                         style="background-color: var(--accent);">16</div>
-                    <span class="song-title">I Can Do It With a Broken Heart</span>
+                    <span class="song-title"><a href="#" onclick="openPopup('ee7.jpg'); return false;" class="popup-link" title="Click!">I Can Do It With a Broken Heart</a></span>
                     <div class="play-count"><span class="trend-indicator new">NEW</span></div>
                 </div>
             </li>
@@ -14552,7 +14635,7 @@
                 <div class="album-info">
                     <div class="song-number " 
                         style="background-color: var(--accent);">24</div>
-                    <span class="song-title">The Bolter</span>
+                    <span class="song-title"><a href="#" onclick="openPopup('ee6.jpg'); return false;" class="popup-link" title="Click!">The Bolter</a></span>
                     <div class="play-count"><span class="trend-indicator new">NEW</span></div>
                 </div>
             </li>
@@ -14570,7 +14653,7 @@
                 <div class="album-info">
                     <div class="song-number " 
                         style="background-color: var(--accent);">26</div>
-                    <span class="song-title">Cassandra</span>
+                    <span class="song-title"><a href="#" onclick="openPopup('ee5.jpg'); return false;" class="popup-link" title="Click!">Cassandra</a></span>
                     <div class="play-count"><span class="trend-indicator new">NEW</span></div>
                 </div>
             </li>
@@ -14615,7 +14698,7 @@
                 <div class="album-info">
                     <div class="song-number " 
                         style="background-color: var(--accent);">31</div>
-                    <span class="song-title">The Manuscript</span>
+                    <span class="song-title"><a href="#" onclick="openPopup('ee4.jpg'); return false;" class="popup-link" title="Click!">The Manuscript</a></span>
                     <div class="play-count"><span class="trend-indicator new">NEW</span></div>
                 </div>
             </li>
@@ -15425,7 +15508,7 @@
                 <div class="album-info">
                     <div class="song-number " 
                         style="background-color: var(--accent);">29</div>
-                    <span class="song-title">‘tis the damn season</span>
+                    <span class="song-title">‘<a href="#" onclick="openPopup('EE1.png'); return false;" class="popup-link" title="Click!">tis the damn season</a></span>
                     <div class="play-count"><span class="trend-indicator up"><i class="fa-solid fa-caret-up"></i><i class="fa-solid fa-caret-up"></i></span></div>
                 </div>
             </li>
@@ -16208,7 +16291,7 @@
                 <div class="album-info">
                     <div class="song-number " 
                         style="background-color: var(--accent);">24</div>
-                    <span class="song-title">cardigan</span>
+                    <span class="song-title"><a href="#" onclick="openPopup('cardigan.jpeg'); return false;" class="popup-link" title="Click!">cardigan</a></span>
                     <div class="play-count"><span class="trend-indicator up"><i class="fa-solid fa-caret-up"></i></span></div>
                 </div>
             </li>
@@ -16649,7 +16732,7 @@
                 <div class="album-info">
                     <div class="song-number " 
                         style="background-color: var(--accent);">27</div>
-                    <span class="song-title">cardigan</span>
+                    <span class="song-title"><a href="#" onclick="openPopup('cardigan.jpeg'); return false;" class="popup-link" title="Click!">cardigan</a></span>
                     <div class="play-count"><span class="trend-indicator up"><i class="fa-solid fa-caret-up"></i></span></div>
                 </div>
             </li>
@@ -16991,7 +17074,7 @@
                 <div class="album-info">
                     <div class="song-number " 
                         style="background-color: var(--accent);">19</div>
-                    <span class="song-title">Cornelia Street</span>
+                    <span class="song-title"><a href="#" onclick="openPopup('ee8.jpg'); return false;" class="popup-link" title="Click!">Cornelia Street</a></span>
                     <div class="play-count"><span class="trend-indicator down"><i class="fa-solid fa-caret-down"></i></span></div>
                 </div>
             </li>
@@ -17099,7 +17182,7 @@
                 <div class="album-info">
                     <div class="song-number " 
                         style="background-color: var(--accent);">31</div>
-                    <span class="song-title">cardigan</span>
+                    <span class="song-title"><a href="#" onclick="openPopup('cardigan.jpeg'); return false;" class="popup-link" title="Click!">cardigan</a></span>
                     <div class="play-count"><span class="trend-indicator up"><i class="fa-solid fa-caret-up"></i><i class="fa-solid fa-caret-up"></i></span></div>
                 </div>
             </li>
@@ -17360,7 +17443,7 @@
                 <div class="album-info">
                     <div class="song-number " 
                         style="background-color: var(--accent);">14</div>
-                    <span class="song-title">Cornelia Street</span>
+                    <span class="song-title"><a href="#" onclick="openPopup('ee8.jpg'); return false;" class="popup-link" title="Click!">Cornelia Street</a></span>
                     <div class="play-count"><span class="trend-indicator up"><i class="fa-solid fa-caret-up"></i><i class="fa-solid fa-caret-up"></i></span></div>
                 </div>
             </li>
@@ -17369,7 +17452,7 @@
                 <div class="album-info">
                     <div class="song-number " 
                         style="background-color: var(--accent);">15</div>
-                    <span class="song-title">‘tis the damn season</span>
+                    <span class="song-title">‘<a href="#" onclick="openPopup('EE1.png'); return false;" class="popup-link" title="Click!">tis the damn season</a></span>
                     <div class="play-count"><span class="trend-indicator up"><i class="fa-solid fa-caret-up"></i><i class="fa-solid fa-caret-up"></i></span></div>
                 </div>
             </li>
@@ -18312,7 +18395,7 @@
                 <div class="album-info">
                     <div class="song-number " 
                         style="background-color: var(--accent);">30</div>
-                    <span class="song-title">Cornelia Street</span>
+                    <span class="song-title"><a href="#" onclick="openPopup('ee8.jpg'); return false;" class="popup-link" title="Click!">Cornelia Street</a></span>
                     <div class="play-count"><span class="trend-indicator down"><i class="fa-solid fa-caret-down"></i><i class="fa-solid fa-caret-down"></i></span></div>
                 </div>
             </li>
@@ -18465,7 +18548,7 @@
                 <div class="album-info">
                     <div class="song-number song-number-top" 
                         style="background-color: var(--accent);">1</div>
-                    <span class="total-minutes-text">cardigan</span>
+                    <span class="total-minutes-text"><a href="#" onclick="openPopup('cardigan.jpeg'); return false;" class="popup-link" title="Click!">cardigan</a></span>
                     <div class="album-percentage total-minutes-value"><span class="trend-indicator up"><i class="fa-solid fa-caret-up"></i><i class="fa-solid fa-caret-up"></i></span></div>
                 </div>
             </li>
@@ -18501,7 +18584,7 @@
                 <div class="album-info">
                     <div class="song-number " 
                         style="background-color: var(--accent);">5</div>
-                    <span class="song-title">Cornelia Street</span>
+                    <span class="song-title"><a href="#" onclick="openPopup('ee8.jpg'); return false;" class="popup-link" title="Click!">Cornelia Street</a></span>
                     <div class="play-count"><span class="trend-indicator up"><i class="fa-solid fa-caret-up"></i><i class="fa-solid fa-caret-up"></i></span></div>
                 </div>
             </li>
@@ -18931,7 +19014,7 @@
                 <div class="album-info">
                     <div class="song-number " 
                         style="background-color: var(--accent);">9</div>
-                    <span class="song-title">cardigan</span>
+                    <span class="song-title"><a href="#" onclick="openPopup('cardigan.jpeg'); return false;" class="popup-link" title="Click!">cardigan</a></span>
                     <div class="play-count"><span class="trend-indicator up"><i class="fa-solid fa-caret-up"></i><i class="fa-solid fa-caret-up"></i></span></div>
                 </div>
             </li>
@@ -19335,7 +19418,7 @@
                 <div class="album-info">
                     <div class="song-number " 
                         style="background-color: var(--accent);">9</div>
-                    <span class="song-title">Cornelia Street</span>
+                    <span class="song-title"><a href="#" onclick="openPopup('ee8.jpg'); return false;" class="popup-link" title="Click!">Cornelia Street</a></span>
                     <div class="play-count"><span class="trend-indicator up"><i class="fa-solid fa-caret-up"></i><i class="fa-solid fa-caret-up"></i></span></div>
                 </div>
             </li>
@@ -19524,7 +19607,7 @@
                 <div class="album-info">
                     <div class="song-number " 
                         style="background-color: var(--accent);">30</div>
-                    <span class="song-title">cardigan</span>
+                    <span class="song-title"><a href="#" onclick="openPopup('cardigan.jpeg'); return false;" class="popup-link" title="Click!">cardigan</a></span>
                     <div class="play-count"><span class="trend-indicator up"><i class="fa-solid fa-caret-up"></i><i class="fa-solid fa-caret-up"></i></span></div>
                 </div>
             </li>
@@ -19918,7 +20001,7 @@
                 <div class="album-info">
                     <div class="song-number " 
                         style="background-color: var(--accent);">30</div>
-                    <span class="song-title">Cornelia Street</span>
+                    <span class="song-title"><a href="#" onclick="openPopup('ee8.jpg'); return false;" class="popup-link" title="Click!">Cornelia Street</a></span>
                     <div class="play-count"><span class="trend-indicator up"><i class="fa-solid fa-caret-up"></i><i class="fa-solid fa-caret-up"></i></span></div>
                 </div>
             </li>
@@ -20240,7 +20323,7 @@
                 <div class="album-info">
                     <div class="song-number " 
                         style="background-color: var(--accent);">22</div>
-                    <span class="song-title">End Game</span>
+                    <span class="song-title"><a href="#" onclick="openPopup('4J.jpg'); return false;" class="popup-link" title="Click!">End Game</a></span>
                     <div class="play-count"><span class="trend-indicator up"><i class="fa-solid fa-caret-up"></i><i class="fa-solid fa-caret-up"></i></span></div>
                 </div>
             </li>
@@ -20276,7 +20359,7 @@
                 <div class="album-info">
                     <div class="song-number " 
                         style="background-color: var(--accent);">26</div>
-                    <span class="song-title">cardigan</span>
+                    <span class="song-title"><a href="#" onclick="openPopup('cardigan.jpeg'); return false;" class="popup-link" title="Click!">cardigan</a></span>
                     <div class="play-count"><span class="trend-indicator up"><i class="fa-solid fa-caret-up"></i><i class="fa-solid fa-caret-up"></i></span></div>
                 </div>
             </li>
@@ -21054,7 +21137,7 @@
                 <div class="album-info">
                     <div class="song-number " 
                         style="background-color: var(--accent);">26</div>
-                    <span class="song-title">End Game</span>
+                    <span class="song-title"><a href="#" onclick="openPopup('4J.jpg'); return false;" class="popup-link" title="Click!">End Game</a></span>
                     <div class="play-count"><span class="trend-indicator up"><i class="fa-solid fa-caret-up"></i><i class="fa-solid fa-caret-up"></i></span></div>
                 </div>
             </li>
@@ -21756,7 +21839,7 @@
                 <div class="album-info">
                     <div class="song-number " 
                         style="background-color: var(--accent);">28</div>
-                    <span class="song-title">End Game</span>
+                    <span class="song-title"><a href="#" onclick="openPopup('4J.jpg'); return false;" class="popup-link" title="Click!">End Game</a></span>
                     <div class="play-count"><span class="trend-indicator down"><i class="fa-solid fa-caret-down"></i><i class="fa-solid fa-caret-down"></i></span></div>
                 </div>
             </li>
@@ -22016,7 +22099,7 @@
                 <div class="album-info">
                     <div class="song-number " 
                         style="background-color: var(--accent);">12</div>
-                    <span class="song-title">End Game</span>
+                    <span class="song-title"><a href="#" onclick="openPopup('4J.jpg'); return false;" class="popup-link" title="Click!">End Game</a></span>
                     <div class="play-count"><span class="trend-indicator down"><i class="fa-solid fa-caret-down"></i></span></div>
                 </div>
             </li>
@@ -22402,7 +22485,7 @@
                 <div class="album-info">
                     <div class="song-number " 
                         style="background-color: var(--accent);">10</div>
-                    <span class="song-title">End Game</span>
+                    <span class="song-title"><a href="#" onclick="openPopup('4J.jpg'); return false;" class="popup-link" title="Click!">End Game</a></span>
                     <div class="play-count"><span class="trend-indicator up"><i class="fa-solid fa-caret-up"></i><i class="fa-solid fa-caret-up"></i></span></div>
                 </div>
             </li>
@@ -22815,7 +22898,7 @@
                 <div class="album-info">
                     <div class="song-number " 
                         style="background-color: var(--accent);">11</div>
-                    <span class="song-title">cardigan</span>
+                    <span class="song-title"><a href="#" onclick="openPopup('cardigan.jpeg'); return false;" class="popup-link" title="Click!">cardigan</a></span>
                     <div class="play-count"><span class="trend-indicator up"><i class="fa-solid fa-caret-up"></i><i class="fa-solid fa-caret-up"></i></span></div>
                 </div>
             </li>
@@ -22932,7 +23015,7 @@
                 <div class="album-info">
                     <div class="song-number " 
                         style="background-color: var(--accent);">24</div>
-                    <span class="song-title">Cornelia Street</span>
+                    <span class="song-title"><a href="#" onclick="openPopup('ee8.jpg'); return false;" class="popup-link" title="Click!">Cornelia Street</a></span>
                     <div class="play-count"><span class="trend-indicator up"><i class="fa-solid fa-caret-up"></i><i class="fa-solid fa-caret-up"></i></span></div>
                 </div>
             </li>
@@ -23282,7 +23365,7 @@
                 <div class="album-info">
                     <div class="song-number " 
                         style="background-color: var(--accent);">18</div>
-                    <span class="song-title">cardigan</span>
+                    <span class="song-title"><a href="#" onclick="openPopup('cardigan.jpeg'); return false;" class="popup-link" title="Click!">cardigan</a></span>
                     <div class="play-count"><span class="trend-indicator up"><i class="fa-solid fa-caret-up"></i></span></div>
                 </div>
             </li>
@@ -23363,7 +23446,7 @@
                 <div class="album-info">
                     <div class="song-number " 
                         style="background-color: var(--accent);">27</div>
-                    <span class="song-title">End Game</span>
+                    <span class="song-title"><a href="#" onclick="openPopup('4J.jpg'); return false;" class="popup-link" title="Click!">End Game</a></span>
                     <div class="play-count"><span class="trend-indicator up"><i class="fa-solid fa-caret-up"></i><i class="fa-solid fa-caret-up"></i></span></div>
                 </div>
             </li>
@@ -23704,7 +23787,7 @@
                 <div class="album-info">
                     <div class="song-number " 
                         style="background-color: var(--accent);">20</div>
-                    <span class="song-title">cardigan</span>
+                    <span class="song-title"><a href="#" onclick="openPopup('cardigan.jpeg'); return false;" class="popup-link" title="Click!">cardigan</a></span>
                     <div class="play-count"><span class="trend-indicator up"><i class="fa-solid fa-caret-up"></i><i class="fa-solid fa-caret-up"></i></span></div>
                 </div>
             </li>
@@ -24761,7 +24844,7 @@
                 <div class="album-info">
                     <div class="song-number " 
                         style="background-color: var(--accent);">15</div>
-                    <span class="song-title">cardigan</span>
+                    <span class="song-title"><a href="#" onclick="openPopup('cardigan.jpeg'); return false;" class="popup-link" title="Click!">cardigan</a></span>
                     <div class="play-count"><span class="trend-indicator up"><i class="fa-solid fa-caret-up"></i><i class="fa-solid fa-caret-up"></i></span></div>
                 </div>
             </li>
@@ -26020,7 +26103,7 @@
                 <div class="album-info">
                     <div class="song-number " 
                         style="background-color: var(--accent);">28</div>
-                    <span class="song-title">cardigan</span>
+                    <span class="song-title"><a href="#" onclick="openPopup('cardigan.jpeg'); return false;" class="popup-link" title="Click!">cardigan</a></span>
                     <div class="play-count"><span class="trend-indicator up"><i class="fa-solid fa-caret-up"></i><i class="fa-solid fa-caret-up"></i></span></div>
                 </div>
             </li>
@@ -26186,7 +26269,7 @@
                 <div class="album-info">
                     <div class="song-number " 
                         style="background-color: var(--accent);">6</div>
-                    <span class="song-title">‘tis the damn season</span>
+                    <span class="song-title">‘<a href="#" onclick="openPopup('EE1.png'); return false;" class="popup-link" title="Click!">tis the damn season</a></span>
                     <div class="play-count"><span class="trend-indicator up"><i class="fa-solid fa-caret-up"></i></span></div>
                 </div>
             </li>
@@ -26485,7 +26568,7 @@
                 <div class="album-info">
                     <div class="song-number song-number-top" 
                         style="background-color: var(--accent);">1</div>
-                    <span class="total-minutes-text">cardigan</span>
+                    <span class="total-minutes-text"><a href="#" onclick="openPopup('cardigan.jpeg'); return false;" class="popup-link" title="Click!">cardigan</a></span>
                     <div class="album-percentage total-minutes-value"><span class="trend-indicator up"><i class="fa-solid fa-caret-up"></i><i class="fa-solid fa-caret-up"></i></span></div>
                 </div>
             </li>
@@ -26575,7 +26658,7 @@
                 <div class="album-info">
                     <div class="song-number " 
                         style="background-color: var(--accent);">11</div>
-                    <span class="song-title">‘tis the damn season</span>
+                    <span class="song-title">‘<a href="#" onclick="openPopup('EE1.png'); return false;" class="popup-link" title="Click!">tis the damn season</a></span>
                     <div class="play-count"><span class="trend-indicator down"><i class="fa-solid fa-caret-down"></i><i class="fa-solid fa-caret-down"></i></span></div>
                 </div>
             </li>
@@ -26858,7 +26941,7 @@
                 <div class="album-info">
                     <div class="song-number song-number-top" 
                         style="background-color: var(--accent);">2</div>
-                    <span class="total-minutes-text">‘tis the damn season</span>
+                    <span class="total-minutes-text">‘<a href="#" onclick="openPopup('EE1.png'); return false;" class="popup-link" title="Click!">tis the damn season</a></span>
                     <div class="album-percentage total-minutes-value"><span class="trend-indicator up"><i class="fa-solid fa-caret-up"></i><i class="fa-solid fa-caret-up"></i></span></div>
                 </div>
             </li>
@@ -26903,7 +26986,7 @@
                 <div class="album-info">
                     <div class="song-number " 
                         style="background-color: var(--accent);">7</div>
-                    <span class="song-title">cardigan</span>
+                    <span class="song-title"><a href="#" onclick="openPopup('cardigan.jpeg'); return false;" class="popup-link" title="Click!">cardigan</a></span>
                     <div class="play-count"><span class="trend-indicator down"><i class="fa-solid fa-caret-down"></i></span></div>
                 </div>
             </li>
@@ -27280,7 +27363,7 @@
                 <div class="album-info">
                     <div class="song-number " 
                         style="background-color: var(--accent);">4</div>
-                    <span class="song-title">cardigan</span>
+                    <span class="song-title"><a href="#" onclick="openPopup('cardigan.jpeg'); return false;" class="popup-link" title="Click!">cardigan</a></span>
                     <div class="play-count"><span class="trend-indicator up"><i class="fa-solid fa-caret-up"></i><i class="fa-solid fa-caret-up"></i></span></div>
                 </div>
             </li>
@@ -27334,7 +27417,7 @@
                 <div class="album-info">
                     <div class="song-number " 
                         style="background-color: var(--accent);">10</div>
-                    <span class="song-title">‘tis the damn season</span>
+                    <span class="song-title">‘<a href="#" onclick="openPopup('EE1.png'); return false;" class="popup-link" title="Click!">tis the damn season</a></span>
                     <div class="play-count"><span class="trend-indicator up"><i class="fa-solid fa-caret-up"></i><i class="fa-solid fa-caret-up"></i></span></div>
                 </div>
             </li>
@@ -27433,7 +27516,7 @@
                 <div class="album-info">
                     <div class="song-number " 
                         style="background-color: var(--accent);">21</div>
-                    <span class="song-title">marjorie</span>
+                    <span class="song-title"><a href="#" onclick="openPopup('marjorie.jpeg'); return false;" class="popup-link" title="Click!">marjorie</a></span>
                     <div class="play-count"><span class="trend-indicator up"><i class="fa-solid fa-caret-up"></i><i class="fa-solid fa-caret-up"></i></span></div>
                 </div>
             </li>
@@ -27760,7 +27843,7 @@
                 <div class="album-info">
                     <div class="song-number " 
                         style="background-color: var(--accent);">18</div>
-                    <span class="song-title">‘tis the damn season</span>
+                    <span class="song-title">‘<a href="#" onclick="openPopup('EE1.png'); return false;" class="popup-link" title="Click!">tis the damn season</a></span>
                     <div class="play-count"><span class="trend-indicator up"><i class="fa-solid fa-caret-up"></i><i class="fa-solid fa-caret-up"></i></span></div>
                 </div>
             </li>
@@ -27787,7 +27870,7 @@
                 <div class="album-info">
                     <div class="song-number " 
                         style="background-color: var(--accent);">21</div>
-                    <span class="song-title">Cornelia Street</span>
+                    <span class="song-title"><a href="#" onclick="openPopup('ee8.jpg'); return false;" class="popup-link" title="Click!">Cornelia Street</a></span>
                     <div class="play-count"><span class="trend-indicator up"><i class="fa-solid fa-caret-up"></i><i class="fa-solid fa-caret-up"></i></span></div>
                 </div>
             </li>
@@ -27987,7 +28070,7 @@
                 <div class="album-info">
                     <div class="song-number " 
                         style="background-color: var(--accent);">5</div>
-                    <span class="song-title">cardigan</span>
+                    <span class="song-title"><a href="#" onclick="openPopup('cardigan.jpeg'); return false;" class="popup-link" title="Click!">cardigan</a></span>
                     <div class="play-count"><span class="trend-indicator up"><i class="fa-solid fa-caret-up"></i></span></div>
                 </div>
             </li>
@@ -28350,7 +28433,7 @@
                 <div class="album-info">
                     <div class="song-number " 
                         style="background-color: var(--accent);">6</div>
-                    <span class="song-title">cardigan</span>
+                    <span class="song-title"><a href="#" onclick="openPopup('cardigan.jpeg'); return false;" class="popup-link" title="Click!">cardigan</a></span>
                     <div class="play-count"><span class="trend-indicator down"><i class="fa-solid fa-caret-down"></i></span></div>
                 </div>
             </li>
@@ -28521,7 +28604,7 @@
                 <div class="album-info">
                     <div class="song-number " 
                         style="background-color: var(--accent);">25</div>
-                    <span class="song-title">Cornelia Street</span>
+                    <span class="song-title"><a href="#" onclick="openPopup('ee8.jpg'); return false;" class="popup-link" title="Click!">Cornelia Street</a></span>
                     <div class="play-count"><span class="trend-indicator up"><i class="fa-solid fa-caret-up"></i><i class="fa-solid fa-caret-up"></i></span></div>
                 </div>
             </li>
@@ -28709,7 +28792,7 @@
                 <div class="album-info">
                     <div class="song-number song-number-top" 
                         style="background-color: var(--accent);">1</div>
-                    <span class="total-minutes-text">cardigan</span>
+                    <span class="total-minutes-text"><a href="#" onclick="openPopup('cardigan.jpeg'); return false;" class="popup-link" title="Click!">cardigan</a></span>
                     <div class="album-percentage total-minutes-value"><span class="trend-indicator up"><i class="fa-solid fa-caret-up"></i></span></div>
                 </div>
             </li>
@@ -28934,7 +29017,7 @@
                 <div class="album-info">
                     <div class="song-number " 
                         style="background-color: var(--accent);">26</div>
-                    <span class="song-title">‘tis the damn season</span>
+                    <span class="song-title">‘<a href="#" onclick="openPopup('EE1.png'); return false;" class="popup-link" title="Click!">tis the damn season</a></span>
                     <div class="play-count"><span class="trend-indicator up"><i class="fa-solid fa-caret-up"></i></span></div>
                 </div>
             </li>
@@ -29112,7 +29195,7 @@
                 <div class="album-info">
                     <div class="song-number song-number-top" 
                         style="background-color: var(--accent);">2</div>
-                    <span class="total-minutes-text">cardigan</span>
+                    <span class="total-minutes-text"><a href="#" onclick="openPopup('cardigan.jpeg'); return false;" class="popup-link" title="Click!">cardigan</a></span>
                     <div class="album-percentage total-minutes-value"><span class="trend-indicator same"><i class="fa-solid fa-equals"></i></span></div>
                 </div>
             </li>
@@ -29337,7 +29420,7 @@
                 <div class="album-info">
                     <div class="song-number " 
                         style="background-color: var(--accent);">27</div>
-                    <span class="song-title">‘tis the damn season</span>
+                    <span class="song-title">‘<a href="#" onclick="openPopup('EE1.png'); return false;" class="popup-link" title="Click!">tis the damn season</a></span>
                     <div class="play-count"><span class="trend-indicator down"><i class="fa-solid fa-caret-down"></i><i class="fa-solid fa-caret-down"></i></span></div>
                 </div>
             </li>
@@ -29364,7 +29447,7 @@
                 <div class="album-info">
                     <div class="song-number " 
                         style="background-color: var(--accent);">30</div>
-                    <span class="song-title">marjorie</span>
+                    <span class="song-title"><a href="#" onclick="openPopup('marjorie.jpeg'); return false;" class="popup-link" title="Click!">marjorie</a></span>
                     <div class="play-count"><span class="trend-indicator down"><i class="fa-solid fa-caret-down"></i></span></div>
                 </div>
             </li>
@@ -29476,7 +29559,7 @@
                 <div class="album-info">
                     <div class="song-number song-number-top" 
                         style="background-color: var(--accent);">2</div>
-                    <span class="total-minutes-text">cardigan</span>
+                    <span class="total-minutes-text"><a href="#" onclick="openPopup('cardigan.jpeg'); return false;" class="popup-link" title="Click!">cardigan</a></span>
                     <div class="album-percentage total-minutes-value"><span class="trend-indicator up"><i class="fa-solid fa-caret-up"></i></span></div>
                 </div>
             </li>
@@ -29548,7 +29631,7 @@
                 <div class="album-info">
                     <div class="song-number " 
                         style="background-color: var(--accent);">10</div>
-                    <span class="song-title">‘tis the damn season</span>
+                    <span class="song-title">‘<a href="#" onclick="openPopup('EE1.png'); return false;" class="popup-link" title="Click!">tis the damn season</a></span>
                     <div class="play-count"><span class="trend-indicator down"><i class="fa-solid fa-caret-down"></i><i class="fa-solid fa-caret-down"></i></span></div>
                 </div>
             </li>
@@ -29692,7 +29775,7 @@
                 <div class="album-info">
                     <div class="song-number " 
                         style="background-color: var(--accent);">26</div>
-                    <span class="song-title">marjorie</span>
+                    <span class="song-title"><a href="#" onclick="openPopup('marjorie.jpeg'); return false;" class="popup-link" title="Click!">marjorie</a></span>
                     <div class="play-count"><span class="trend-indicator down"><i class="fa-solid fa-caret-down"></i></span></div>
                 </div>
             </li>
@@ -29869,7 +29952,7 @@
                 <div class="album-info">
                     <div class="song-number song-number-top" 
                         style="background-color: var(--accent);">3</div>
-                    <span class="total-minutes-text">cardigan</span>
+                    <span class="total-minutes-text"><a href="#" onclick="openPopup('cardigan.jpeg'); return false;" class="popup-link" title="Click!">cardigan</a></span>
                     <div class="album-percentage total-minutes-value"><span class="trend-indicator same"><i class="fa-solid fa-equals"></i></span></div>
                 </div>
             </li>
@@ -29878,7 +29961,7 @@
                 <div class="album-info">
                     <div class="song-number " 
                         style="background-color: var(--accent);">4</div>
-                    <span class="song-title">‘tis the damn season</span>
+                    <span class="song-title">‘<a href="#" onclick="openPopup('EE1.png'); return false;" class="popup-link" title="Click!">tis the damn season</a></span>
                     <div class="play-count"><span class="trend-indicator new">NEW</span></div>
                 </div>
             </li>
@@ -30058,7 +30141,7 @@
                 <div class="album-info">
                     <div class="song-number " 
                         style="background-color: var(--accent);">24</div>
-                    <span class="song-title">marjorie</span>
+                    <span class="song-title"><a href="#" onclick="openPopup('marjorie.jpeg'); return false;" class="popup-link" title="Click!">marjorie</a></span>
                     <div class="play-count"><span class="trend-indicator new">NEW</span></div>
                 </div>
             </li>
@@ -30203,7 +30286,7 @@
                 <div class="album-info">
                     <div class="song-number song-number-top" 
                         style="background-color: var(--accent);">3</div>
-                    <span class="total-minutes-text">cardigan</span>
+                    <span class="total-minutes-text"><a href="#" onclick="openPopup('cardigan.jpeg'); return false;" class="popup-link" title="Click!">cardigan</a></span>
                     <div class="album-percentage total-minutes-value"><span class="trend-indicator down"><i class="fa-solid fa-caret-down"></i></span></div>
                 </div>
             </li>
@@ -30558,7 +30641,7 @@
                 <div class="album-info">
                     <div class="song-number song-number-top" 
                         style="background-color: var(--accent);">2</div>
-                    <span class="total-minutes-text">cardigan</span>
+                    <span class="total-minutes-text"><a href="#" onclick="openPopup('cardigan.jpeg'); return false;" class="popup-link" title="Click!">cardigan</a></span>
                     <div class="album-percentage total-minutes-value"><span class="trend-indicator down"><i class="fa-solid fa-caret-down"></i></span></div>
                 </div>
             </li>
@@ -30923,7 +31006,7 @@
                 <div class="album-info">
                     <div class="song-number song-number-top" 
                         style="background-color: var(--accent);">1</div>
-                    <span class="total-minutes-text">cardigan</span>
+                    <span class="total-minutes-text"><a href="#" onclick="openPopup('cardigan.jpeg'); return false;" class="popup-link" title="Click!">cardigan</a></span>
                     <div class="album-percentage total-minutes-value"><span class="trend-indicator same"><i class="fa-solid fa-equals"></i></span></div>
                 </div>
             </li>
@@ -31317,7 +31400,7 @@
                 <div class="album-info">
                     <div class="song-number song-number-top" 
                         style="background-color: var(--accent);">1</div>
-                    <span class="total-minutes-text">cardigan</span>
+                    <span class="total-minutes-text"><a href="#" onclick="openPopup('cardigan.jpeg'); return false;" class="popup-link" title="Click!">cardigan</a></span>
                     <div class="album-percentage total-minutes-value"><span class="trend-indicator up"><i class="fa-solid fa-caret-up"></i></span></div>
                 </div>
             </li>
@@ -31479,7 +31562,7 @@
                 <div class="album-info">
                     <div class="song-number " 
                         style="background-color: var(--accent);">19</div>
-                    <span class="song-title">Cornelia Street</span>
+                    <span class="song-title"><a href="#" onclick="openPopup('ee8.jpg'); return false;" class="popup-link" title="Click!">Cornelia Street</a></span>
                     <div class="play-count"><span class="trend-indicator down"><i class="fa-solid fa-caret-down"></i></span></div>
                 </div>
             </li>
@@ -31747,7 +31830,7 @@
                 <div class="album-info">
                     <div class="song-number " 
                         style="background-color: var(--accent);">5</div>
-                    <span class="song-title">cardigan</span>
+                    <span class="song-title"><a href="#" onclick="openPopup('cardigan.jpeg'); return false;" class="popup-link" title="Click!">cardigan</a></span>
                     <div class="play-count"><span class="trend-indicator new">NEW</span></div>
                 </div>
             </li>
@@ -31837,7 +31920,7 @@
                 <div class="album-info">
                     <div class="song-number " 
                         style="background-color: var(--accent);">15</div>
-                    <span class="song-title">Cornelia Street</span>
+                    <span class="song-title"><a href="#" onclick="openPopup('ee8.jpg'); return false;" class="popup-link" title="Click!">Cornelia Street</a></span>
                     <div class="play-count"><span class="trend-indicator down"><i class="fa-solid fa-caret-down"></i><i class="fa-solid fa-caret-down"></i></span></div>
                 </div>
             </li>
@@ -32138,7 +32221,7 @@
                 <div class="album-info">
                     <div class="song-number " 
                         style="background-color: var(--accent);">8</div>
-                    <span class="song-title">Cornelia Street</span>
+                    <span class="song-title"><a href="#" onclick="openPopup('ee8.jpg'); return false;" class="popup-link" title="Click!">Cornelia Street</a></span>
                     <div class="play-count"><span class="trend-indicator down"><i class="fa-solid fa-caret-down"></i></span></div>
                 </div>
             </li>
@@ -32441,7 +32524,7 @@
                 <div class="album-info">
                     <div class="song-number " 
                         style="background-color: var(--accent);">4</div>
-                    <span class="song-title">Cornelia Street</span>
+                    <span class="song-title"><a href="#" onclick="openPopup('ee8.jpg'); return false;" class="popup-link" title="Click!">Cornelia Street</a></span>
                     <div class="play-count"><span class="trend-indicator up"><i class="fa-solid fa-caret-up"></i><i class="fa-solid fa-caret-up"></i></span></div>
                 </div>
             </li>
@@ -32567,7 +32650,7 @@
                 <div class="album-info">
                     <div class="song-number " 
                         style="background-color: var(--accent);">18</div>
-                    <span class="song-title">End Game</span>
+                    <span class="song-title"><a href="#" onclick="openPopup('4J.jpg'); return false;" class="popup-link" title="Click!">End Game</a></span>
                     <div class="play-count"><span class="trend-indicator up"><i class="fa-solid fa-caret-up"></i><i class="fa-solid fa-caret-up"></i></span></div>
                 </div>
             </li>
@@ -32933,7 +33016,7 @@
                 <div class="album-info">
                     <div class="song-number " 
                         style="background-color: var(--accent);">16</div>
-                    <span class="song-title">Cornelia Street</span>
+                    <span class="song-title"><a href="#" onclick="openPopup('ee8.jpg'); return false;" class="popup-link" title="Click!">Cornelia Street</a></span>
                     <div class="play-count"><span class="trend-indicator up"><i class="fa-solid fa-caret-up"></i><i class="fa-solid fa-caret-up"></i></span></div>
                 </div>
             </li>
@@ -33443,7 +33526,7 @@
                 <div class="album-info">
                     <div class="song-number " 
                         style="background-color: var(--accent);">30</div>
-                    <span class="song-title">Cornelia Street</span>
+                    <span class="song-title"><a href="#" onclick="openPopup('ee8.jpg'); return false;" class="popup-link" title="Click!">Cornelia Street</a></span>
                     <div class="play-count"><span class="trend-indicator down"><i class="fa-solid fa-caret-down"></i><i class="fa-solid fa-caret-down"></i></span></div>
                 </div>
             </li>
@@ -33656,7 +33739,7 @@
                 <div class="album-info">
                     <div class="song-number " 
                         style="background-color: var(--accent);">11</div>
-                    <span class="song-title">Cornelia Street</span>
+                    <span class="song-title"><a href="#" onclick="openPopup('ee8.jpg'); return false;" class="popup-link" title="Click!">Cornelia Street</a></span>
                     <div class="play-count"><span class="trend-indicator up"><i class="fa-solid fa-caret-up"></i></span></div>
                 </div>
             </li>
@@ -33773,7 +33856,7 @@
                 <div class="album-info">
                     <div class="song-number " 
                         style="background-color: var(--accent);">24</div>
-                    <span class="song-title">End Game</span>
+                    <span class="song-title"><a href="#" onclick="openPopup('4J.jpg'); return false;" class="popup-link" title="Click!">End Game</a></span>
                     <div class="play-count"><span class="trend-indicator up"><i class="fa-solid fa-caret-up"></i><i class="fa-solid fa-caret-up"></i></span></div>
                 </div>
             </li>
@@ -34057,7 +34140,7 @@
                 <div class="album-info">
                     <div class="song-number " 
                         style="background-color: var(--accent);">14</div>
-                    <span class="song-title">Cornelia Street</span>
+                    <span class="song-title"><a href="#" onclick="openPopup('ee8.jpg'); return false;" class="popup-link" title="Click!">Cornelia Street</a></span>
                     <div class="play-count"><span class="trend-indicator up"><i class="fa-solid fa-caret-up"></i><i class="fa-solid fa-caret-up"></i></span></div>
                 </div>
             </li>
@@ -34303,7 +34386,7 @@
                 <div class="album-info">
                     <div class="song-number " 
                         style="background-color: var(--accent);">5</div>
-                    <span class="song-title">End Game</span>
+                    <span class="song-title"><a href="#" onclick="openPopup('4J.jpg'); return false;" class="popup-link" title="Click!">End Game</a></span>
                     <div class="play-count"><span class="trend-indicator up"><i class="fa-solid fa-caret-up"></i><i class="fa-solid fa-caret-up"></i></span></div>
                 </div>
             </li>
@@ -34621,7 +34704,7 @@
                 <div class="album-info">
                     <div class="song-number song-number-top" 
                         style="background-color: var(--accent);">1</div>
-                    <span class="total-minutes-text">Cornelia Street</span>
+                    <span class="total-minutes-text"><a href="#" onclick="openPopup('ee8.jpg'); return false;" class="popup-link" title="Click!">Cornelia Street</a></span>
                     <div class="album-percentage total-minutes-value"><span class="trend-indicator up"><i class="fa-solid fa-caret-up"></i><i class="fa-solid fa-caret-up"></i></span></div>
                 </div>
             </li>
@@ -35031,7 +35114,7 @@
                 <div class="album-info">
                     <div class="song-number " 
                         style="background-color: var(--accent);">8</div>
-                    <span class="song-title">Cornelia Street</span>
+                    <span class="song-title"><a href="#" onclick="openPopup('ee8.jpg'); return false;" class="popup-link" title="Click!">Cornelia Street</a></span>
                     <div class="play-count"><span class="trend-indicator up"><i class="fa-solid fa-caret-up"></i></span></div>
                 </div>
             </li>
@@ -35382,7 +35465,7 @@
                 <div class="album-info">
                     <div class="song-number " 
                         style="background-color: var(--accent);">11</div>
-                    <span class="song-title">Cornelia Street</span>
+                    <span class="song-title"><a href="#" onclick="openPopup('ee8.jpg'); return false;" class="popup-link" title="Click!">Cornelia Street</a></span>
                     <div class="play-count"><span class="trend-indicator new">NEW</span></div>
                 </div>
             </li>
@@ -35573,7 +35656,7 @@
                 <div class="album-info">
                     <div class="song-number " 
                         style="background-color: var(--accent);">6</div>
-                    <span class="song-title">End Game</span>
+                    <span class="song-title"><a href="#" onclick="openPopup('4J.jpg'); return false;" class="popup-link" title="Click!">End Game</a></span>
                     <div class="play-count"><span class="trend-indicator up"><i class="fa-solid fa-caret-up"></i><i class="fa-solid fa-caret-up"></i></span></div>
                 </div>
             </li>
@@ -36001,7 +36084,7 @@
                 <div class="album-info">
                     <div class="song-number " 
                         style="background-color: var(--accent);">17</div>
-                    <span class="song-title">End Game</span>
+                    <span class="song-title"><a href="#" onclick="openPopup('4J.jpg'); return false;" class="popup-link" title="Click!">End Game</a></span>
                     <div class="play-count"><span class="trend-indicator down"><i class="fa-solid fa-caret-down"></i></span></div>
                 </div>
             </li>
@@ -36271,7 +36354,7 @@
                 <div class="album-info">
                     <div class="song-number " 
                         style="background-color: var(--accent);">16</div>
-                    <span class="song-title">End Game</span>
+                    <span class="song-title"><a href="#" onclick="openPopup('4J.jpg'); return false;" class="popup-link" title="Click!">End Game</a></span>
                     <div class="play-count"><span class="trend-indicator up"><i class="fa-solid fa-caret-up"></i><i class="fa-solid fa-caret-up"></i></span></div>
                 </div>
             </li>
@@ -36580,7 +36663,7 @@
                 <div class="album-info">
                     <div class="song-number song-number-top" 
                         style="background-color: var(--accent);">1</div>
-                    <span class="total-minutes-text">End Game</span>
+                    <span class="total-minutes-text"><a href="#" onclick="openPopup('4J.jpg'); return false;" class="popup-link" title="Click!">End Game</a></span>
                     <div class="album-percentage total-minutes-value"><span class="trend-indicator up"><i class="fa-solid fa-caret-up"></i></span></div>
                 </div>
             </li>
@@ -36791,7 +36874,7 @@
                 <div class="album-info">
                     <div class="song-number song-number-top" 
                         style="background-color: var(--accent);">3</div>
-                    <span class="total-minutes-text">End Game</span>
+                    <span class="total-minutes-text"><a href="#" onclick="openPopup('4J.jpg'); return false;" class="popup-link" title="Click!">End Game</a></span>
                     <div class="album-percentage total-minutes-value"><span class="trend-indicator down"><i class="fa-solid fa-caret-down"></i></span></div>
                 </div>
             </li>
@@ -37136,7 +37219,7 @@
                 <div class="album-info">
                     <div class="song-number song-number-top" 
                         style="background-color: var(--accent);">2</div>
-                    <span class="total-minutes-text">End Game</span>
+                    <span class="total-minutes-text"><a href="#" onclick="openPopup('4J.jpg'); return false;" class="popup-link" title="Click!">End Game</a></span>
                     <div class="album-percentage total-minutes-value"><span class="trend-indicator up"><i class="fa-solid fa-caret-up"></i></span></div>
                 </div>
             </li>
@@ -37373,7 +37456,7 @@
                 <div class="album-info">
                     <div class="song-number song-number-top" 
                         style="background-color: var(--accent);">3</div>
-                    <span class="total-minutes-text">End Game</span>
+                    <span class="total-minutes-text"><a href="#" onclick="openPopup('4J.jpg'); return false;" class="popup-link" title="Click!">End Game</a></span>
                     <div class="album-percentage total-minutes-value"><span class="trend-indicator up"><i class="fa-solid fa-caret-up"></i><i class="fa-solid fa-caret-up"></i></span></div>
                 </div>
             </li>
@@ -37718,7 +37801,7 @@
                 <div class="album-info">
                     <div class="song-number " 
                         style="background-color: var(--accent);">12</div>
-                    <span class="song-title">End Game</span>
+                    <span class="song-title"><a href="#" onclick="openPopup('4J.jpg'); return false;" class="popup-link" title="Click!">End Game</a></span>
                     <div class="play-count"><span class="trend-indicator up"><i class="fa-solid fa-caret-up"></i><i class="fa-solid fa-caret-up"></i></span></div>
                 </div>
             </li>
@@ -38172,7 +38255,7 @@
                 <div class="album-info">
                     <div class="song-number " 
                         style="background-color: var(--accent);">27</div>
-                    <span class="song-title">End Game</span>
+                    <span class="song-title"><a href="#" onclick="openPopup('4J.jpg'); return false;" class="popup-link" title="Click!">End Game</a></span>
                     <div class="play-count"><span class="trend-indicator up"><i class="fa-solid fa-caret-up"></i><i class="fa-solid fa-caret-up"></i></span></div>
                 </div>
             </li>
@@ -38726,7 +38809,7 @@
                 <div class="album-info">
                     <div class="song-number " 
                         style="background-color: var(--accent);">7</div>
-                    <span class="song-title">End Game</span>
+                    <span class="song-title"><a href="#" onclick="openPopup('4J.jpg'); return false;" class="popup-link" title="Click!">End Game</a></span>
                     <div class="play-count"><span class="trend-indicator up"><i class="fa-solid fa-caret-up"></i><i class="fa-solid fa-caret-up"></i></span></div>
                 </div>
             </li>
@@ -40524,7 +40607,12 @@
     </div>
     </div>
 
-
+    <div id="popup">
+        <div style="position: relative;">
+            <img id="popup-image" src="" alt="Popup Image" style="max-width: 100%; max-height: 90vh;">
+            <button onclick="closePopup()" style="position: absolute; top: -15px; right: -15px; background: white; border: 3px solid black; width: 30px; height: 30px; font-weight: bold; cursor: pointer;">X</button>
+        </div>
+    </div>
 
 
 
@@ -40649,10 +40737,41 @@
         // Show selected month content
         document.getElementById(`month-${month}`).style.display = 'block';
     }
-</script>
-<footer>
-  <p><i class="fa-solid fa-music"></i> 2024-12-08 | Made with <i class="fas fa-heart"></i></p>
-</footer>
+
+    
+        // Add popup functionality
+        function openPopup(imagePath) {
+            document.getElementById('popup-image').src = imagePath;
+            document.getElementById('popup').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closePopup() {
+            document.getElementById('popup').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+        
+        // Close popup when clicking outside the image
+        document.getElementById('popup').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closePopup();
+            }
+        });
+        
+        // Close popup with ESC key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closePopup();
+            }
+        });
+
+
+
+    </script>
+
+    <footer>
+        <p><i class="fa-solid fa-music"></i> 2024-12-08 | Made with <i class="fas fa-heart"></i></p>
+    </footer>
 </body>
 </html>
     
