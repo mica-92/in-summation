@@ -147,7 +147,7 @@ def get_top_songs_for_year(results, year, taylor_version_mapping):
             if artist == "Taylor Swift" and song:
                 unified_song = taylor_version_mapping.get(song, song)
                 yearly_songs[unified_song] += 1
-    return yearly_songs.most_common(13)
+    return yearly_songs.most_common(31)
 
 def get_top_songs_for_album(results, album_name, taylor_version_mapping):
     """Get top songs for a specific album"""
@@ -162,7 +162,7 @@ def generate_html_report(results, album_colors, taylor_version_mapping):
     # Calculate all-time album totals
     total_taylor_minutes = results['all_time_stats']['total_taylor_minutes']
     merged_songs = merge_taylor_versions(results['all_time_stats']['songs'], taylor_version_mapping)
-    top_songs = merged_songs.most_common()
+    top_songs = merged_songs.most_common(89)
     
     # Get last played date
     last_song_date = max(
@@ -424,7 +424,6 @@ def generate_html_report(results, album_colors, taylor_version_mapping):
             border: var(--border);
             margin-bottom: 30px;
             position: relative;
-            overflow: hidden;
             display: flex;
         }}
         
@@ -432,8 +431,53 @@ def generate_html_report(results, album_colors, taylor_version_mapping):
             height: 100%;
             position: relative;
             border-right: 2px solid var(--primary);
+            z-index: 1;
         }}
         
+        .stacked-segment-tooltip {{
+            position: absolute;
+            bottom: calc(100% + 5px);
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #D8F3DC;
+            color: black;
+            padding: 5px 10px;
+            border-radius: 2px 2px 0 0;
+            box-shadow: 2px 2px 0px var(--primary);
+            border: var(--border);
+            font-size: 12px;
+            white-space: nowrap;
+            margin-bottom: 5px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.2s ease;
+            z-index: 10;
+            pointer-events: none;
+        }}
+
+        .stacked-segment:hover .stacked-segment-tooltip {{
+            opacity: 1;
+            visibility: visible;
+        }}
+
+        .stacked-segment:hover {{
+            opacity: 1;
+            transform: scaleY(1.05);
+            z-index: 2; /* Bring hovered segment above others */
+        }}
+
+        .stacked-segment-tooltip::after {{
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: rgba(0, 0, 0, 0.8) transparent transparent transparent;
+        }}
+
+
         /* Navigation tabs */
         .nav-tabs {{
                 display: flex;
@@ -829,6 +873,11 @@ def generate_html_report(results, album_colors, taylor_version_mapping):
                 <div class="stacked-bar">
                     {"".join([f"""
                     <div class="stacked-segment" style="width: {(minutes / total_taylor_minutes) * 100 if total_taylor_minutes > 0 else 0}%; background-color: {album_colors.get(album, '#FFFFFF')};">
+                        <div class="stacked-segment-tooltip">
+                            {album}<br>
+                            {(minutes / total_taylor_minutes) * 100 if total_taylor_minutes > 0 else 0:.1f}%<br>
+                            {round(minutes)} min
+                        </div>
                     </div>
                     """ for album, minutes in sorted(results['total_album_minutes'].items(), key=lambda x: x[1], reverse=True)])}
                 </div>
@@ -846,21 +895,26 @@ def generate_html_report(results, album_colors, taylor_version_mapping):
                 <div class="album-row total-minutes-row">
                     <div class="album-info">
                         <div class="album-color" style="background-color: var(--accent);"></div>
-                        <span class="total-minutes-text">Total Listening Time</span>
+                        <span class="total-minutes-text">In summation</span>
                     </div>
                     <div class="album-percentage total-minutes-value">{round(total_taylor_minutes)} min</div>
                 </div>
             </div>
             
             <!-- Individual Year Views -->
-            {"".join([f"""
-            <div id="{year}-year-view" class="stats-view">
-                <div class="stacked-bar">
-                    {"".join([f"""
-                    <div class="stacked-segment" style="width: {(minutes / results['taylor_minutes_by_year'][year]) * 100 if results['taylor_minutes_by_year'][year] > 0 else 0}%; background-color: {album_colors.get(album, '#FFFFFF')};">
-                    </div>
-                    """ for album, minutes in sorted(results['album_minutes_by_year'].get(year, {}).items(), key=lambda x: x[1], reverse=True)])}
-                </div>
+{"".join([f"""
+<div id="{year}-year-view" class="stats-view">
+    <div class="stacked-bar">
+        {"".join([f"""
+        <div class="stacked-segment" style="width: {(minutes / results['taylor_minutes_by_year'][year]) * 100 if results['taylor_minutes_by_year'][year] > 0 else 0}%; background-color: {album_colors.get(album, '#FFFFFF')};">
+            <div class="stacked-segment-tooltip">
+                {album}<br>
+                {(minutes / results['taylor_minutes_by_year'][year]) * 100 if results['taylor_minutes_by_year'][year] > 0 else 0:.1f}%<br>
+                {round(minutes)} min
+            </div>
+        </div>
+        """ for album, minutes in sorted(results['album_minutes_by_year'].get(year, {}).items(), key=lambda x: x[1], reverse=True)])}
+    </div>
                 
                 {"".join([f"""
                 <div class="album-row">
@@ -875,7 +929,7 @@ def generate_html_report(results, album_colors, taylor_version_mapping):
                 <div class="album-row total-minutes-row">
                     <div class="album-info">
                         <div class="album-color" style="background-color: var(--accent);"></div>
-                        <span class="total-minutes-text">Total Listening Time</span>
+                        <span class="total-minutes-text">In summation</span>
                     </div>
                     <div class="album-percentage total-minutes-value">{round(results['taylor_minutes_by_year'][year])} min</div>
                 </div>
@@ -949,7 +1003,7 @@ def generate_html_report(results, album_colors, taylor_version_mapping):
             <div class="album-row total-minutes-row">
                 <div class="album-info">
                     <div class="album-color" style="background-color: var(--accent);"></div>
-                    <span class="total-minutes-text">Total Listening Time</span>
+                    <span class="total-minutes-text">In summation</span>
                 </div>
                 <div class="album-percentage total-minutes-value">{round(total_taylor_minutes)} min</div>
             </div>
@@ -973,7 +1027,7 @@ def generate_html_report(results, album_colors, taylor_version_mapping):
             <div class="album-row total-minutes-row">
                 <div class="album-info">
                     <div class="album-color" style="background-color: {album_colors.get(album, '#FFFFFF')};"></div>
-                    <span class="total-minutes-text">Total Listening Time</span>
+                    <span class="total-minutes-text">In summation</span>
                 </div>
                 <div class="album-percentage total-minutes-value">{round(results['total_album_minutes'][album])} min</div>
             </div>
@@ -1054,7 +1108,7 @@ def generate_html_report(results, album_colors, taylor_version_mapping):
             <div class="album-row total-minutes-row">
                 <div class="album-info">
                     <div class="album-color" style="background-color: var(--accent);"></div>
-                    <span class="total-minutes-text">Total Listening Time</span>
+                    <span class="total-minutes-text">In summation</span>
                 </div>
 <div class="album-percentage total-minutes-value">{round(monthly_stats[month]['minutes'])} min</div>            </div>
 
