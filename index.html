@@ -714,7 +714,7 @@
             <h3>Welcome to <i>In Summation</i></h3>
             <p>The most comprehensive musical report of your Swiftly listening habits.</p>
             
-            <h2>From the Vault: August 16</h2>
+            <h2>From the Vault: <span id="current-date"></span></h2>
                 
                 <div class="album-row">
                     <div class="album-info">
@@ -741,6 +741,15 @@
                 </div>
                 
             </div>
+
+            <script>
+                // Update the date when the page loads
+                document.addEventListener('DOMContentLoaded', function() {
+                    const now = new Date();
+                    const options = { month: 'long', day: 'numeric' };
+                    document.getElementById('current-date').textContent = now.toLocaleDateString('en-US', options);
+                });
+            </script>
         
 
             

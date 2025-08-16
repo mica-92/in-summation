@@ -1136,7 +1136,7 @@ def generate_html_report(results, album_colors, taylor_version_mapping):
             <h3>Welcome to <i>In Summation</i></h3>
             <p>The most comprehensive musical report of your Swiftly listening habits.</p>
             
-            <h2>From the Vault: {datetime.now().strftime('%B %d')}</h2>
+            <h2>From the Vault: <span id="current-date"></span></h2>
                 {"".join([f"""
                 <div class="album-row">
                     <div class="album-info">
@@ -1147,6 +1147,15 @@ def generate_html_report(results, album_colors, taylor_version_mapping):
                 </div>
                 """ for year, song in sorted(time_capsule_songs.items(), reverse=True)])}
             </div>
+
+            <script>
+                // Update the date when the page loads
+                document.addEventListener('DOMContentLoaded', function() {{
+                    const now = new Date();
+                    const options = {{ month: 'long', day: 'numeric' }};
+                    document.getElementById('current-date').textContent = now.toLocaleDateString('en-US', options);
+                }});
+            </script>
         
 
             
