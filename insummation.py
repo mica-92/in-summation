@@ -3,6 +3,110 @@ from datetime import datetime
 from mapps import album_colors, taylor_version_mapping, album_mapping, file_names
 import json
 
+# Add this dictionary at the top of your generate_html_report function
+
+def format_anniversaries(text):
+    if text == "No major releases this year":
+        return text
+    import re
+    return re.sub(r'([A-Za-z]+ \d{1,2}(?:, \d{4})?)', r'<strong>\1</strong>', text)
+
+album_info = {
+    "Taylor Swift": {
+        "image": "TS1.png",
+        "release_date": "24.10.2006",
+        "taylor_version": "<i>unreleased</i>",
+        "era_period": "Oct 2006 - Nov 2008",
+        "fun_fact": "debut."
+    },
+    "Fearless": {
+        "image": "TS2.png",
+        "release_date": "11.11.2008",
+        "taylor_version": "09.04.2021",
+        "era_period": "Nov 2008 - Oct 2010 & Apr 2021 - Nov 2021",
+        "fun_fact": "next chapter."
+    },
+    "Speak Now": {
+        "image": "TS3.png",
+        "release_date": "25.10.2010",
+        "taylor_version": "07.07.2023",
+        "era_period": "Oct 2010 - Oct 2012 & Jul 2023 - Oct 2023",
+        "fun_fact": "I had the time of my life fighting dragons with you."
+    },    
+    "Red": {
+        "image": "TS7.png",
+        "release_date": "22.10.2012",
+        "taylor_version": "12.11.2021",
+        "era_period": "Oct 2012 - Oct 2014 & Apr 2021 - Oct 2022",
+        "fun_fact": "loving him was red."
+    },
+    "1989": {
+        "image": "TS4.png",
+        "release_date": "27.10.2014",
+        "taylor_version": "27.10.2023",
+        "era_period": "Oct 2014 -  Nov 2017 & Oct 2023 - Apr 2024",
+        "fun_fact": "fell down a rabbit hole."
+    },
+    "reputation": {
+        "image": "TS8.png",
+        "release_date": "10.11.2017",
+        "taylor_version": "<i>unreleased</i>",
+        "era_period": "Oct 2017 - Aug 2019",
+        "fun_fact": "and in the death of her reputation she felt truly alive."
+    },
+
+    "Lover": {
+        "image": "TS5.png",
+        "release_date": "23.08.2019",
+        "taylor_version": "<i>always was</i>",
+        "era_period": "Aug 2019 - Jul 2020",
+        "fun_fact": "I wanna be defined by the things that I love."
+
+    },
+    "folklore": {
+        "image": "TS9.png",
+        "release_date": "24.07.2020",
+        "taylor_version": "<i>always was</i>",
+        "era_period": "Jul 2020 - Dec 2020",
+        "fun_fact": "not a lot going on at the moment."
+    },
+    "evermore": {
+        "image": "TS10.png",
+        "release_date": "11.12.2020",
+        "taylor_version": "<i>always was</i>",
+        "era_period": "Dec 2020 - Apr 2021",
+        "fun_fact": "folklore's sister album."
+    },
+    "Midnights": {
+        "image": "TS11.png",
+        "release_date": "21.10.2022",
+        "taylor_version": "<i>always was</i>",
+        "era_period": "Oct 2022 -  Jul 2023",
+        "fun_fact": "<i>the stories of 13 sleepless nights.</i>"
+    },
+    "THE TORTURED POETS DEPARTMENT": {
+        "image": "TS6.png",
+        "release_date": "19.04.2024",
+        "taylor_version": "<i>always was</i>",
+        "era_period": "Apr 2024 -  Oct 2025",
+        "fun_fact": "<i>all's fair in love & poetry.</i>"
+    },
+    "The Life of a Showgirl": {
+        "image": "TS12.png",
+        "release_date": "October 21, 2022",
+        "era_period": "Oct 2015 - ",
+        "fun_fact": ""
+    },
+
+    "Other": {
+        "image": "TSO.png",
+        "release_date": "multiple",
+        "taylor_version": "multiple",
+        "era_period": "multiples",
+        "fun_fact": "soundtracks, features & other shenanigans."
+    } 
+}
+
 def merge_taylor_versions(song_counter, version_mapping):
     """
     Merge counts of Taylor's Version and non-Taylor's Version songs.
@@ -12,6 +116,39 @@ def merge_taylor_versions(song_counter, version_mapping):
         unified_song = version_mapping.get(song, song)
         merged_counter[unified_song] += count
     return merged_counter
+
+def get_time_capsule_songs(results, taylor_version_mapping):
+    """Get the most listened song for each year on today's date (August 15th)"""
+    today = datetime.now()
+    current_month_day = f"{today.month:02d}-{today.day:02d}"
+    
+    yearly_songs = defaultdict(Counter)
+    
+    for entry in results['all_data']:
+        if not entry.get('ts'):
+            continue
+            
+        dt = datetime.strptime(entry['ts'], "%Y-%m-%dT%H:%M:%SZ")
+        entry_month_day = f"{dt.month:02d}-{dt.day:02d}"
+        
+        if entry_month_day == current_month_day:
+            year = dt.year
+            artist = entry.get('master_metadata_album_artist_name')
+            song = entry.get('master_metadata_track_name')
+            
+            if artist == "Taylor Swift" and song:
+                unified_song = taylor_version_mapping.get(song, song)
+                yearly_songs[year][unified_song] += 1
+    
+    # Get top song for each year
+    time_capsule = {}
+    for year, songs in yearly_songs.items():
+        if songs:
+            top_song = songs.most_common(1)[0]
+            time_capsule[year] = top_song[0]
+    
+    return time_capsule
+
 
 def analyze_taylor_swift_data(file_names, album_mapping=None, taylor_version_mapping=None):
     """
@@ -44,6 +181,13 @@ def analyze_taylor_swift_data(file_names, album_mapping=None, taylor_version_map
     for entry in all_data:
         ts = entry.get('ts', None)
         if ts:
+            # Skip tracks from the reputation tour playlist
+            album_name = entry.get('master_metadata_album_album_name', '')
+            if album_name == "reputation Stadium Tour Surprise Song Playlist":
+                continue  # Skip this entry entirely
+
+
+            
             ms_played = entry.get('ms_played', 0)
             dt = datetime.strptime(ts, "%Y-%m-%dT%H:%M:%SZ")
             year_month = f"{dt.year}-{dt.month:02d}"
@@ -159,6 +303,24 @@ def generate_html_report(results, album_colors, taylor_version_mapping):
     """
     Generate an HTML report with toggleable yearly and album views.
     """
+    release_anniversaries = {
+        2024: "19.04 <i>THE TORTURED POETS DEPARTMENT</i>",
+        2023: "07.07 <i>Speak Now (Taylor's Version)</i><br>27.10 <i>1989 (Taylor's Version)</i>",
+        2022: "21.10 <i>Midnights</i>",
+        2021: "09.04 <i>Fearless (Taylor's Version)</i><br>12.11 <i>Red (Taylor's Version)</i>",
+        2020: "24.07 <i>folklore</i><br>11.12 <i>evermore</i>",
+        2019: "23.08 <i>Lover</i>",
+        2017: "10.11 <i>reputation</i>",
+        2014: "27.10 <i>1989</i>",
+        2012: "22.10 <i>Red</i>",
+        2010: "25.10 <i>Speak Now</i>",
+        2008: "11.11 <i>Fearless</i>",
+        2006: "24.10 <i>Taylor Swift</i>"
+    }
+    
+    
+    
+    
     # Calculate all-time album totals
     total_taylor_minutes = results['all_time_stats']['total_taylor_minutes']
     merged_songs = merge_taylor_versions(results['all_time_stats']['songs'], taylor_version_mapping)
@@ -234,6 +396,30 @@ def generate_html_report(results, album_colors, taylor_version_mapping):
                 return f'<span class="trend-indicator down"><i class="fa-solid fa-caret-down"></i></span>'
         return '<span class="trend-indicator same"><i class="fa-solid fa-equals"></i></span>'
 
+    # Define the custom album order
+    custom_album_order = [
+        "The Life of a Showgirl",
+        "THE TORTURED POETS DEPARTMENT",
+        "Midnights",
+        "evermore",
+        "folklore",
+        "Lover",
+        "reputation",
+        "1989",
+        "Red",
+        "Speak Now",
+        "Fearless",
+        "Taylor Swift"
+    ]
+
+    # Sort albums according to custom order
+    sorted_albums = sorted(
+        results['total_album_minutes'].items(),
+        key=lambda x: custom_album_order.index(x[0]) if x[0] in custom_album_order else float('inf')
+    )
+    time_capsule_songs = get_time_capsule_songs(results, taylor_version_mapping)
+
+
     html = f"""
 <!DOCTYPE html>
 <html lang="en">
@@ -254,7 +440,7 @@ def generate_html_report(results, album_colors, taylor_version_mapping):
             --border: 3px solid var(--primary);
             --shadow: 8px 8px 0px var(--primary);
             --font-main: 'DM Sans', monospace;
-            --font-size: 16px;
+            --font-size: 18px;
         }}
 
         /* Add this to your existing CSS */
@@ -416,68 +602,94 @@ def generate_html_report(results, album_colors, taylor_version_mapping):
         .album-percentage {{
             font-weight: bold;
         }}
-        
-        /* Stacked bar chart styles */
-        .stacked-bar {{
-            height: 40px;
-            background-color: var(--secondary);
-            border: var(--border);
-            margin-bottom: 30px;
-            position: relative;
-            display: flex;
-        }}
-        
-        .stacked-segment {{
-            height: 100%;
-            position: relative;
-            border-right: 2px solid var(--primary);
-            z-index: 1;
-        }}
-        
-        .stacked-segment-tooltip {{
-            position: absolute;
-            bottom: calc(100% + 5px);
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: #D8F3DC;
-            color: black;
-            padding: 5px 10px;
-            border-radius: 2px 2px 0 0;
-            box-shadow: 2px 2px 0px var(--primary);
-            border: var(--border);
-            font-size: 12px;
-            white-space: nowrap;
-            margin-bottom: 5px;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.2s ease;
-            z-index: 10;
-            pointer-events: none;
-        }}
+            
+/* Stacked bar container */
+.stacked-bar {{
+    height: 40px;
+    background-color: #D8F3DC;
+    border: var(--border);
+    margin-bottom: 30px;
+    position: relative;
+    display: flex;
+    box-sizing: border-box;
+}}
 
-        .stacked-segment:hover .stacked-segment-tooltip {{
-            opacity: 1;
-            visibility: visible;
-        }}
+/* Base segment style */
+.stacked-segment {{
+    height: 100%;
+    position: relative;
+    border-right: 2px solid var(--primary);
+    z-index: 1;
+    margin-right: -1px;
+    transform-origin: center;
+    box-sizing: border-box;
+    transition: all 0.2s ease;
+}}
 
-        .stacked-segment:hover {{
-            opacity: 1;
-            transform: scaleY(1.05);
-            z-index: 2; /* Bring hovered segment above others */
-        }}
+/* Highlighted segment - show tooltip */
+.stacked-segment.highlighted {{
+    opacity: 1 !important;
+    transform: scaleY(1.1);
+    z-index: 2;
+    border: 2px solid var(--primary) !important;
+    margin: -1px -1px -1px -1px;
+}}
 
-        .stacked-segment-tooltip::after {{
-            content: "";
-            position: absolute;
-            top: 100%;
-            left: 50%;
-            margin-left: -5px;
-            border-width: 5px;
-            border-style: solid;
-            border-color: rgba(0, 0, 0, 0.8) transparent transparent transparent;
-        }}
+/* Shaded segment - hide tooltip */
+.stacked-segment.shaded {{
+    opacity: 0.2 !important;
+    filter: grayscale(90%);
+    border-right: none !important;
+    pointer-events: none; /* This prevents hover on shaded segments */
+}}
 
+/* Only show tooltip on highlighted segments */
+.stacked-segment.highlighted:hover .stacked-segment-tooltip {{
+    opacity: 1;
+    visibility: visible;
+}}
 
+/* Hide tooltip on shaded segments */
+.stacked-segment.shaded .stacked-segment-tooltip {{
+    display: none;
+}}
+
+/* Tooltip styles */
+.stacked-segment-tooltip {{
+    position: absolute;
+    bottom: calc(100% + 5px);
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #D8F3DC;
+    color: black;
+    padding: 5px 10px;
+    border-radius: 2px 2px 0 0;
+    box-shadow: 2px 2px 0px var(--primary);
+    border: var(--border);
+    font-size: 16px;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s ease;
+    z-index: 100;
+}}
+
+.stacked-segment-tooltip::after {{
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #D8F3DC transparent transparent transparent;
+}}
+
+/* All-albums view - show all tooltips */
+#all-albums-album-view .stacked-segment:hover .stacked-segment-tooltip {{
+    opacity: 1;
+    visibility: visible;
+}}
         /* Navigation tabs */
         .nav-tabs {{
                 display: flex;
@@ -829,7 +1041,75 @@ def generate_html_report(results, album_colors, taylor_version_mapping):
     .fa-heart, .fa-music{{
         margin: 0 5px; /* Spacing */
     }}
+/* Album Info Box - Neobrutalism Style */
+.album-info-box {{
+    display: flex;
+    border: var(--border);
+    margin-bottom: 20px;
+    box-shadow: var(--shadow);
+    background-color: white;
+    padding: 0;
+    overflow: hidden;
+}}
 
+.album-cover {{
+    width: 250px;
+    height: 250px;
+    border-right: var(--border);
+    overflow: hidden;
+    flex-shrink: 0;
+}}
+
+.album-cover img {{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}}
+
+.album-details {{
+    padding: 15px;
+    flex-grow: 1;
+}}
+
+.album-details h3 {{
+    margin-top: 0;
+    font-size: 1.5rem;
+    border-bottom: var(--border);
+    padding-bottom: 5px;
+}}
+
+.album-meta p {{
+    margin: 8px 0;
+    line-height: 1.4;
+}}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {{
+    .album-info-box {{
+        flex-direction: column;
+    }}
+    
+    .album-cover {{
+        width: 100%;
+        height: auto;
+        aspect-ratio: 1/1;
+        border-right: none;
+        border-bottom: var(--border);
+    }}
+    
+    .album-cover img {{
+        width: 100%;
+        height: auto;
+    }}
+}}
+
+
+/* Add this to your CSS to ensure tooltips work in all views */
+#years-view .stacked-segment:hover .stacked-segment-tooltip {{
+    opacity: 1;
+    visibility: visible;
+}}
 
     </style>
 </head>
@@ -852,11 +1132,25 @@ def generate_html_report(results, album_colors, taylor_version_mapping):
 
         <!-- Home View -->
         <div id="home-view" class="stats-view active">
+            <h2>👋 Ohh, hi!!</h2>
             <h3>Welcome to <i>In Summation</i></h3>
             <p>The most comprehensive musical report of your Swiftly listening habits.</p>
-        </div>
+            
+            <h2>From the Vault: {datetime.now().strftime('%B %d')}</h2>
+                {"".join([f"""
+                <div class="album-row">
+                    <div class="album-info">
+                        <div class="album-color" style="background-color: var(--accent);"></div>
+                        <span>{year}</span>
+                    </div>
+                    <div class="album-percentage">{song}</div>
+                </div>
+                """ for year, song in sorted(time_capsule_songs.items(), reverse=True)])}
+            </div>
+        
 
-        <!-- Yearly View -->
+            
+        <!-- TAB - By Year -->
         <div id="years-view" class="stats-view">
             <!-- Year Navigation Tabs -->
             <div class="nav-tabs">
@@ -866,17 +1160,22 @@ def generate_html_report(results, album_colors, taylor_version_mapping):
                 """ for year in sorted(results['taylor_minutes_by_year'].keys(), reverse=True)])}
             </div>
 
-            <h2>Listening Time</h2>
-            
+<div class="album-row total-minutes-row" style="margin-top: 20px; background-color: var(--highlight); display: flex; align-items: center;">
+    <div class="album-percentage total-minutes-value" style="text-align: left; color: black; flex-grow: 1; font-weight: 400;" id="anniversary-text">
+        {format_anniversaries(release_anniversaries.get(datetime.now().year, "No major releases this year"))}
+    </div>
+</div>
+
+
+            <h2>Yearly Breakdown</h2>
             <!-- All Time Year View -->
             <div id="all-time-year-view" class="stats-view active">
                 <div class="stacked-bar">
                     {"".join([f"""
                     <div class="stacked-segment" style="width: {(minutes / total_taylor_minutes) * 100 if total_taylor_minutes > 0 else 0}%; background-color: {album_colors.get(album, '#FFFFFF')};">
                         <div class="stacked-segment-tooltip">
-                            {album}<br>
-                            {(minutes / total_taylor_minutes) * 100 if total_taylor_minutes > 0 else 0:.1f}%<br>
-                            {round(minutes)} min
+                            <b>{album}</b><br>
+                            {round(minutes)} min ({(minutes / total_taylor_minutes) * 100 if total_taylor_minutes > 0 else 0:.1f}%)
                         </div>
                     </div>
                     """ for album, minutes in sorted(results['total_album_minutes'].items(), key=lambda x: x[1], reverse=True)])}
@@ -895,26 +1194,25 @@ def generate_html_report(results, album_colors, taylor_version_mapping):
                 <div class="album-row total-minutes-row">
                     <div class="album-info">
                         <div class="album-color" style="background-color: var(--accent);"></div>
-                        <span class="total-minutes-text">In summation</span>
+                        <span class="total-minutes-text"><i>In Summation</i></span>
                     </div>
                     <div class="album-percentage total-minutes-value">{round(total_taylor_minutes)} min</div>
                 </div>
             </div>
             
             <!-- Individual Year Views -->
-{"".join([f"""
-<div id="{year}-year-view" class="stats-view">
-    <div class="stacked-bar">
-        {"".join([f"""
-        <div class="stacked-segment" style="width: {(minutes / results['taylor_minutes_by_year'][year]) * 100 if results['taylor_minutes_by_year'][year] > 0 else 0}%; background-color: {album_colors.get(album, '#FFFFFF')};">
-            <div class="stacked-segment-tooltip">
-                {album}<br>
-                {(minutes / results['taylor_minutes_by_year'][year]) * 100 if results['taylor_minutes_by_year'][year] > 0 else 0:.1f}%<br>
-                {round(minutes)} min
-            </div>
-        </div>
-        """ for album, minutes in sorted(results['album_minutes_by_year'].get(year, {}).items(), key=lambda x: x[1], reverse=True)])}
-    </div>
+            {"".join([f"""
+            <div id="{year}-year-view" class="stats-view">
+                <div class="stacked-bar">
+                    {"".join([f"""
+                    <div class="stacked-segment" style="width: {(minutes / results['taylor_minutes_by_year'][year]) * 100 if results['taylor_minutes_by_year'][year] > 0 else 0}%; background-color: {album_colors.get(album, '#FFFFFF')};">
+                        <div class="stacked-segment-tooltip">
+                            <b>{album}</b><br>
+                            {round(minutes)} min ({(minutes / results['taylor_minutes_by_year'][year]) * 100 if results['taylor_minutes_by_year'][year] > 0 else 0:.1f}%)
+                        </div>
+                    </div>
+                    """ for album, minutes in sorted(results['album_minutes_by_year'].get(year, {}).items(), key=lambda x: x[1], reverse=True)])}
+                </div>
                 
                 {"".join([f"""
                 <div class="album-row">
@@ -929,112 +1227,151 @@ def generate_html_report(results, album_colors, taylor_version_mapping):
                 <div class="album-row total-minutes-row">
                     <div class="album-info">
                         <div class="album-color" style="background-color: var(--accent);"></div>
-                        <span class="total-minutes-text">In summation</span>
+                        <span class="total-minutes-text"><i>In Summation</i></span>
                     </div>
                     <div class="album-percentage total-minutes-value">{round(results['taylor_minutes_by_year'][year])} min</div>
                 </div>
             </div>
             """ for year in sorted(results['taylor_minutes_by_year'].keys())])}
 
-<h2>Songs</h2>
+            <h2>Song Breakdown</h2>
 
-<!-- All Time Songs View -->
-<div id="all-time-songs-view" class="stats-view active">
-    <ul class="song-list">
-        {"".join([f"""
-        <li class="{'total-minutes-row' if i < 3 else 'song-item'}">
-            <div class="album-info">
-                <div class="song-number {'song-number-top' if i < 3 else ''}" 
-                     style="background-color: var(--accent);">{i+1}</div>
-                <span class="{'total-minutes-text' if i < 3 else 'song-title'}">{song}</span>
-                {f'<div class="album-percentage total-minutes-value">{count} <i class="fa-solid fa-play"></i></div>' if i < 3 else ''}
+            <!-- All Time Songs View -->
+            <div id="all-time-songs-view" class="stats-view active">
+                <ul class="song-list">
+                    {"".join([f"""
+                    <li class="{'total-minutes-row' if i < 3 else 'song-item'}">
+                        <div class="album-info">
+                            <div class="song-number {'song-number-top' if i < 3 else ''}" 
+                                style="background-color: var(--accent);">{i+1}</div>
+                            <span class="{'total-minutes-text' if i < 3 else 'song-title'}">{song}</span>
+                            {f'<div class="album-percentage total-minutes-value">{count} <i class="fa-solid fa-play"></i></div>' if i < 3 else ''}
+                        </div>
+                    </li>
+                    """ for i, (song, count) in enumerate(top_songs)])}
+                </ul>
             </div>
-        </li>
-        """ for i, (song, count) in enumerate(top_songs)])}
-    </ul>
-</div>
 
-<!-- Yearly Songs Views -->
-{"".join([f"""
-<div id="{year}-songs-view" class="stats-view">
-    <ul class="song-list">
-        {"".join([f"""
-        <li class="{'total-minutes-row' if i < 3 else 'song-item'}">
-            <div class="album-info">
-                <div class="song-number {'song-number-top' if i < 3 else ''}" 
-                     style="background-color: var(--accent);">{i+1}</div>
-                <span class="{'total-minutes-text' if i < 3 else 'song-title'}">{song}</span>
-                {f'<div class="album-percentage total-minutes-value">{count} <i class="fa-solid fa-play"></i></div>' if i < 3 else ''}
-            </div>
-        </li>
-        """ for i, (song, count) in enumerate(get_top_songs_for_year(results, year, taylor_version_mapping))])}
-    </ul>
-</div>
-""" for year in sorted(results['taylor_minutes_by_year'].keys())])}
-</div>
-
-
-    <!-- TAB2 - ERAS -->
-    <div id="albums-view" class="stats-view">
-        <!-- Album Navigation Tabs -->
-        <div class="nav-tabs">
-            <button class="nav-tab active" onclick="showAlbumView('all-albums')">Swiftie Era</button>
+            <!-- Yearly Songs Views -->
             {"".join([f"""
-            <button class="nav-tab" onclick="showAlbumView('{album}')">{album}</button>
-            """ for album, _ in sorted_albums])}
-        </div>
+            <div id="{year}-songs-view" class="stats-view">
+                <ul class="song-list">
+                    {"".join([f"""
+                    <li class="{'total-minutes-row' if i < 3 else 'song-item'}">
+                        <div class="album-info">
+                            <div class="song-number {'song-number-top' if i < 3 else ''}" 
+                                style="background-color: var(--accent);">{i+1}</div>
+                            <span class="{'total-minutes-text' if i < 3 else 'song-title'}">{song}</span>
+                            {f'<div class="album-percentage total-minutes-value">{count} <i class="fa-solid fa-play"></i></div>' if i < 3 else ''}
+                        </div>
+                    </li>
+                    """ for i, (song, count) in enumerate(get_top_songs_for_year(results, year, taylor_version_mapping))])}
+                </ul>
+            </div>
+            """ for year in sorted(results['taylor_minutes_by_year'].keys())])}
+            </div>
 
-        <h2>Era Statistics</h2>
+
+<!-- TAB2 - ERAS -->
+<div id="albums-view" class="stats-view">
+    <!-- Album Navigation Tabs -->
+<div class="nav-tabs">
+    <button class="nav-tab active" onclick="showAlbumView('all-albums')">Swiftie Era</button>
+    {"".join([f"""
+    <button class="nav-tab" onclick="showAlbumView('{album}')">{album}</button>
+    """ for album in custom_album_order if album in results['total_album_minutes']])}
+</div>
+    
+    <!-- All Albums View -->
+    <div id="all-albums-album-view" class="stats-view active">
+        <h2>Yearly Breakdown</h2>
+
         
-        <!-- All Albums View -->
-        <div id="all-albums-album-view" class="stats-view active">
-
-            
+        <div class="stacked-bar">
             {"".join([f"""
-            <div class="album-row">
-                <div class="album-info">
-                    <div class="album-color" style="background-color: {album_colors.get(album, '#FFFFFF')};"></div>
-                    <span>{album}</span>
+            <div class="stacked-segment" style="width: {(minutes / total_taylor_minutes) * 100 if total_taylor_minutes > 0 else 0}%; background-color: {album_colors.get(album, '#FFFFFF')};">
+                <div class="stacked-segment-tooltip">
+                    <b>{album}</b><br>
+                    {round(minutes)} min ({(minutes / total_taylor_minutes) * 100 if total_taylor_minutes > 0 else 0:.1f}%)
                 </div>
-                <div class="album-percentage">{round(minutes)} min</div>
             </div>
-            """ for album, minutes in sorted_albums])}
-            
-            <div class="album-row total-minutes-row">
-                <div class="album-info">
-                    <div class="album-color" style="background-color: var(--accent);"></div>
-                    <span class="total-minutes-text">In summation</span>
-                </div>
-                <div class="album-percentage total-minutes-value">{round(total_taylor_minutes)} min</div>
-            </div>
+            """ for album, minutes in sorted(results['total_album_minutes'].items(), key=lambda x: x[1], reverse=True)])}
         </div>
         
-        <!-- Individual Album Views -->
         {"".join([f"""
-        <div id="{album}-album-view" class="stats-view">
-
-            
-            {"".join([f"""
-            <div class="album-row">
-                <div class="album-info">
-                    <div class="album-color" style="background-color: {album_colors.get(album, '#FFFFFF')};"></div>
-                    <span>{year}</span>
-                </div>
-                <div class="album-percentage">{round(minutes)} min</div>
+        <div class="album-row">
+            <div class="album-info">
+                <div class="album-color" style="background-color: {album_colors.get(album, '#FFFFFF')};"></div>
+                <span>{album}</span>
             </div>
-            """ for year, minutes in sorted((y, m) for y, albums in results['album_minutes_by_year'].items() for album_name, m in albums.items() if album_name == album)])}
-            
-            <div class="album-row total-minutes-row">
-                <div class="album-info">
-                    <div class="album-color" style="background-color: {album_colors.get(album, '#FFFFFF')};"></div>
-                    <span class="total-minutes-text">In summation</span>
+            <div class="album-percentage">{round(minutes)} min</div>
+        </div>
+        """ for album, minutes in sorted_albums])}
+        
+        <div class="album-row total-minutes-row">
+            <div class="album-info">
+                <div class="album-color" style="background-color: var(--accent);"></div>
+                <span class="total-minutes-text"><i>In Summation</i></span>
+            </div>
+            <div class="album-percentage total-minutes-value">{round(total_taylor_minutes)} min</div>
+        </div>
+    </div>
+    
+    <!-- Individual Album Views -->
+    {"".join([f"""
+    <div id="{album}-album-view" class="stats-view">
+       
+
+        <div class="album-info-box" style="background-color: {album_colors.get(album, '#FFFFFF')}30;">  <!-- Added 30% opacity (hex '30') -->
+            <div class="album-cover">
+                <img src="{album_info.get(album, {}).get('image', 'default.jpg')}" alt="{album} Cover">
+            </div>
+            <div class="album-details">
+                <h3>{album}<br><i>{album_info.get(album, {}).get('fun_fact', '')}</i></h3>
+                <div class="album-meta">
+                    <p><b>Released:</b> {album_info.get(album, {}).get('release_date', 'N/A')}</p>
+                    <p><b>Taylor's Version:</b> {album_info.get(album, {}).get('taylor_version', 'N/A')}</p>                    
                 </div>
-                <div class="album-percentage total-minutes-value">{round(results['total_album_minutes'][album])} min</div>
             </div>
         </div>
-        """ for album, _ in sorted_albums])}
 
-<h2>Songs</h2>
+        <h2>Yearly Breakdown</h2>
+
+         <div class="stacked-bar">
+            {"".join([f"""
+            <div class="stacked-segment {'highlighted' if a == album else 'shaded'}" 
+                 style="width: {(m / total_taylor_minutes) * 100 if total_taylor_minutes > 0 else 0}%; 
+                        background-color: {album_colors.get(a, '#FFFFFF')};">
+                <div class="stacked-segment-tooltip">
+                    <b>{a}</b><br>
+                    {round(m)} min ({(m / total_taylor_minutes) * 100 if total_taylor_minutes > 0 else 0:.1f}%)
+                </div>
+            </div>
+            """ for a, m in sorted(results['total_album_minutes'].items(), key=lambda x: x[1], reverse=True)])}
+        </div>
+        
+        {"".join([f"""
+        <div class="album-row">
+            <div class="album-info">
+                <div class="album-color" style="background-color: {album_colors.get(album, '#FFFFFF')};"></div>
+                <span>{year}</span>
+            </div>
+            <div class="album-percentage">{round(minutes)} min</div>
+        </div>
+        """ for year, minutes in sorted((y, m) for y, albums in results['album_minutes_by_year'].items() for album_name, m in albums.items() if album_name == album)])}
+        
+        <div class="album-row total-minutes-row">
+            <div class="album-info">
+                <div class="album-color" style="background-color: {album_colors.get(album, '#FFFFFF')};"></div>
+                <span class="total-minutes-text"><i>In Summation</i></span>
+            </div>
+            <div class="album-percentage total-minutes-value">{round(results['total_album_minutes'][album])} min</div>
+        </div>
+    </div>
+    """ for album, _ in sorted_albums])}
+
+
+<h2>Song Breakdown</h2>
 
 <!-- All Albums Songs View -->
 <div id="all-albums-songs-view" class="stats-view active">
@@ -1108,7 +1445,7 @@ def generate_html_report(results, album_colors, taylor_version_mapping):
             <div class="album-row total-minutes-row">
                 <div class="album-info">
                     <div class="album-color" style="background-color: var(--accent);"></div>
-                    <span class="total-minutes-text">In summation</span>
+                    <span class="total-minutes-text"><i>In Summation</i></span>
                 </div>
 <div class="album-percentage total-minutes-value">{round(monthly_stats[month]['minutes'])} min</div>            </div>
 
@@ -1197,9 +1534,35 @@ def generate_html_report(results, album_colors, taylor_version_mapping):
             el.classList.remove('active');
         }});
         document.getElementById(viewId + '-songs-view').classList.add('active');
+        
+    // Update the anniversary display
+    const year = viewId === 'all-time' ? new Date().getFullYear() : viewId;
+    const anniversaryData = {{
+        2024: "19.04 <i>THE TORTURED POETS DEPARTMENT</i>",
+        2023: "07.07 <i>Speak Now (Taylor's Version)</i><br>27.10 <i>1989 (Taylor's Version)</i>",
+        2022: "21.10 <i>Midnights</i>",
+        2021: "09.04 <i>Fearless (Taylor's Version)</i><br>12.11 <i>Red (Taylor's Version)</i>",
+        2020: "24.07 <i>folklore</i><br>11.12 <i>evermore</i>",
+        2019: "23.08 <i>Lover</i>",
+        2017: "09.06 <i>Back to Spotify</i><br>10.11 <i>reputation</i>",
+        2014: "27.10 <i>1989</i>",
+        2012: "22.10 <i>Red</i>",
+        2010: "25.10 <i>Speak Now</i>",
+        2008: "11.11 <i>Fearless</i>",
+        2006: "24.10 <i>Taylor Swift</i>"
+    }};
+    document.getElementById('anniversary-text').innerHTML = anniversaryData[year] || "No major releases this year";
+
     }}
     
-    // Function to show album-specific views
+    function format_anniversaries(text) {{
+        if (text === "No major releases this year") return text;
+        
+        // This regex matches dates in format "Month Day" or "Month Day, Year"
+        return text.replace(/([A-Za-z]+ \d{1,2}(?:, \d{4})?)/g, '<strong>$1</strong>');
+    }}
+
+    // Function to show album-specific views with highlighting
     function showAlbumView(viewId) {{
         // Update active tab
         document.querySelectorAll('#albums-view .nav-tab').forEach(tab => {{
@@ -1218,7 +1581,30 @@ def generate_html_report(results, album_colors, taylor_version_mapping):
             el.classList.remove('active');
         }});
         document.getElementById(viewId + '-songs-view').classList.add('active');
+        
+        // Only update highlighting if not in "all-albums" view
+        if (viewId !== 'all-albums') {{
+            const albumName = viewId;
+            document.querySelectorAll('#albums-view .stacked-segment').forEach(segment => {{
+                segment.classList.remove('highlighted', 'shaded');
+                if (segment.textContent.includes(albumName)) {{
+                    segment.classList.add('highlighted');
+                    segment.style.borderRight = '2px solid var(--primary)';
+                }} else {{
+                    segment.classList.add('shaded');
+                    segment.style.borderRight = 'none';
+                }}
+            }});
+        }} else {{
+            // Reset all segments to normal in "all-albums" view
+            document.querySelectorAll('#albums-view .stacked-segment').forEach(segment => {{
+                segment.classList.remove('highlighted', 'shaded');
+                segment.style.borderRight = '2px solid var(--primary)';
+                segment.style.opacity = '1';
+            }});
+        }}
     }}
+
 
     function showYear(selectedYear) {{
         // Update active year tab
