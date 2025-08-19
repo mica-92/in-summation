@@ -1521,6 +1521,25 @@ def generate_html_report(results, album_colors, taylor_version_mapping):
         document.getElementById('albums-view').classList.remove('active');
         document.getElementById('ranking-view').classList.remove('active');
         document.getElementById(mode + '-view').classList.add('active');
+        
+        // Activate the default tab for each view
+        if (mode === 'albums') {{
+            document.querySelectorAll('#albums-view .nav-tab').forEach(tab => tab.classList.remove('active'));
+            document.querySelector('#albums-view .nav-tab').classList.add('active');
+            showAlbumView('all-albums');
+        }} else if (mode === 'years') {{
+            document.querySelectorAll('#years-view .nav-tab').forEach(tab => tab.classList.remove('active'));
+            document.querySelector('#years-view .nav-tab').classList.add('active');
+            showYearView('all-time');
+        }} else if (mode === 'ranking') {{
+            // For monthly view, activate the most recent year and month
+            const yearTabs = document.querySelectorAll('#year-tabs .nav-tab');
+            if (yearTabs.length > 0) {{
+                yearTabs.forEach(tab => tab.classList.remove('active'));
+                yearTabs[0].classList.add('active');
+                showYear(yearTabs[0].textContent.trim());
+            }}
+        }}
     }}
 
     
