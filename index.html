@@ -708,40 +708,61 @@
             <button class="nav-tab" onclick="showViewMode('ranking')">By Month</button>
         </div>
 
-        <!-- Home View -->
         <div id="home-view" class="stats-view active">
             <h2>👋 Ohh, hi!!</h2>
             <h3>Welcome to <i>In Summation</i></h3>
             <p>The most comprehensive musical report of your Swiftly listening habits.</p>
             
+            
+                <h3 style="margin-top: 0; color: var(--accent);">"I stopped CPR, after all it's no use / The spirit was gone, we would never come to."</h3>
+                <p style="margin: 0; font-size: 0.9rem; color: #666;">
+                    — So Long, London • The Tortured Poets Department
+                </p>
+            
+            
             <h2>From the Vault: <span id="current-date"></span></h2>
-                
-                <div class="album-row">
-                    <div class="album-info">
-                        <div class="album-color" style="background-color: var(--accent);"></div>
-                        <span>2024</span>
-                    </div>
-                    <div class="album-percentage">The Manuscript</div>
+            
+            <div class="album-row">
+                <div class="album-info">
+                    <div class="album-color" style="background-color: var(--accent);"></div>
+                    <span>2024</span>
                 </div>
-                
-                <div class="album-row">
-                    <div class="album-info">
-                        <div class="album-color" style="background-color: var(--accent);"></div>
-                        <span>2023</span>
-                    </div>
-                    <div class="album-percentage">Mine</div>
-                </div>
-                
-                <div class="album-row">
-                    <div class="album-info">
-                        <div class="album-color" style="background-color: var(--accent);"></div>
-                        <span>2021</span>
-                    </div>
-                    <div class="album-percentage">coney island (feat. The National)</div>
-                </div>
-                
+                <div class="album-percentage">The Bolter</div>
             </div>
-
+            
+            <div class="album-row">
+                <div class="album-info">
+                    <div class="album-color" style="background-color: var(--accent);"></div>
+                    <span>2023</span>
+                </div>
+                <div class="album-percentage">Better Than Revenge</div>
+            </div>
+            
+            <div class="album-row">
+                <div class="album-info">
+                    <div class="album-color" style="background-color: var(--accent);"></div>
+                    <span>2022</span>
+                </div>
+                <div class="album-percentage">august</div>
+            </div>
+            
+            <div class="album-row">
+                <div class="album-info">
+                    <div class="album-color" style="background-color: var(--accent);"></div>
+                    <span>2021</span>
+                </div>
+                <div class="album-percentage">willow</div>
+            </div>
+            
+            <div class="album-row">
+                <div class="album-info">
+                    <div class="album-color" style="background-color: var(--accent);"></div>
+                    <span>2020</span>
+                </div>
+                <div class="album-percentage">the 1</div>
+            </div>
+            
+            
             <script>
                 // Update the date when the page loads
                 document.addEventListener('DOMContentLoaded', function() {
@@ -750,7 +771,7 @@
                     document.getElementById('current-date').textContent = now.toLocaleDateString('en-US', options);
                 });
             </script>
-        
+        </div>
 
             
         <!-- TAB - By Year -->

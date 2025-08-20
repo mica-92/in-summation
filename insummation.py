@@ -1,7 +1,25 @@
 from collections import Counter, defaultdict
 from datetime import datetime
-from mapps import album_colors, taylor_version_mapping, album_mapping, file_names
+from mapps import album_colors, taylor_version_mapping, album_mapping, file_names, TAYLOR_QUOTES
 import json
+
+
+import random
+
+def get_random_taylor_quote():
+    """
+    Returns a random quote from the TAYLOR_QUOTES dictionary
+    """
+    if not TAYLOR_QUOTES or not TAYLOR_QUOTES.get("quotes"):
+        return None
+    
+    quotes = TAYLOR_QUOTES["quotes"]
+    if not quotes:
+        return None
+        
+    return random.choice(quotes)
+
+random_quote = get_random_taylor_quote()
 
 # Add this dictionary at the top of your generate_html_report function
 
@@ -1130,24 +1148,29 @@ def generate_html_report(results, album_colors, taylor_version_mapping):
             <button class="nav-tab" onclick="showViewMode('ranking')">By Month</button>
         </div>
 
-        <!-- Home View -->
         <div id="home-view" class="stats-view active">
             <h2>👋 Ohh, hi!!</h2>
             <h3>Welcome to <i>In Summation</i></h3>
             <p>The most comprehensive musical report of your Swiftly listening habits.</p>
             
+            {f'''
+                <h3 style="margin-top: 0; color: var(--accent);">"{random_quote['quote']}"</h3>
+                <p style="margin: 0; font-size: 0.9rem; color: #666;">
+                    — {random_quote['song']} • {random_quote['album']}
+                </p>
+            ''' if random_quote else ''}
+            
             <h2>From the Vault: <span id="current-date"></span></h2>
-                {"".join([f"""
-                <div class="album-row">
-                    <div class="album-info">
-                        <div class="album-color" style="background-color: var(--accent);"></div>
-                        <span>{year}</span>
-                    </div>
-                    <div class="album-percentage">{song}</div>
+            {"".join([f"""
+            <div class="album-row">
+                <div class="album-info">
+                    <div class="album-color" style="background-color: var(--accent);"></div>
+                    <span>{year}</span>
                 </div>
-                """ for year, song in sorted(time_capsule_songs.items(), reverse=True)])}
+                <div class="album-percentage">{song}</div>
             </div>
-
+            """ for year, song in sorted(time_capsule_songs.items(), reverse=True)])}
+            
             <script>
                 // Update the date when the page loads
                 document.addEventListener('DOMContentLoaded', function() {{
@@ -1156,7 +1179,7 @@ def generate_html_report(results, album_colors, taylor_version_mapping):
                     document.getElementById('current-date').textContent = now.toLocaleDateString('en-US', options);
                 }});
             </script>
-        
+        </div>
 
             
         <!-- TAB - By Year -->
