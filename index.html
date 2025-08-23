@@ -680,6 +680,45 @@
         width: 100%;
         height: auto;
     }
+
+        .quote-marquee {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: var(--highlight);
+            border: var(--border);
+            border-radius: 5px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .marquee-content {
+            display: inline-block;
+            white-space: nowrap;
+            animation: marquee 20s linear infinite;
+            padding-left: 100%;
+        }
+        
+        .marquee-content:hover {
+            animation-play-state: paused;
+        }
+        
+        @keyframes marquee {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-100%); }
+        }
+        
+        .quote-text {
+            font-size: 1.2rem;
+            font-style: italic;
+            margin: 0;
+        }
+        
+        .quote-source {
+            font-size: 0.9rem;
+            color: #666;
+            margin: 5px 0 0 0;
+        }
+
 }
 
 
@@ -697,6 +736,14 @@
                 <p><i>A brutalist breakdown of your Taylor Swift listening habits</i></p>
 
     </header>
+        
+    <div class="quote-marquee">
+        <div class="marquee-content">
+            <p class="quote-text">"My waves meet your shore ever and evermore"</p>
+            <p class="quote-source">— Long Story Short • Evermore</p>
+        </div>
+    </div>
+    
     
     
     <!-- Main Navigation Tabs -->
@@ -714,9 +761,9 @@
             <p>The most comprehensive musical report of your Swiftly listening habits.</p>
             
             
-                <h3 style="margin-top: 0; color: var(--accent);">"While you've been getting down and out about the liars and the dirty, dirty cheats of the world… You could've been getting down to this sick beat."</h3>
+                <h3 style="margin-top: 0; color: var(--accent);">"My waves meet your shore ever and evermore"</h3>
                 <p style="margin: 0; font-size: 0.9rem; color: #666;">
-                    — Shake It Off • 1989
+                    — Long Story Short • Evermore
                 </p>
             
             
@@ -725,25 +772,9 @@
             <div class="album-row">
                 <div class="album-info">
                     <div class="album-color" style="background-color: var(--accent);"></div>
-                    <span>2022</span>
+                    <span>2024</span>
                 </div>
-                <div class="album-percentage">I Knew You Were Trouble</div>
-            </div>
-            
-            <div class="album-row">
-                <div class="album-info">
-                    <div class="album-color" style="background-color: var(--accent);"></div>
-                    <span>2021</span>
-                </div>
-                <div class="album-percentage">cowboy like me</div>
-            </div>
-            
-            <div class="album-row">
-                <div class="album-info">
-                    <div class="album-color" style="background-color: var(--accent);"></div>
-                    <span>2020</span>
-                </div>
-                <div class="album-percentage">cardigan</div>
+                <div class="album-percentage">Chloe or Sam or Sophia or Marcus</div>
             </div>
             
             
@@ -782,13 +813,11 @@
                 
                 <button class="nav-tab" onclick="showYearView('2017')">2017</button>
                 
-                <button class="nav-tab" onclick="showYearView('2016')">2016</button>
-                
             </div>
 
 <div class="album-row total-minutes-row" style="margin-top: 20px; background-color: var(--highlight); display: flex; align-items: center;">
     <div class="album-percentage total-minutes-value" style="text-align: left; color: black; flex-grow: 1; font-weight: 400;" id="anniversary-text">
-        No major releases this year
+        03.10 <i>The Life of a Showgirl</i>
     </div>
 </div>
 
@@ -798,84 +827,84 @@
             <div id="all-time-year-view" class="stats-view active">
                 <div class="stacked-bar">
                     
-                    <div class="stacked-segment" style="width: 17.28007804879705%; background-color: #D3D3D3;">
+                    <div class="stacked-segment" style="width: 17.28028564637639%; background-color: #D3D3D3;">
                         <div class="stacked-segment-tooltip">
                             <b>folklore</b><br>
                             21373 min (17.3%)
                         </div>
                     </div>
                     
-                    <div class="stacked-segment" style="width: 15.61265307856724%; background-color: #333333;">
+                    <div class="stacked-segment" style="width: 15.612840644212318%; background-color: #333333;">
                         <div class="stacked-segment-tooltip">
                             <b>THE TORTURED POETS DEPARTMENT</b><br>
                             19311 min (15.6%)
                         </div>
                     </div>
                     
-                    <div class="stacked-segment" style="width: 14.006949122271228%; background-color: #FF0000;">
+                    <div class="stacked-segment" style="width: 14.00711739747945%; background-color: #FF0000;">
                         <div class="stacked-segment-tooltip">
                             <b>Red</b><br>
                             17325 min (14.0%)
                         </div>
                     </div>
                     
-                    <div class="stacked-segment" style="width: 13.185543906580085%; background-color: #00008B;">
+                    <div class="stacked-segment" style="width: 13.185702313676947%; background-color: #00008B;">
                         <div class="stacked-segment-tooltip">
                             <b>Midnights</b><br>
                             16309 min (13.2%)
                         </div>
                     </div>
                     
-                    <div class="stacked-segment" style="width: 9.287822763058136%; background-color: #87CEEB;">
+                    <div class="stacked-segment" style="width: 9.28793434412377%; background-color: #87CEEB;">
                         <div class="stacked-segment-tooltip">
                             <b>1989</b><br>
                             11488 min (9.3%)
                         </div>
                     </div>
                     
-                    <div class="stacked-segment" style="width: 8.41239908472122%; background-color: #FFC0CB;">
+                    <div class="stacked-segment" style="width: 8.412500148714189%; background-color: #FFC0CB;">
                         <div class="stacked-segment-tooltip">
                             <b>Lover</b><br>
                             10405 min (8.4%)
                         </div>
                     </div>
                     
-                    <div class="stacked-segment" style="width: 7.412022060290038%; background-color: #000000;">
+                    <div class="stacked-segment" style="width: 7.412111106059009%; background-color: #000000;">
                         <div class="stacked-segment-tooltip">
                             <b>reputation</b><br>
                             9168 min (7.4%)
                         </div>
                     </div>
                     
-                    <div class="stacked-segment" style="width: 7.178204645427841%; background-color: #800000;">
+                    <div class="stacked-segment" style="width: 7.17829088218581%; background-color: #800000;">
                         <div class="stacked-segment-tooltip">
                             <b>evermore</b><br>
                             8878 min (7.2%)
                         </div>
                     </div>
                     
-                    <div class="stacked-segment" style="width: 4.208257261186719%; background-color: #800080;">
+                    <div class="stacked-segment" style="width: 4.208307817904008%; background-color: #800080;">
                         <div class="stacked-segment-tooltip">
                             <b>Speak Now</b><br>
                             5205 min (4.2%)
                         </div>
                     </div>
                     
-                    <div class="stacked-segment" style="width: 2.6820395372735657%; background-color: #FFFF00;">
+                    <div class="stacked-segment" style="width: 2.6808703890231294%; background-color: #FFFF00;">
                         <div class="stacked-segment-tooltip">
                             <b>Fearless</b><br>
-                            3317 min (2.7%)
+                            3316 min (2.7%)
                         </div>
                     </div>
                     
-                    <div class="stacked-segment" style="width: 0.392602120322554%; background-color: #FFFFFF;">
+                    <div class="stacked-segment" style="width: 0.39260683692450404%; background-color: #FFFFFF;">
                         <div class="stacked-segment-tooltip">
                             <b>Other</b><br>
                             486 min (0.4%)
                         </div>
                     </div>
                     
-                    <div class="stacked-segment" style="width: 0.34142837150431565%; background-color: #008000;">
+                    <div class="stacked-segment" style="width: 0.3414324733204788%; background-color: #008000;">
                         <div class="stacked-segment-tooltip">
                             <b>Taylor Swift</b><br>
                             422 min (0.3%)
@@ -987,42 +1016,11 @@
                         <div class="album-color" style="background-color: var(--accent);"></div>
                         <span class="total-minutes-text"><i>In Summation</i></span>
                     </div>
-                    <div class="album-percentage total-minutes-value">123687 min</div>
+                    <div class="album-percentage total-minutes-value">123685 min</div>
                 </div>
             </div>
             
             <!-- Individual Year Views -->
-            
-            <div id="2016-year-view" class="stats-view">
-                <div class="stacked-bar">
-                    
-                    <div class="stacked-segment" style="width: 100.0%; background-color: #FFFF00;">
-                        <div class="stacked-segment-tooltip">
-                            <b>Fearless</b><br>
-                            1 min (100.0%)
-                        </div>
-                    </div>
-                    
-                </div>
-                
-                
-                <div class="album-row">
-                    <div class="album-info">
-                        <div class="album-color" style="background-color: #FFFF00;"></div>
-                        <span>Fearless</span>
-                    </div>
-                    <div class="album-percentage">100.0%</div>
-                </div>
-                
-                
-                <div class="album-row total-minutes-row">
-                    <div class="album-info">
-                        <div class="album-color" style="background-color: var(--accent);"></div>
-                        <span class="total-minutes-text"><i>In Summation</i></span>
-                    </div>
-                    <div class="album-percentage total-minutes-value">1 min</div>
-                </div>
-            </div>
             
             <div id="2017-year-view" class="stats-view">
                 <div class="stacked-bar">
@@ -3255,21 +3253,6 @@
             </div>
 
             <!-- Yearly Songs Views -->
-            
-            <div id="2016-songs-view" class="stats-view">
-                <ul class="song-list">
-                    
-                    <li class="total-minutes-row">
-                        <div class="album-info">
-                            <div class="song-number song-number-top" 
-                                style="background-color: var(--accent);">1</div>
-                            <span class="total-minutes-text">Love Story</span>
-                            <div class="album-percentage total-minutes-value">1 <i class="fa-solid fa-play"></i></div>
-                        </div>
-                    </li>
-                    
-                </ul>
-            </div>
             
             <div id="2017-songs-view" class="stats-view">
                 <ul class="song-list">
@@ -5876,84 +5859,84 @@
         
         <div class="stacked-bar">
             
-            <div class="stacked-segment" style="width: 17.28007804879705%; background-color: #D3D3D3;">
+            <div class="stacked-segment" style="width: 17.28028564637639%; background-color: #D3D3D3;">
                 <div class="stacked-segment-tooltip">
                     <b>folklore</b><br>
                     21373 min (17.3%)
                 </div>
             </div>
             
-            <div class="stacked-segment" style="width: 15.61265307856724%; background-color: #333333;">
+            <div class="stacked-segment" style="width: 15.612840644212318%; background-color: #333333;">
                 <div class="stacked-segment-tooltip">
                     <b>THE TORTURED POETS DEPARTMENT</b><br>
                     19311 min (15.6%)
                 </div>
             </div>
             
-            <div class="stacked-segment" style="width: 14.006949122271228%; background-color: #FF0000;">
+            <div class="stacked-segment" style="width: 14.00711739747945%; background-color: #FF0000;">
                 <div class="stacked-segment-tooltip">
                     <b>Red</b><br>
                     17325 min (14.0%)
                 </div>
             </div>
             
-            <div class="stacked-segment" style="width: 13.185543906580085%; background-color: #00008B;">
+            <div class="stacked-segment" style="width: 13.185702313676947%; background-color: #00008B;">
                 <div class="stacked-segment-tooltip">
                     <b>Midnights</b><br>
                     16309 min (13.2%)
                 </div>
             </div>
             
-            <div class="stacked-segment" style="width: 9.287822763058136%; background-color: #87CEEB;">
+            <div class="stacked-segment" style="width: 9.28793434412377%; background-color: #87CEEB;">
                 <div class="stacked-segment-tooltip">
                     <b>1989</b><br>
                     11488 min (9.3%)
                 </div>
             </div>
             
-            <div class="stacked-segment" style="width: 8.41239908472122%; background-color: #FFC0CB;">
+            <div class="stacked-segment" style="width: 8.412500148714189%; background-color: #FFC0CB;">
                 <div class="stacked-segment-tooltip">
                     <b>Lover</b><br>
                     10405 min (8.4%)
                 </div>
             </div>
             
-            <div class="stacked-segment" style="width: 7.412022060290038%; background-color: #000000;">
+            <div class="stacked-segment" style="width: 7.412111106059009%; background-color: #000000;">
                 <div class="stacked-segment-tooltip">
                     <b>reputation</b><br>
                     9168 min (7.4%)
                 </div>
             </div>
             
-            <div class="stacked-segment" style="width: 7.178204645427841%; background-color: #800000;">
+            <div class="stacked-segment" style="width: 7.17829088218581%; background-color: #800000;">
                 <div class="stacked-segment-tooltip">
                     <b>evermore</b><br>
                     8878 min (7.2%)
                 </div>
             </div>
             
-            <div class="stacked-segment" style="width: 4.208257261186719%; background-color: #800080;">
+            <div class="stacked-segment" style="width: 4.208307817904008%; background-color: #800080;">
                 <div class="stacked-segment-tooltip">
                     <b>Speak Now</b><br>
                     5205 min (4.2%)
                 </div>
             </div>
             
-            <div class="stacked-segment" style="width: 2.6820395372735657%; background-color: #FFFF00;">
+            <div class="stacked-segment" style="width: 2.6808703890231294%; background-color: #FFFF00;">
                 <div class="stacked-segment-tooltip">
                     <b>Fearless</b><br>
-                    3317 min (2.7%)
+                    3316 min (2.7%)
                 </div>
             </div>
             
-            <div class="stacked-segment" style="width: 0.392602120322554%; background-color: #FFFFFF;">
+            <div class="stacked-segment" style="width: 0.39260683692450404%; background-color: #FFFFFF;">
                 <div class="stacked-segment-tooltip">
                     <b>Other</b><br>
                     486 min (0.4%)
                 </div>
             </div>
             
-            <div class="stacked-segment" style="width: 0.34142837150431565%; background-color: #008000;">
+            <div class="stacked-segment" style="width: 0.3414324733204788%; background-color: #008000;">
                 <div class="stacked-segment-tooltip">
                     <b>Taylor Swift</b><br>
                     422 min (0.3%)
@@ -6040,7 +6023,7 @@
                 <div class="album-color" style="background-color: #FFFF00;"></div>
                 <span>Fearless</span>
             </div>
-            <div class="album-percentage">3317 min</div>
+            <div class="album-percentage">3316 min</div>
         </div>
         
         <div class="album-row">
@@ -6065,7 +6048,7 @@
                 <div class="album-color" style="background-color: var(--accent);"></div>
                 <span class="total-minutes-text"><i>In Summation</i></span>
             </div>
-            <div class="album-percentage total-minutes-value">123687 min</div>
+            <div class="album-percentage total-minutes-value">123685 min</div>
         </div>
     </div>
     
@@ -6092,7 +6075,7 @@
          <div class="stacked-bar">
             
             <div class="stacked-segment shaded" 
-                 style="width: 17.28007804879705%; 
+                 style="width: 17.28028564637639%; 
                         background-color: #D3D3D3;">
                 <div class="stacked-segment-tooltip">
                     <b>folklore</b><br>
@@ -6101,7 +6084,7 @@
             </div>
             
             <div class="stacked-segment highlighted" 
-                 style="width: 15.61265307856724%; 
+                 style="width: 15.612840644212318%; 
                         background-color: #333333;">
                 <div class="stacked-segment-tooltip">
                     <b>THE TORTURED POETS DEPARTMENT</b><br>
@@ -6110,7 +6093,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 14.006949122271228%; 
+                 style="width: 14.00711739747945%; 
                         background-color: #FF0000;">
                 <div class="stacked-segment-tooltip">
                     <b>Red</b><br>
@@ -6119,7 +6102,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 13.185543906580085%; 
+                 style="width: 13.185702313676947%; 
                         background-color: #00008B;">
                 <div class="stacked-segment-tooltip">
                     <b>Midnights</b><br>
@@ -6128,7 +6111,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 9.287822763058136%; 
+                 style="width: 9.28793434412377%; 
                         background-color: #87CEEB;">
                 <div class="stacked-segment-tooltip">
                     <b>1989</b><br>
@@ -6137,7 +6120,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 8.41239908472122%; 
+                 style="width: 8.412500148714189%; 
                         background-color: #FFC0CB;">
                 <div class="stacked-segment-tooltip">
                     <b>Lover</b><br>
@@ -6146,7 +6129,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 7.412022060290038%; 
+                 style="width: 7.412111106059009%; 
                         background-color: #000000;">
                 <div class="stacked-segment-tooltip">
                     <b>reputation</b><br>
@@ -6155,7 +6138,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 7.178204645427841%; 
+                 style="width: 7.17829088218581%; 
                         background-color: #800000;">
                 <div class="stacked-segment-tooltip">
                     <b>evermore</b><br>
@@ -6164,7 +6147,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 4.208257261186719%; 
+                 style="width: 4.208307817904008%; 
                         background-color: #800080;">
                 <div class="stacked-segment-tooltip">
                     <b>Speak Now</b><br>
@@ -6173,16 +6156,16 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 2.6820395372735657%; 
+                 style="width: 2.6808703890231294%; 
                         background-color: #FFFF00;">
                 <div class="stacked-segment-tooltip">
                     <b>Fearless</b><br>
-                    3317 min (2.7%)
+                    3316 min (2.7%)
                 </div>
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 0.392602120322554%; 
+                 style="width: 0.39260683692450404%; 
                         background-color: #FFFFFF;">
                 <div class="stacked-segment-tooltip">
                     <b>Other</b><br>
@@ -6191,7 +6174,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 0.34142837150431565%; 
+                 style="width: 0.3414324733204788%; 
                         background-color: #008000;">
                 <div class="stacked-segment-tooltip">
                     <b>Taylor Swift</b><br>
@@ -6249,7 +6232,7 @@
          <div class="stacked-bar">
             
             <div class="stacked-segment shaded" 
-                 style="width: 17.28007804879705%; 
+                 style="width: 17.28028564637639%; 
                         background-color: #D3D3D3;">
                 <div class="stacked-segment-tooltip">
                     <b>folklore</b><br>
@@ -6258,7 +6241,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 15.61265307856724%; 
+                 style="width: 15.612840644212318%; 
                         background-color: #333333;">
                 <div class="stacked-segment-tooltip">
                     <b>THE TORTURED POETS DEPARTMENT</b><br>
@@ -6267,7 +6250,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 14.006949122271228%; 
+                 style="width: 14.00711739747945%; 
                         background-color: #FF0000;">
                 <div class="stacked-segment-tooltip">
                     <b>Red</b><br>
@@ -6276,7 +6259,7 @@
             </div>
             
             <div class="stacked-segment highlighted" 
-                 style="width: 13.185543906580085%; 
+                 style="width: 13.185702313676947%; 
                         background-color: #00008B;">
                 <div class="stacked-segment-tooltip">
                     <b>Midnights</b><br>
@@ -6285,7 +6268,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 9.287822763058136%; 
+                 style="width: 9.28793434412377%; 
                         background-color: #87CEEB;">
                 <div class="stacked-segment-tooltip">
                     <b>1989</b><br>
@@ -6294,7 +6277,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 8.41239908472122%; 
+                 style="width: 8.412500148714189%; 
                         background-color: #FFC0CB;">
                 <div class="stacked-segment-tooltip">
                     <b>Lover</b><br>
@@ -6303,7 +6286,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 7.412022060290038%; 
+                 style="width: 7.412111106059009%; 
                         background-color: #000000;">
                 <div class="stacked-segment-tooltip">
                     <b>reputation</b><br>
@@ -6312,7 +6295,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 7.178204645427841%; 
+                 style="width: 7.17829088218581%; 
                         background-color: #800000;">
                 <div class="stacked-segment-tooltip">
                     <b>evermore</b><br>
@@ -6321,7 +6304,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 4.208257261186719%; 
+                 style="width: 4.208307817904008%; 
                         background-color: #800080;">
                 <div class="stacked-segment-tooltip">
                     <b>Speak Now</b><br>
@@ -6330,16 +6313,16 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 2.6820395372735657%; 
+                 style="width: 2.6808703890231294%; 
                         background-color: #FFFF00;">
                 <div class="stacked-segment-tooltip">
                     <b>Fearless</b><br>
-                    3317 min (2.7%)
+                    3316 min (2.7%)
                 </div>
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 0.392602120322554%; 
+                 style="width: 0.39260683692450404%; 
                         background-color: #FFFFFF;">
                 <div class="stacked-segment-tooltip">
                     <b>Other</b><br>
@@ -6348,7 +6331,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 0.34142837150431565%; 
+                 style="width: 0.3414324733204788%; 
                         background-color: #008000;">
                 <div class="stacked-segment-tooltip">
                     <b>Taylor Swift</b><br>
@@ -6422,7 +6405,7 @@
          <div class="stacked-bar">
             
             <div class="stacked-segment shaded" 
-                 style="width: 17.28007804879705%; 
+                 style="width: 17.28028564637639%; 
                         background-color: #D3D3D3;">
                 <div class="stacked-segment-tooltip">
                     <b>folklore</b><br>
@@ -6431,7 +6414,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 15.61265307856724%; 
+                 style="width: 15.612840644212318%; 
                         background-color: #333333;">
                 <div class="stacked-segment-tooltip">
                     <b>THE TORTURED POETS DEPARTMENT</b><br>
@@ -6440,7 +6423,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 14.006949122271228%; 
+                 style="width: 14.00711739747945%; 
                         background-color: #FF0000;">
                 <div class="stacked-segment-tooltip">
                     <b>Red</b><br>
@@ -6449,7 +6432,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 13.185543906580085%; 
+                 style="width: 13.185702313676947%; 
                         background-color: #00008B;">
                 <div class="stacked-segment-tooltip">
                     <b>Midnights</b><br>
@@ -6458,7 +6441,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 9.287822763058136%; 
+                 style="width: 9.28793434412377%; 
                         background-color: #87CEEB;">
                 <div class="stacked-segment-tooltip">
                     <b>1989</b><br>
@@ -6467,7 +6450,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 8.41239908472122%; 
+                 style="width: 8.412500148714189%; 
                         background-color: #FFC0CB;">
                 <div class="stacked-segment-tooltip">
                     <b>Lover</b><br>
@@ -6476,7 +6459,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 7.412022060290038%; 
+                 style="width: 7.412111106059009%; 
                         background-color: #000000;">
                 <div class="stacked-segment-tooltip">
                     <b>reputation</b><br>
@@ -6485,7 +6468,7 @@
             </div>
             
             <div class="stacked-segment highlighted" 
-                 style="width: 7.178204645427841%; 
+                 style="width: 7.17829088218581%; 
                         background-color: #800000;">
                 <div class="stacked-segment-tooltip">
                     <b>evermore</b><br>
@@ -6494,7 +6477,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 4.208257261186719%; 
+                 style="width: 4.208307817904008%; 
                         background-color: #800080;">
                 <div class="stacked-segment-tooltip">
                     <b>Speak Now</b><br>
@@ -6503,16 +6486,16 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 2.6820395372735657%; 
+                 style="width: 2.6808703890231294%; 
                         background-color: #FFFF00;">
                 <div class="stacked-segment-tooltip">
                     <b>Fearless</b><br>
-                    3317 min (2.7%)
+                    3316 min (2.7%)
                 </div>
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 0.392602120322554%; 
+                 style="width: 0.39260683692450404%; 
                         background-color: #FFFFFF;">
                 <div class="stacked-segment-tooltip">
                     <b>Other</b><br>
@@ -6521,7 +6504,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 0.34142837150431565%; 
+                 style="width: 0.3414324733204788%; 
                         background-color: #008000;">
                 <div class="stacked-segment-tooltip">
                     <b>Taylor Swift</b><br>
@@ -6611,7 +6594,7 @@
          <div class="stacked-bar">
             
             <div class="stacked-segment highlighted" 
-                 style="width: 17.28007804879705%; 
+                 style="width: 17.28028564637639%; 
                         background-color: #D3D3D3;">
                 <div class="stacked-segment-tooltip">
                     <b>folklore</b><br>
@@ -6620,7 +6603,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 15.61265307856724%; 
+                 style="width: 15.612840644212318%; 
                         background-color: #333333;">
                 <div class="stacked-segment-tooltip">
                     <b>THE TORTURED POETS DEPARTMENT</b><br>
@@ -6629,7 +6612,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 14.006949122271228%; 
+                 style="width: 14.00711739747945%; 
                         background-color: #FF0000;">
                 <div class="stacked-segment-tooltip">
                     <b>Red</b><br>
@@ -6638,7 +6621,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 13.185543906580085%; 
+                 style="width: 13.185702313676947%; 
                         background-color: #00008B;">
                 <div class="stacked-segment-tooltip">
                     <b>Midnights</b><br>
@@ -6647,7 +6630,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 9.287822763058136%; 
+                 style="width: 9.28793434412377%; 
                         background-color: #87CEEB;">
                 <div class="stacked-segment-tooltip">
                     <b>1989</b><br>
@@ -6656,7 +6639,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 8.41239908472122%; 
+                 style="width: 8.412500148714189%; 
                         background-color: #FFC0CB;">
                 <div class="stacked-segment-tooltip">
                     <b>Lover</b><br>
@@ -6665,7 +6648,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 7.412022060290038%; 
+                 style="width: 7.412111106059009%; 
                         background-color: #000000;">
                 <div class="stacked-segment-tooltip">
                     <b>reputation</b><br>
@@ -6674,7 +6657,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 7.178204645427841%; 
+                 style="width: 7.17829088218581%; 
                         background-color: #800000;">
                 <div class="stacked-segment-tooltip">
                     <b>evermore</b><br>
@@ -6683,7 +6666,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 4.208257261186719%; 
+                 style="width: 4.208307817904008%; 
                         background-color: #800080;">
                 <div class="stacked-segment-tooltip">
                     <b>Speak Now</b><br>
@@ -6692,16 +6675,16 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 2.6820395372735657%; 
+                 style="width: 2.6808703890231294%; 
                         background-color: #FFFF00;">
                 <div class="stacked-segment-tooltip">
                     <b>Fearless</b><br>
-                    3317 min (2.7%)
+                    3316 min (2.7%)
                 </div>
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 0.392602120322554%; 
+                 style="width: 0.39260683692450404%; 
                         background-color: #FFFFFF;">
                 <div class="stacked-segment-tooltip">
                     <b>Other</b><br>
@@ -6710,7 +6693,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 0.34142837150431565%; 
+                 style="width: 0.3414324733204788%; 
                         background-color: #008000;">
                 <div class="stacked-segment-tooltip">
                     <b>Taylor Swift</b><br>
@@ -6800,7 +6783,7 @@
          <div class="stacked-bar">
             
             <div class="stacked-segment shaded" 
-                 style="width: 17.28007804879705%; 
+                 style="width: 17.28028564637639%; 
                         background-color: #D3D3D3;">
                 <div class="stacked-segment-tooltip">
                     <b>folklore</b><br>
@@ -6809,7 +6792,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 15.61265307856724%; 
+                 style="width: 15.612840644212318%; 
                         background-color: #333333;">
                 <div class="stacked-segment-tooltip">
                     <b>THE TORTURED POETS DEPARTMENT</b><br>
@@ -6818,7 +6801,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 14.006949122271228%; 
+                 style="width: 14.00711739747945%; 
                         background-color: #FF0000;">
                 <div class="stacked-segment-tooltip">
                     <b>Red</b><br>
@@ -6827,7 +6810,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 13.185543906580085%; 
+                 style="width: 13.185702313676947%; 
                         background-color: #00008B;">
                 <div class="stacked-segment-tooltip">
                     <b>Midnights</b><br>
@@ -6836,7 +6819,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 9.287822763058136%; 
+                 style="width: 9.28793434412377%; 
                         background-color: #87CEEB;">
                 <div class="stacked-segment-tooltip">
                     <b>1989</b><br>
@@ -6845,7 +6828,7 @@
             </div>
             
             <div class="stacked-segment highlighted" 
-                 style="width: 8.41239908472122%; 
+                 style="width: 8.412500148714189%; 
                         background-color: #FFC0CB;">
                 <div class="stacked-segment-tooltip">
                     <b>Lover</b><br>
@@ -6854,7 +6837,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 7.412022060290038%; 
+                 style="width: 7.412111106059009%; 
                         background-color: #000000;">
                 <div class="stacked-segment-tooltip">
                     <b>reputation</b><br>
@@ -6863,7 +6846,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 7.178204645427841%; 
+                 style="width: 7.17829088218581%; 
                         background-color: #800000;">
                 <div class="stacked-segment-tooltip">
                     <b>evermore</b><br>
@@ -6872,7 +6855,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 4.208257261186719%; 
+                 style="width: 4.208307817904008%; 
                         background-color: #800080;">
                 <div class="stacked-segment-tooltip">
                     <b>Speak Now</b><br>
@@ -6881,16 +6864,16 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 2.6820395372735657%; 
+                 style="width: 2.6808703890231294%; 
                         background-color: #FFFF00;">
                 <div class="stacked-segment-tooltip">
                     <b>Fearless</b><br>
-                    3317 min (2.7%)
+                    3316 min (2.7%)
                 </div>
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 0.392602120322554%; 
+                 style="width: 0.39260683692450404%; 
                         background-color: #FFFFFF;">
                 <div class="stacked-segment-tooltip">
                     <b>Other</b><br>
@@ -6899,7 +6882,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 0.34142837150431565%; 
+                 style="width: 0.3414324733204788%; 
                         background-color: #008000;">
                 <div class="stacked-segment-tooltip">
                     <b>Taylor Swift</b><br>
@@ -6997,7 +6980,7 @@
          <div class="stacked-bar">
             
             <div class="stacked-segment shaded" 
-                 style="width: 17.28007804879705%; 
+                 style="width: 17.28028564637639%; 
                         background-color: #D3D3D3;">
                 <div class="stacked-segment-tooltip">
                     <b>folklore</b><br>
@@ -7006,7 +6989,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 15.61265307856724%; 
+                 style="width: 15.612840644212318%; 
                         background-color: #333333;">
                 <div class="stacked-segment-tooltip">
                     <b>THE TORTURED POETS DEPARTMENT</b><br>
@@ -7015,7 +6998,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 14.006949122271228%; 
+                 style="width: 14.00711739747945%; 
                         background-color: #FF0000;">
                 <div class="stacked-segment-tooltip">
                     <b>Red</b><br>
@@ -7024,7 +7007,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 13.185543906580085%; 
+                 style="width: 13.185702313676947%; 
                         background-color: #00008B;">
                 <div class="stacked-segment-tooltip">
                     <b>Midnights</b><br>
@@ -7033,7 +7016,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 9.287822763058136%; 
+                 style="width: 9.28793434412377%; 
                         background-color: #87CEEB;">
                 <div class="stacked-segment-tooltip">
                     <b>1989</b><br>
@@ -7042,7 +7025,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 8.41239908472122%; 
+                 style="width: 8.412500148714189%; 
                         background-color: #FFC0CB;">
                 <div class="stacked-segment-tooltip">
                     <b>Lover</b><br>
@@ -7051,7 +7034,7 @@
             </div>
             
             <div class="stacked-segment highlighted" 
-                 style="width: 7.412022060290038%; 
+                 style="width: 7.412111106059009%; 
                         background-color: #000000;">
                 <div class="stacked-segment-tooltip">
                     <b>reputation</b><br>
@@ -7060,7 +7043,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 7.178204645427841%; 
+                 style="width: 7.17829088218581%; 
                         background-color: #800000;">
                 <div class="stacked-segment-tooltip">
                     <b>evermore</b><br>
@@ -7069,7 +7052,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 4.208257261186719%; 
+                 style="width: 4.208307817904008%; 
                         background-color: #800080;">
                 <div class="stacked-segment-tooltip">
                     <b>Speak Now</b><br>
@@ -7078,16 +7061,16 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 2.6820395372735657%; 
+                 style="width: 2.6808703890231294%; 
                         background-color: #FFFF00;">
                 <div class="stacked-segment-tooltip">
                     <b>Fearless</b><br>
-                    3317 min (2.7%)
+                    3316 min (2.7%)
                 </div>
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 0.392602120322554%; 
+                 style="width: 0.39260683692450404%; 
                         background-color: #FFFFFF;">
                 <div class="stacked-segment-tooltip">
                     <b>Other</b><br>
@@ -7096,7 +7079,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 0.34142837150431565%; 
+                 style="width: 0.3414324733204788%; 
                         background-color: #008000;">
                 <div class="stacked-segment-tooltip">
                     <b>Taylor Swift</b><br>
@@ -7210,7 +7193,7 @@
          <div class="stacked-bar">
             
             <div class="stacked-segment shaded" 
-                 style="width: 17.28007804879705%; 
+                 style="width: 17.28028564637639%; 
                         background-color: #D3D3D3;">
                 <div class="stacked-segment-tooltip">
                     <b>folklore</b><br>
@@ -7219,7 +7202,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 15.61265307856724%; 
+                 style="width: 15.612840644212318%; 
                         background-color: #333333;">
                 <div class="stacked-segment-tooltip">
                     <b>THE TORTURED POETS DEPARTMENT</b><br>
@@ -7228,7 +7211,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 14.006949122271228%; 
+                 style="width: 14.00711739747945%; 
                         background-color: #FF0000;">
                 <div class="stacked-segment-tooltip">
                     <b>Red</b><br>
@@ -7237,7 +7220,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 13.185543906580085%; 
+                 style="width: 13.185702313676947%; 
                         background-color: #00008B;">
                 <div class="stacked-segment-tooltip">
                     <b>Midnights</b><br>
@@ -7246,7 +7229,7 @@
             </div>
             
             <div class="stacked-segment highlighted" 
-                 style="width: 9.287822763058136%; 
+                 style="width: 9.28793434412377%; 
                         background-color: #87CEEB;">
                 <div class="stacked-segment-tooltip">
                     <b>1989</b><br>
@@ -7255,7 +7238,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 8.41239908472122%; 
+                 style="width: 8.412500148714189%; 
                         background-color: #FFC0CB;">
                 <div class="stacked-segment-tooltip">
                     <b>Lover</b><br>
@@ -7264,7 +7247,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 7.412022060290038%; 
+                 style="width: 7.412111106059009%; 
                         background-color: #000000;">
                 <div class="stacked-segment-tooltip">
                     <b>reputation</b><br>
@@ -7273,7 +7256,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 7.178204645427841%; 
+                 style="width: 7.17829088218581%; 
                         background-color: #800000;">
                 <div class="stacked-segment-tooltip">
                     <b>evermore</b><br>
@@ -7282,7 +7265,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 4.208257261186719%; 
+                 style="width: 4.208307817904008%; 
                         background-color: #800080;">
                 <div class="stacked-segment-tooltip">
                     <b>Speak Now</b><br>
@@ -7291,16 +7274,16 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 2.6820395372735657%; 
+                 style="width: 2.6808703890231294%; 
                         background-color: #FFFF00;">
                 <div class="stacked-segment-tooltip">
                     <b>Fearless</b><br>
-                    3317 min (2.7%)
+                    3316 min (2.7%)
                 </div>
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 0.392602120322554%; 
+                 style="width: 0.39260683692450404%; 
                         background-color: #FFFFFF;">
                 <div class="stacked-segment-tooltip">
                     <b>Other</b><br>
@@ -7309,7 +7292,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 0.34142837150431565%; 
+                 style="width: 0.3414324733204788%; 
                         background-color: #008000;">
                 <div class="stacked-segment-tooltip">
                     <b>Taylor Swift</b><br>
@@ -7423,7 +7406,7 @@
          <div class="stacked-bar">
             
             <div class="stacked-segment shaded" 
-                 style="width: 17.28007804879705%; 
+                 style="width: 17.28028564637639%; 
                         background-color: #D3D3D3;">
                 <div class="stacked-segment-tooltip">
                     <b>folklore</b><br>
@@ -7432,7 +7415,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 15.61265307856724%; 
+                 style="width: 15.612840644212318%; 
                         background-color: #333333;">
                 <div class="stacked-segment-tooltip">
                     <b>THE TORTURED POETS DEPARTMENT</b><br>
@@ -7441,7 +7424,7 @@
             </div>
             
             <div class="stacked-segment highlighted" 
-                 style="width: 14.006949122271228%; 
+                 style="width: 14.00711739747945%; 
                         background-color: #FF0000;">
                 <div class="stacked-segment-tooltip">
                     <b>Red</b><br>
@@ -7450,7 +7433,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 13.185543906580085%; 
+                 style="width: 13.185702313676947%; 
                         background-color: #00008B;">
                 <div class="stacked-segment-tooltip">
                     <b>Midnights</b><br>
@@ -7459,7 +7442,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 9.287822763058136%; 
+                 style="width: 9.28793434412377%; 
                         background-color: #87CEEB;">
                 <div class="stacked-segment-tooltip">
                     <b>1989</b><br>
@@ -7468,7 +7451,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 8.41239908472122%; 
+                 style="width: 8.412500148714189%; 
                         background-color: #FFC0CB;">
                 <div class="stacked-segment-tooltip">
                     <b>Lover</b><br>
@@ -7477,7 +7460,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 7.412022060290038%; 
+                 style="width: 7.412111106059009%; 
                         background-color: #000000;">
                 <div class="stacked-segment-tooltip">
                     <b>reputation</b><br>
@@ -7486,7 +7469,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 7.178204645427841%; 
+                 style="width: 7.17829088218581%; 
                         background-color: #800000;">
                 <div class="stacked-segment-tooltip">
                     <b>evermore</b><br>
@@ -7495,7 +7478,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 4.208257261186719%; 
+                 style="width: 4.208307817904008%; 
                         background-color: #800080;">
                 <div class="stacked-segment-tooltip">
                     <b>Speak Now</b><br>
@@ -7504,16 +7487,16 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 2.6820395372735657%; 
+                 style="width: 2.6808703890231294%; 
                         background-color: #FFFF00;">
                 <div class="stacked-segment-tooltip">
                     <b>Fearless</b><br>
-                    3317 min (2.7%)
+                    3316 min (2.7%)
                 </div>
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 0.392602120322554%; 
+                 style="width: 0.39260683692450404%; 
                         background-color: #FFFFFF;">
                 <div class="stacked-segment-tooltip">
                     <b>Other</b><br>
@@ -7522,7 +7505,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 0.34142837150431565%; 
+                 style="width: 0.3414324733204788%; 
                         background-color: #008000;">
                 <div class="stacked-segment-tooltip">
                     <b>Taylor Swift</b><br>
@@ -7636,7 +7619,7 @@
          <div class="stacked-bar">
             
             <div class="stacked-segment shaded" 
-                 style="width: 17.28007804879705%; 
+                 style="width: 17.28028564637639%; 
                         background-color: #D3D3D3;">
                 <div class="stacked-segment-tooltip">
                     <b>folklore</b><br>
@@ -7645,7 +7628,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 15.61265307856724%; 
+                 style="width: 15.612840644212318%; 
                         background-color: #333333;">
                 <div class="stacked-segment-tooltip">
                     <b>THE TORTURED POETS DEPARTMENT</b><br>
@@ -7654,7 +7637,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 14.006949122271228%; 
+                 style="width: 14.00711739747945%; 
                         background-color: #FF0000;">
                 <div class="stacked-segment-tooltip">
                     <b>Red</b><br>
@@ -7663,7 +7646,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 13.185543906580085%; 
+                 style="width: 13.185702313676947%; 
                         background-color: #00008B;">
                 <div class="stacked-segment-tooltip">
                     <b>Midnights</b><br>
@@ -7672,7 +7655,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 9.287822763058136%; 
+                 style="width: 9.28793434412377%; 
                         background-color: #87CEEB;">
                 <div class="stacked-segment-tooltip">
                     <b>1989</b><br>
@@ -7681,7 +7664,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 8.41239908472122%; 
+                 style="width: 8.412500148714189%; 
                         background-color: #FFC0CB;">
                 <div class="stacked-segment-tooltip">
                     <b>Lover</b><br>
@@ -7690,7 +7673,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 7.412022060290038%; 
+                 style="width: 7.412111106059009%; 
                         background-color: #000000;">
                 <div class="stacked-segment-tooltip">
                     <b>reputation</b><br>
@@ -7699,7 +7682,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 7.178204645427841%; 
+                 style="width: 7.17829088218581%; 
                         background-color: #800000;">
                 <div class="stacked-segment-tooltip">
                     <b>evermore</b><br>
@@ -7708,7 +7691,7 @@
             </div>
             
             <div class="stacked-segment highlighted" 
-                 style="width: 4.208257261186719%; 
+                 style="width: 4.208307817904008%; 
                         background-color: #800080;">
                 <div class="stacked-segment-tooltip">
                     <b>Speak Now</b><br>
@@ -7717,16 +7700,16 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 2.6820395372735657%; 
+                 style="width: 2.6808703890231294%; 
                         background-color: #FFFF00;">
                 <div class="stacked-segment-tooltip">
                     <b>Fearless</b><br>
-                    3317 min (2.7%)
+                    3316 min (2.7%)
                 </div>
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 0.392602120322554%; 
+                 style="width: 0.39260683692450404%; 
                         background-color: #FFFFFF;">
                 <div class="stacked-segment-tooltip">
                     <b>Other</b><br>
@@ -7735,7 +7718,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 0.34142837150431565%; 
+                 style="width: 0.3414324733204788%; 
                         background-color: #008000;">
                 <div class="stacked-segment-tooltip">
                     <b>Taylor Swift</b><br>
@@ -7849,7 +7832,7 @@
          <div class="stacked-bar">
             
             <div class="stacked-segment shaded" 
-                 style="width: 17.28007804879705%; 
+                 style="width: 17.28028564637639%; 
                         background-color: #D3D3D3;">
                 <div class="stacked-segment-tooltip">
                     <b>folklore</b><br>
@@ -7858,7 +7841,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 15.61265307856724%; 
+                 style="width: 15.612840644212318%; 
                         background-color: #333333;">
                 <div class="stacked-segment-tooltip">
                     <b>THE TORTURED POETS DEPARTMENT</b><br>
@@ -7867,7 +7850,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 14.006949122271228%; 
+                 style="width: 14.00711739747945%; 
                         background-color: #FF0000;">
                 <div class="stacked-segment-tooltip">
                     <b>Red</b><br>
@@ -7876,7 +7859,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 13.185543906580085%; 
+                 style="width: 13.185702313676947%; 
                         background-color: #00008B;">
                 <div class="stacked-segment-tooltip">
                     <b>Midnights</b><br>
@@ -7885,7 +7868,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 9.287822763058136%; 
+                 style="width: 9.28793434412377%; 
                         background-color: #87CEEB;">
                 <div class="stacked-segment-tooltip">
                     <b>1989</b><br>
@@ -7894,7 +7877,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 8.41239908472122%; 
+                 style="width: 8.412500148714189%; 
                         background-color: #FFC0CB;">
                 <div class="stacked-segment-tooltip">
                     <b>Lover</b><br>
@@ -7903,7 +7886,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 7.412022060290038%; 
+                 style="width: 7.412111106059009%; 
                         background-color: #000000;">
                 <div class="stacked-segment-tooltip">
                     <b>reputation</b><br>
@@ -7912,7 +7895,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 7.178204645427841%; 
+                 style="width: 7.17829088218581%; 
                         background-color: #800000;">
                 <div class="stacked-segment-tooltip">
                     <b>evermore</b><br>
@@ -7921,7 +7904,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 4.208257261186719%; 
+                 style="width: 4.208307817904008%; 
                         background-color: #800080;">
                 <div class="stacked-segment-tooltip">
                     <b>Speak Now</b><br>
@@ -7930,16 +7913,16 @@
             </div>
             
             <div class="stacked-segment highlighted" 
-                 style="width: 2.6820395372735657%; 
+                 style="width: 2.6808703890231294%; 
                         background-color: #FFFF00;">
                 <div class="stacked-segment-tooltip">
                     <b>Fearless</b><br>
-                    3317 min (2.7%)
+                    3316 min (2.7%)
                 </div>
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 0.392602120322554%; 
+                 style="width: 0.39260683692450404%; 
                         background-color: #FFFFFF;">
                 <div class="stacked-segment-tooltip">
                     <b>Other</b><br>
@@ -7948,7 +7931,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 0.34142837150431565%; 
+                 style="width: 0.3414324733204788%; 
                         background-color: #008000;">
                 <div class="stacked-segment-tooltip">
                     <b>Taylor Swift</b><br>
@@ -7958,14 +7941,6 @@
             
         </div>
         
-        
-        <div class="album-row">
-            <div class="album-info">
-                <div class="album-color" style="background-color: #FFFF00;"></div>
-                <span>2016</span>
-            </div>
-            <div class="album-percentage">1 min</div>
-        </div>
         
         <div class="album-row">
             <div class="album-info">
@@ -8045,7 +8020,7 @@
                 <div class="album-color" style="background-color: #FFFF00;"></div>
                 <span class="total-minutes-text"><i>In Summation</i></span>
             </div>
-            <div class="album-percentage total-minutes-value">3317 min</div>
+            <div class="album-percentage total-minutes-value">3316 min</div>
         </div>
     </div>
     
@@ -8070,7 +8045,7 @@
          <div class="stacked-bar">
             
             <div class="stacked-segment shaded" 
-                 style="width: 17.28007804879705%; 
+                 style="width: 17.28028564637639%; 
                         background-color: #D3D3D3;">
                 <div class="stacked-segment-tooltip">
                     <b>folklore</b><br>
@@ -8079,7 +8054,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 15.61265307856724%; 
+                 style="width: 15.612840644212318%; 
                         background-color: #333333;">
                 <div class="stacked-segment-tooltip">
                     <b>THE TORTURED POETS DEPARTMENT</b><br>
@@ -8088,7 +8063,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 14.006949122271228%; 
+                 style="width: 14.00711739747945%; 
                         background-color: #FF0000;">
                 <div class="stacked-segment-tooltip">
                     <b>Red</b><br>
@@ -8097,7 +8072,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 13.185543906580085%; 
+                 style="width: 13.185702313676947%; 
                         background-color: #00008B;">
                 <div class="stacked-segment-tooltip">
                     <b>Midnights</b><br>
@@ -8106,7 +8081,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 9.287822763058136%; 
+                 style="width: 9.28793434412377%; 
                         background-color: #87CEEB;">
                 <div class="stacked-segment-tooltip">
                     <b>1989</b><br>
@@ -8115,7 +8090,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 8.41239908472122%; 
+                 style="width: 8.412500148714189%; 
                         background-color: #FFC0CB;">
                 <div class="stacked-segment-tooltip">
                     <b>Lover</b><br>
@@ -8124,7 +8099,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 7.412022060290038%; 
+                 style="width: 7.412111106059009%; 
                         background-color: #000000;">
                 <div class="stacked-segment-tooltip">
                     <b>reputation</b><br>
@@ -8133,7 +8108,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 7.178204645427841%; 
+                 style="width: 7.17829088218581%; 
                         background-color: #800000;">
                 <div class="stacked-segment-tooltip">
                     <b>evermore</b><br>
@@ -8142,7 +8117,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 4.208257261186719%; 
+                 style="width: 4.208307817904008%; 
                         background-color: #800080;">
                 <div class="stacked-segment-tooltip">
                     <b>Speak Now</b><br>
@@ -8151,16 +8126,16 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 2.6820395372735657%; 
+                 style="width: 2.6808703890231294%; 
                         background-color: #FFFF00;">
                 <div class="stacked-segment-tooltip">
                     <b>Fearless</b><br>
-                    3317 min (2.7%)
+                    3316 min (2.7%)
                 </div>
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 0.392602120322554%; 
+                 style="width: 0.39260683692450404%; 
                         background-color: #FFFFFF;">
                 <div class="stacked-segment-tooltip">
                     <b>Other</b><br>
@@ -8169,7 +8144,7 @@
             </div>
             
             <div class="stacked-segment highlighted" 
-                 style="width: 0.34142837150431565%; 
+                 style="width: 0.3414324733204788%; 
                         background-color: #008000;">
                 <div class="stacked-segment-tooltip">
                     <b>Taylor Swift</b><br>
@@ -8283,7 +8258,7 @@
          <div class="stacked-bar">
             
             <div class="stacked-segment shaded" 
-                 style="width: 17.28007804879705%; 
+                 style="width: 17.28028564637639%; 
                         background-color: #D3D3D3;">
                 <div class="stacked-segment-tooltip">
                     <b>folklore</b><br>
@@ -8292,7 +8267,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 15.61265307856724%; 
+                 style="width: 15.612840644212318%; 
                         background-color: #333333;">
                 <div class="stacked-segment-tooltip">
                     <b>THE TORTURED POETS DEPARTMENT</b><br>
@@ -8301,7 +8276,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 14.006949122271228%; 
+                 style="width: 14.00711739747945%; 
                         background-color: #FF0000;">
                 <div class="stacked-segment-tooltip">
                     <b>Red</b><br>
@@ -8310,7 +8285,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 13.185543906580085%; 
+                 style="width: 13.185702313676947%; 
                         background-color: #00008B;">
                 <div class="stacked-segment-tooltip">
                     <b>Midnights</b><br>
@@ -8319,7 +8294,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 9.287822763058136%; 
+                 style="width: 9.28793434412377%; 
                         background-color: #87CEEB;">
                 <div class="stacked-segment-tooltip">
                     <b>1989</b><br>
@@ -8328,7 +8303,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 8.41239908472122%; 
+                 style="width: 8.412500148714189%; 
                         background-color: #FFC0CB;">
                 <div class="stacked-segment-tooltip">
                     <b>Lover</b><br>
@@ -8337,7 +8312,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 7.412022060290038%; 
+                 style="width: 7.412111106059009%; 
                         background-color: #000000;">
                 <div class="stacked-segment-tooltip">
                     <b>reputation</b><br>
@@ -8346,7 +8321,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 7.178204645427841%; 
+                 style="width: 7.17829088218581%; 
                         background-color: #800000;">
                 <div class="stacked-segment-tooltip">
                     <b>evermore</b><br>
@@ -8355,7 +8330,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 4.208257261186719%; 
+                 style="width: 4.208307817904008%; 
                         background-color: #800080;">
                 <div class="stacked-segment-tooltip">
                     <b>Speak Now</b><br>
@@ -8364,16 +8339,16 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 2.6820395372735657%; 
+                 style="width: 2.6808703890231294%; 
                         background-color: #FFFF00;">
                 <div class="stacked-segment-tooltip">
                     <b>Fearless</b><br>
-                    3317 min (2.7%)
+                    3316 min (2.7%)
                 </div>
             </div>
             
             <div class="stacked-segment highlighted" 
-                 style="width: 0.392602120322554%; 
+                 style="width: 0.39260683692450404%; 
                         background-color: #FFFFFF;">
                 <div class="stacked-segment-tooltip">
                     <b>Other</b><br>
@@ -8382,7 +8357,7 @@
             </div>
             
             <div class="stacked-segment shaded" 
-                 style="width: 0.34142837150431565%; 
+                 style="width: 0.3414324733204788%; 
                         background-color: #008000;">
                 <div class="stacked-segment-tooltip">
                     <b>Taylor Swift</b><br>
@@ -11127,7 +11102,7 @@
                 <div class="song-number song-number-top" 
                     style="background-color: #FFFF00;">1</div>
                 <span class="total-minutes-text">Love Story</span>
-                <div class="album-percentage total-minutes-value">156 <i class="fa-solid fa-play"></i></div>
+                <div class="album-percentage total-minutes-value">155 <i class="fa-solid fa-play"></i></div>
             </div>
         </li>
         
@@ -11651,11 +11626,6 @@
                 2017
             </button>
             
-            <button class="nav-tab " 
-                    onclick="showYear('2016')">
-                2016
-            </button>
-            
         </div>
     
         <!-- Month Navigation (hidden by default) -->
@@ -12171,15 +12141,6 @@
             
             <button class="nav-tab " 
                     onclick="showMonth('2017-06')">
-                Jun
-            </button>
-            
-        </div>
-        
-        <div class="nav-tabs month-nav" id="month-tabs-2016" style="display: none;">
-            
-            <button class="nav-tab " 
-                    onclick="showMonth('2016-06')">
                 Jun
             </button>
             
@@ -44645,7 +44606,7 @@
                     <div class="song-number " 
                         style="background-color: var(--accent);">10</div>
                     <span class="song-title">Love Story</span>
-                    <div class="play-count"><span class="trend-indicator up"><i class="fa-solid fa-caret-up"></i><i class="fa-solid fa-caret-up"></i></span></div>
+                    <div class="play-count"><span class="trend-indicator new">NEW</span></div>
                 </div>
             </li>
             
@@ -44756,7 +44717,7 @@
                     <span>1989</span>
                 </div>
                 <div>
-                    <span class="trend-indicator new">NEW</span>
+                    
                 </div>
             </li>
             
@@ -44766,7 +44727,7 @@
                     <span>Red</span>
                 </div>
                 <div>
-                    <span class="trend-indicator new">NEW</span>
+                    
                 </div>
             </li>
             
@@ -44776,323 +44737,9 @@
                     <span>Speak Now</span>
                 </div>
                 <div>
-                    <span class="trend-indicator new">NEW</span>
+                    
                 </div>
             </li>
-            
-            <li class="album-item">
-                <div class="album-info">
-                    <div class="album-color" style="background-color: #FFFF00;"></div>
-                    <span>Fearless</span>
-                </div>
-                <div>
-                    <span class="trend-indicator down"><i class="fa-solid fa-caret-down"></i></span>
-                </div>
-            </li>
-            
-        </ul>
-        
-        <h3>Top Songs</h3>
-        <ul class="song-list">
-            
-            <li class="total-minutes-row">
-                <div class="album-info">
-                    <div class="song-number song-number-top" 
-                        style="background-color: var(--accent);">1</div>
-                    <span class="total-minutes-text">Blank Space</span>
-                    <div class="album-percentage total-minutes-value"><span class="trend-indicator new">NEW</span></div>
-                </div>
-            </li>
-            
-            <li class="total-minutes-row">
-                <div class="album-info">
-                    <div class="song-number song-number-top" 
-                        style="background-color: var(--accent);">2</div>
-                    <span class="total-minutes-text">Style</span>
-                    <div class="album-percentage total-minutes-value"><span class="trend-indicator new">NEW</span></div>
-                </div>
-            </li>
-            
-            <li class="total-minutes-row">
-                <div class="album-info">
-                    <div class="song-number song-number-top" 
-                        style="background-color: var(--accent);">3</div>
-                    <span class="total-minutes-text">Shake It Off</span>
-                    <div class="album-percentage total-minutes-value"><span class="trend-indicator new">NEW</span></div>
-                </div>
-            </li>
-            
-            <li class="song-item">
-                <div class="album-info">
-                    <div class="song-number " 
-                        style="background-color: var(--accent);">4</div>
-                    <span class="song-title">Out Of The Woods</span>
-                    <div class="play-count"><span class="trend-indicator new">NEW</span></div>
-                </div>
-            </li>
-            
-            <li class="song-item">
-                <div class="album-info">
-                    <div class="song-number " 
-                        style="background-color: var(--accent);">5</div>
-                    <span class="song-title">Bad Blood</span>
-                    <div class="play-count"><span class="trend-indicator new">NEW</span></div>
-                </div>
-            </li>
-            
-            <li class="song-item">
-                <div class="album-info">
-                    <div class="song-number " 
-                        style="background-color: var(--accent);">6</div>
-                    <span class="song-title">Wildest Dreams</span>
-                    <div class="play-count"><span class="trend-indicator new">NEW</span></div>
-                </div>
-            </li>
-            
-            <li class="song-item">
-                <div class="album-info">
-                    <div class="song-number " 
-                        style="background-color: var(--accent);">7</div>
-                    <span class="song-title">Clean</span>
-                    <div class="play-count"><span class="trend-indicator new">NEW</span></div>
-                </div>
-            </li>
-            
-            <li class="song-item">
-                <div class="album-info">
-                    <div class="song-number " 
-                        style="background-color: var(--accent);">8</div>
-                    <span class="song-title">How You Get The Girl</span>
-                    <div class="play-count"><span class="trend-indicator new">NEW</span></div>
-                </div>
-            </li>
-            
-            <li class="song-item">
-                <div class="album-info">
-                    <div class="song-number " 
-                        style="background-color: var(--accent);">9</div>
-                    <span class="song-title">I Wish You Would</span>
-                    <div class="play-count"><span class="trend-indicator new">NEW</span></div>
-                </div>
-            </li>
-            
-            <li class="song-item">
-                <div class="album-info">
-                    <div class="song-number " 
-                        style="background-color: var(--accent);">10</div>
-                    <span class="song-title">All You Had To Do Was Stay</span>
-                    <div class="play-count"><span class="trend-indicator new">NEW</span></div>
-                </div>
-            </li>
-            
-            <li class="song-item">
-                <div class="album-info">
-                    <div class="song-number " 
-                        style="background-color: var(--accent);">11</div>
-                    <span class="song-title">This Love</span>
-                    <div class="play-count"><span class="trend-indicator new">NEW</span></div>
-                </div>
-            </li>
-            
-            <li class="song-item">
-                <div class="album-info">
-                    <div class="song-number " 
-                        style="background-color: var(--accent);">12</div>
-                    <span class="song-title">Wonderland</span>
-                    <div class="play-count"><span class="trend-indicator new">NEW</span></div>
-                </div>
-            </li>
-            
-            <li class="song-item">
-                <div class="album-info">
-                    <div class="song-number " 
-                        style="background-color: var(--accent);">13</div>
-                    <span class="song-title">Welcome To New York</span>
-                    <div class="play-count"><span class="trend-indicator new">NEW</span></div>
-                </div>
-            </li>
-            
-            <li class="song-item">
-                <div class="album-info">
-                    <div class="song-number " 
-                        style="background-color: var(--accent);">14</div>
-                    <span class="song-title">I Know Places</span>
-                    <div class="play-count"><span class="trend-indicator new">NEW</span></div>
-                </div>
-            </li>
-            
-            <li class="song-item">
-                <div class="album-info">
-                    <div class="song-number " 
-                        style="background-color: var(--accent);">15</div>
-                    <span class="song-title">You Are In Love</span>
-                    <div class="play-count"><span class="trend-indicator new">NEW</span></div>
-                </div>
-            </li>
-            
-            <li class="song-item">
-                <div class="album-info">
-                    <div class="song-number " 
-                        style="background-color: var(--accent);">16</div>
-                    <span class="song-title">The Story Of Us</span>
-                    <div class="play-count"><span class="trend-indicator new">NEW</span></div>
-                </div>
-            </li>
-            
-            <li class="song-item">
-                <div class="album-info">
-                    <div class="song-number " 
-                        style="background-color: var(--accent);">17</div>
-                    <span class="song-title">Everything Has Changed</span>
-                    <div class="play-count"><span class="trend-indicator new">NEW</span></div>
-                </div>
-            </li>
-            
-            <li class="song-item">
-                <div class="album-info">
-                    <div class="song-number " 
-                        style="background-color: var(--accent);">18</div>
-                    <span class="song-title">Starlight</span>
-                    <div class="play-count"><span class="trend-indicator new">NEW</span></div>
-                </div>
-            </li>
-            
-            <li class="song-item">
-                <div class="album-info">
-                    <div class="song-number " 
-                        style="background-color: var(--accent);">19</div>
-                    <span class="song-title">State Of Grace</span>
-                    <div class="play-count"><span class="trend-indicator new">NEW</span></div>
-                </div>
-            </li>
-            
-            <li class="song-item">
-                <div class="album-info">
-                    <div class="song-number " 
-                        style="background-color: var(--accent);">20</div>
-                    <span class="song-title">Begin Again</span>
-                    <div class="play-count"><span class="trend-indicator new">NEW</span></div>
-                </div>
-            </li>
-            
-            <li class="song-item">
-                <div class="album-info">
-                    <div class="song-number " 
-                        style="background-color: var(--accent);">21</div>
-                    <span class="song-title">New Romantics</span>
-                    <div class="play-count"><span class="trend-indicator new">NEW</span></div>
-                </div>
-            </li>
-            
-            <li class="song-item">
-                <div class="album-info">
-                    <div class="song-number " 
-                        style="background-color: var(--accent);">22</div>
-                    <span class="song-title">White Horse</span>
-                    <div class="play-count"><span class="trend-indicator new">NEW</span></div>
-                </div>
-            </li>
-            
-            <li class="song-item">
-                <div class="album-info">
-                    <div class="song-number " 
-                        style="background-color: var(--accent);">23</div>
-                    <span class="song-title">Drops Of Jupiter</span>
-                    <div class="play-count"><span class="trend-indicator new">NEW</span></div>
-                </div>
-            </li>
-            
-            <li class="song-item">
-                <div class="album-info">
-                    <div class="song-number " 
-                        style="background-color: var(--accent);">24</div>
-                    <span class="song-title">Red</span>
-                    <div class="play-count"><span class="trend-indicator new">NEW</span></div>
-                </div>
-            </li>
-            
-            <li class="song-item">
-                <div class="album-info">
-                    <div class="song-number " 
-                        style="background-color: var(--accent);">25</div>
-                    <span class="song-title">Treacherous</span>
-                    <div class="play-count"><span class="trend-indicator new">NEW</span></div>
-                </div>
-            </li>
-            
-            <li class="song-item">
-                <div class="album-info">
-                    <div class="song-number " 
-                        style="background-color: var(--accent);">26</div>
-                    <span class="song-title">I Knew You Were Trouble</span>
-                    <div class="play-count"><span class="trend-indicator new">NEW</span></div>
-                </div>
-            </li>
-            
-            <li class="song-item">
-                <div class="album-info">
-                    <div class="song-number " 
-                        style="background-color: var(--accent);">27</div>
-                    <span class="song-title">All Too Well</span>
-                    <div class="play-count"><span class="trend-indicator new">NEW</span></div>
-                </div>
-            </li>
-            
-            <li class="song-item">
-                <div class="album-info">
-                    <div class="song-number " 
-                        style="background-color: var(--accent);">28</div>
-                    <span class="song-title">22</span>
-                    <div class="play-count"><span class="trend-indicator new">NEW</span></div>
-                </div>
-            </li>
-            
-            <li class="song-item">
-                <div class="album-info">
-                    <div class="song-number " 
-                        style="background-color: var(--accent);">29</div>
-                    <span class="song-title">I Almost Do</span>
-                    <div class="play-count"><span class="trend-indicator new">NEW</span></div>
-                </div>
-            </li>
-            
-            <li class="song-item">
-                <div class="album-info">
-                    <div class="song-number " 
-                        style="background-color: var(--accent);">30</div>
-                    <span class="song-title">We Are Never Ever Getting Back Together</span>
-                    <div class="play-count"><span class="trend-indicator new">NEW</span></div>
-                </div>
-            </li>
-            
-            <li class="song-item">
-                <div class="album-info">
-                    <div class="song-number " 
-                        style="background-color: var(--accent);">31</div>
-                    <span class="song-title">Stay Stay Stay</span>
-                    <div class="play-count"><span class="trend-indicator new">NEW</span></div>
-                </div>
-            </li>
-            
-        </ul>
-        </div>
-        
-        <div class="month-section stats-view" id="month-2016-06" style="display: none;">
-            
-            
-            <h2>June 2016</h2>
-            
-            <div class="album-row total-minutes-row">
-                <div class="album-info">
-                    <div class="album-color" style="background-color: var(--accent);"></div>
-                    <span class="total-minutes-text"><i>In Summation</i></span>
-                </div>
-<div class="album-percentage total-minutes-value">2 min</div>            </div>
-
-
-        
-        <h3>Albums</h3>
-        <ul class="album-list">
             
             <li class="album-item">
                 <div class="album-info">
@@ -45113,8 +44760,278 @@
                 <div class="album-info">
                     <div class="song-number song-number-top" 
                         style="background-color: var(--accent);">1</div>
-                    <span class="total-minutes-text">Love Story</span>
+                    <span class="total-minutes-text">Blank Space</span>
                     <div class="album-percentage total-minutes-value"></div>
+                </div>
+            </li>
+            
+            <li class="total-minutes-row">
+                <div class="album-info">
+                    <div class="song-number song-number-top" 
+                        style="background-color: var(--accent);">2</div>
+                    <span class="total-minutes-text">Style</span>
+                    <div class="album-percentage total-minutes-value"></div>
+                </div>
+            </li>
+            
+            <li class="total-minutes-row">
+                <div class="album-info">
+                    <div class="song-number song-number-top" 
+                        style="background-color: var(--accent);">3</div>
+                    <span class="total-minutes-text">Shake It Off</span>
+                    <div class="album-percentage total-minutes-value"></div>
+                </div>
+            </li>
+            
+            <li class="song-item">
+                <div class="album-info">
+                    <div class="song-number " 
+                        style="background-color: var(--accent);">4</div>
+                    <span class="song-title">Out Of The Woods</span>
+                    <div class="play-count"></div>
+                </div>
+            </li>
+            
+            <li class="song-item">
+                <div class="album-info">
+                    <div class="song-number " 
+                        style="background-color: var(--accent);">5</div>
+                    <span class="song-title">Bad Blood</span>
+                    <div class="play-count"></div>
+                </div>
+            </li>
+            
+            <li class="song-item">
+                <div class="album-info">
+                    <div class="song-number " 
+                        style="background-color: var(--accent);">6</div>
+                    <span class="song-title">Wildest Dreams</span>
+                    <div class="play-count"></div>
+                </div>
+            </li>
+            
+            <li class="song-item">
+                <div class="album-info">
+                    <div class="song-number " 
+                        style="background-color: var(--accent);">7</div>
+                    <span class="song-title">Clean</span>
+                    <div class="play-count"></div>
+                </div>
+            </li>
+            
+            <li class="song-item">
+                <div class="album-info">
+                    <div class="song-number " 
+                        style="background-color: var(--accent);">8</div>
+                    <span class="song-title">How You Get The Girl</span>
+                    <div class="play-count"></div>
+                </div>
+            </li>
+            
+            <li class="song-item">
+                <div class="album-info">
+                    <div class="song-number " 
+                        style="background-color: var(--accent);">9</div>
+                    <span class="song-title">I Wish You Would</span>
+                    <div class="play-count"></div>
+                </div>
+            </li>
+            
+            <li class="song-item">
+                <div class="album-info">
+                    <div class="song-number " 
+                        style="background-color: var(--accent);">10</div>
+                    <span class="song-title">All You Had To Do Was Stay</span>
+                    <div class="play-count"></div>
+                </div>
+            </li>
+            
+            <li class="song-item">
+                <div class="album-info">
+                    <div class="song-number " 
+                        style="background-color: var(--accent);">11</div>
+                    <span class="song-title">This Love</span>
+                    <div class="play-count"></div>
+                </div>
+            </li>
+            
+            <li class="song-item">
+                <div class="album-info">
+                    <div class="song-number " 
+                        style="background-color: var(--accent);">12</div>
+                    <span class="song-title">Wonderland</span>
+                    <div class="play-count"></div>
+                </div>
+            </li>
+            
+            <li class="song-item">
+                <div class="album-info">
+                    <div class="song-number " 
+                        style="background-color: var(--accent);">13</div>
+                    <span class="song-title">Welcome To New York</span>
+                    <div class="play-count"></div>
+                </div>
+            </li>
+            
+            <li class="song-item">
+                <div class="album-info">
+                    <div class="song-number " 
+                        style="background-color: var(--accent);">14</div>
+                    <span class="song-title">I Know Places</span>
+                    <div class="play-count"></div>
+                </div>
+            </li>
+            
+            <li class="song-item">
+                <div class="album-info">
+                    <div class="song-number " 
+                        style="background-color: var(--accent);">15</div>
+                    <span class="song-title">You Are In Love</span>
+                    <div class="play-count"></div>
+                </div>
+            </li>
+            
+            <li class="song-item">
+                <div class="album-info">
+                    <div class="song-number " 
+                        style="background-color: var(--accent);">16</div>
+                    <span class="song-title">The Story Of Us</span>
+                    <div class="play-count"></div>
+                </div>
+            </li>
+            
+            <li class="song-item">
+                <div class="album-info">
+                    <div class="song-number " 
+                        style="background-color: var(--accent);">17</div>
+                    <span class="song-title">Everything Has Changed</span>
+                    <div class="play-count"></div>
+                </div>
+            </li>
+            
+            <li class="song-item">
+                <div class="album-info">
+                    <div class="song-number " 
+                        style="background-color: var(--accent);">18</div>
+                    <span class="song-title">Starlight</span>
+                    <div class="play-count"></div>
+                </div>
+            </li>
+            
+            <li class="song-item">
+                <div class="album-info">
+                    <div class="song-number " 
+                        style="background-color: var(--accent);">19</div>
+                    <span class="song-title">State Of Grace</span>
+                    <div class="play-count"></div>
+                </div>
+            </li>
+            
+            <li class="song-item">
+                <div class="album-info">
+                    <div class="song-number " 
+                        style="background-color: var(--accent);">20</div>
+                    <span class="song-title">Begin Again</span>
+                    <div class="play-count"></div>
+                </div>
+            </li>
+            
+            <li class="song-item">
+                <div class="album-info">
+                    <div class="song-number " 
+                        style="background-color: var(--accent);">21</div>
+                    <span class="song-title">New Romantics</span>
+                    <div class="play-count"></div>
+                </div>
+            </li>
+            
+            <li class="song-item">
+                <div class="album-info">
+                    <div class="song-number " 
+                        style="background-color: var(--accent);">22</div>
+                    <span class="song-title">White Horse</span>
+                    <div class="play-count"></div>
+                </div>
+            </li>
+            
+            <li class="song-item">
+                <div class="album-info">
+                    <div class="song-number " 
+                        style="background-color: var(--accent);">23</div>
+                    <span class="song-title">Drops Of Jupiter</span>
+                    <div class="play-count"></div>
+                </div>
+            </li>
+            
+            <li class="song-item">
+                <div class="album-info">
+                    <div class="song-number " 
+                        style="background-color: var(--accent);">24</div>
+                    <span class="song-title">Red</span>
+                    <div class="play-count"></div>
+                </div>
+            </li>
+            
+            <li class="song-item">
+                <div class="album-info">
+                    <div class="song-number " 
+                        style="background-color: var(--accent);">25</div>
+                    <span class="song-title">Treacherous</span>
+                    <div class="play-count"></div>
+                </div>
+            </li>
+            
+            <li class="song-item">
+                <div class="album-info">
+                    <div class="song-number " 
+                        style="background-color: var(--accent);">26</div>
+                    <span class="song-title">I Knew You Were Trouble</span>
+                    <div class="play-count"></div>
+                </div>
+            </li>
+            
+            <li class="song-item">
+                <div class="album-info">
+                    <div class="song-number " 
+                        style="background-color: var(--accent);">27</div>
+                    <span class="song-title">All Too Well</span>
+                    <div class="play-count"></div>
+                </div>
+            </li>
+            
+            <li class="song-item">
+                <div class="album-info">
+                    <div class="song-number " 
+                        style="background-color: var(--accent);">28</div>
+                    <span class="song-title">22</span>
+                    <div class="play-count"></div>
+                </div>
+            </li>
+            
+            <li class="song-item">
+                <div class="album-info">
+                    <div class="song-number " 
+                        style="background-color: var(--accent);">29</div>
+                    <span class="song-title">I Almost Do</span>
+                    <div class="play-count"></div>
+                </div>
+            </li>
+            
+            <li class="song-item">
+                <div class="album-info">
+                    <div class="song-number " 
+                        style="background-color: var(--accent);">30</div>
+                    <span class="song-title">We Are Never Ever Getting Back Together</span>
+                    <div class="play-count"></div>
+                </div>
+            </li>
+            
+            <li class="song-item">
+                <div class="album-info">
+                    <div class="song-number " 
+                        style="background-color: var(--accent);">31</div>
+                    <span class="song-title">Stay Stay Stay</span>
+                    <div class="play-count"></div>
                 </div>
             </li>
             
