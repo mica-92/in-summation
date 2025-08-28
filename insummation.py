@@ -374,6 +374,14 @@ def get_top_songs_for_year(results, year, taylor_version_mapping):
 def get_top_songs_for_album(results, album_name, taylor_version_mapping):
     """Get top songs for a specific album"""
     album_songs = results['all_time_stats']['album_songs'].get(album_name, Counter())
+    
+    # Remove specific songs if this is the "Other" album
+    if album_name == "Other":
+        songs_to_remove = ["Delicate", "Red"]
+        for song in songs_to_remove:
+            if song in album_songs:
+                del album_songs[song]
+    
     merged_songs = merge_taylor_versions(album_songs, taylor_version_mapping)
     return merged_songs.most_common()
 
@@ -396,16 +404,41 @@ def generate_html_report(results, album_colors, taylor_version_mapping):
         2008: "11.11 <i>Fearless</i>",
         2006: "24.10 <i>Taylor Swift</i>"
     }
-    
-    
-    
-    
+
+    # Helper function to calculate segment widths that add up to exactly 100%
+    def calculate_segment_widths(minutes_dict, total_minutes):
+        """Calculate segment widths that add up to exactly 100%"""
+        if total_minutes <= 0:
+            return {album: 0 for album in minutes_dict}
+        
+        # Calculate percentages
+        percentages = {album: (minutes / total_minutes) * 100 for album, minutes in minutes_dict.items()}
+        
+        # Round to 2 decimal places to avoid floating point errors
+        rounded_percentages = {album: round(perc, 2) for album, perc in percentages.items()}
+        
+        # Check if they sum to 100%
+        total_perc = sum(rounded_percentages.values())
+        
+        # Adjust if needed to make sure it sums to exactly 100%
+        if total_perc != 100:
+            # Find the largest segment and adjust it
+            largest_album = max(rounded_percentages.items(), key=lambda x: x[1])[0]
+            rounded_percentages[largest_album] += 100 - total_perc
+            rounded_percentages[largest_album] = round(rounded_percentages[largest_album], 2)
+        
+        return rounded_percentages
+
     # Calculate all-time album totals
     total_taylor_minutes = results['all_time_stats']['total_taylor_minutes']
     merged_songs = merge_taylor_versions(results['all_time_stats']['songs'], taylor_version_mapping)
     top_songs = merged_songs.most_common(89)
     
-    # Get last played date
+    # Calculate widths for all albums - THIS MUST COME BEFORE THE HTML TEMPLATE
+    album_widths = calculate_segment_widths(results['total_album_minutes'], total_taylor_minutes)
+
+
+
     last_song_date = max(
         datetime.strptime(entry['ts'], "%Y-%m-%dT%H:%M:%SZ") 
         for entry in results['all_data'] 
@@ -1267,10 +1300,10 @@ def generate_html_report(results, album_colors, taylor_version_mapping):
             <div id="all-time-year-view" class="stats-view active">
                 <div class="stacked-bar">
                     {"".join([f"""
-                    <div class="stacked-segment" style="width: {(minutes / total_taylor_minutes) * 100 if total_taylor_minutes > 0 else 0}%; background-color: {album_colors.get(album, '#FFFFFF')};">
+                    <div class="stacked-segment" style="width: {album_widths.get(album, 0)}%; background-color: {album_colors.get(album, '#FFFFFF')};">
                         <div class="stacked-segment-tooltip">
                             <b>{album}</b><br>
-                            {round(minutes)} min ({(minutes / total_taylor_minutes) * 100 if total_taylor_minutes > 0 else 0:.1f}%)
+                            {round(minutes)} min ({album_widths.get(album, 0):.1f}%)
                         </div>
                     </div>
                     """ for album, minutes in sorted(results['total_album_minutes'].items(), key=lambda x: x[1], reverse=True)])}
@@ -1282,7 +1315,7 @@ def generate_html_report(results, album_colors, taylor_version_mapping):
                         <div class="album-color" style="background-color: {album_colors.get(album, '#FFFFFF')};"></div>
                         <span>{album}</span>
                     </div>
-                    <div class="album-percentage">{(minutes / total_taylor_minutes) * 100 if total_taylor_minutes > 0 else 0:.1f}%</div>
+                    <div class="album-percentage">{album_widths.get(album, 0):.1f}%</div>
                 </div>
                 """ for album, minutes in sorted(results['total_album_minutes'].items(), key=lambda x: x[1], reverse=True)])}
                 
@@ -1300,10 +1333,10 @@ def generate_html_report(results, album_colors, taylor_version_mapping):
             <div id="{year}-year-view" class="stats-view">
                 <div class="stacked-bar">
                     {"".join([f"""
-                    <div class="stacked-segment" style="width: {(minutes / results['taylor_minutes_by_year'][year]) * 100 if results['taylor_minutes_by_year'][year] > 0 else 0}%; background-color: {album_colors.get(album, '#FFFFFF')};">
+                    <div class="stacked-segment" style="width: {calculate_segment_widths(results['album_minutes_by_year'].get(year, {}), results['taylor_minutes_by_year'][year]).get(album, 0)}%; background-color: {album_colors.get(album, '#FFFFFF')};">
                         <div class="stacked-segment-tooltip">
                             <b>{album}</b><br>
-                            {round(minutes)} min ({(minutes / results['taylor_minutes_by_year'][year]) * 100 if results['taylor_minutes_by_year'][year] > 0 else 0:.1f}%)
+                            {round(minutes)} min ({calculate_segment_widths(results['album_minutes_by_year'].get(year, {}), results['taylor_minutes_by_year'][year]).get(album, 0):.1f}%)
                         </div>
                     </div>
                     """ for album, minutes in sorted(results['album_minutes_by_year'].get(year, {}).items(), key=lambda x: x[1], reverse=True)])}
@@ -1315,7 +1348,7 @@ def generate_html_report(results, album_colors, taylor_version_mapping):
                         <div class="album-color" style="background-color: {album_colors.get(album, '#FFFFFF')};"></div>
                         <span>{album}</span>
                     </div>
-                    <div class="album-percentage">{(minutes / results['taylor_minutes_by_year'][year]) * 100 if results['taylor_minutes_by_year'][year] > 0 else 0:.1f}%</div>
+                    <div class="album-percentage">{calculate_segment_widths(results['album_minutes_by_year'].get(year, {}), results['taylor_minutes_by_year'][year]).get(album, 0):.1f}%</div>
                 </div>
                 """ for album, minutes in sorted(results['album_minutes_by_year'].get(year, {}).items(), key=lambda x: x[1], reverse=True)])}
                 
@@ -1384,8 +1417,7 @@ def generate_html_report(results, album_colors, taylor_version_mapping):
         
         <div class="stacked-bar">
             {"".join([f"""
-            <div class="stacked-segment" style="width: {(minutes / total_taylor_minutes) * 100 if total_taylor_minutes > 0 else 0}%; background-color: {album_colors.get(album, '#FFFFFF')};">
-                <div class="stacked-segment-tooltip">
+                <div class="stacked-segment" style="width: {album_widths.get(album, 0)}%; background-color: {album_colors.get(album, '#FFFFFF')};">                <div class="stacked-segment-tooltip">
                     <b>{album}</b><br>
                     {round(minutes)} min ({(minutes / total_taylor_minutes) * 100 if total_taylor_minutes > 0 else 0:.1f}%)
                 </div>
@@ -1432,14 +1464,14 @@ def generate_html_report(results, album_colors, taylor_version_mapping):
 
         <h2>Yearly Breakdown</h2>
 
-         <div class="stacked-bar">
+        <div class="stacked-bar">
             {"".join([f"""
             <div class="stacked-segment {'highlighted' if a == album else 'shaded'}" 
-                 style="width: {(m / total_taylor_minutes) * 100 if total_taylor_minutes > 0 else 0}%; 
+                style="width: {album_widths.get(a, 0)}%; 
                         background-color: {album_colors.get(a, '#FFFFFF')};">
                 <div class="stacked-segment-tooltip">
                     <b>{a}</b><br>
-                    {round(m)} min ({(m / total_taylor_minutes) * 100 if total_taylor_minutes > 0 else 0:.1f}%)
+                    {round(m)} min ({album_widths.get(a, 0):.1f}%)
                 </div>
             </div>
             """ for a, m in sorted(results['total_album_minutes'].items(), key=lambda x: x[1], reverse=True)])}
