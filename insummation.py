@@ -168,10 +168,33 @@ def get_time_capsule_songs(results, taylor_version_mapping):
     return time_capsule
 
 
-def analyze_taylor_swift_data(file_names, album_mapping=None, taylor_version_mapping=None):
+def analyze_taylor_swift_data(file_names, album_mapping=None, taylor_version_mapping=None, collaborative_songs_mapping=None, collaborative_albums=None):
     """
-    Analyze Taylor Swift listening data and calculate stats for both yearly and album views.
+    Analyze Taylor Swift listening data with improved collaborative song detection.
     """
+    # Initialize with default values if not provided
+    collaborative_songs_mapping = collaborative_songs_mapping or {}
+    collaborative_albums = collaborative_albums or {}
+    
+    # Known collaborations without explicit "feat." in title
+    known_collaborations = {
+        "Birch": "Big Red Machine",
+        "Renegade": "Big Red Machine",
+        "Gasoline": "HAIM",
+        "The Joker And The Queen": "Ed Sheeran",
+        "Both Of Us": "B.o.B",
+        "Highway Don't Care": "Tim McGraw",
+        "Two Is Better Than One": "Boys Like Girls",
+        "Half Of My Heart": "John Mayer",
+        "The Alcott": "The National",
+        "us.": "Gracie Abrams"
+    }
+
+    # Patterns to identify Taylor Swift features in song titles
+    taylor_feature_patterns = [
+
+    ]
+
     all_data = []
     total_minutes_spotify = defaultdict(int)
     taylor_minutes_by_year = defaultdict(int)
@@ -180,10 +203,11 @@ def analyze_taylor_swift_data(file_names, album_mapping=None, taylor_version_map
     total_song_counter = Counter()
     monthly_stats = defaultdict(lambda: {
         'minutes': 0,
-        'albums': Counter(),  # Changed from defaultdict to Counter
+        'albums': Counter(),
         'songs': Counter()
     })
     prev_month_stats = {}
+    collaborative_stats = defaultdict(lambda: defaultdict(int))
 
     # Load data from all files
     for file_name in file_names:
@@ -202,30 +226,68 @@ def analyze_taylor_swift_data(file_names, album_mapping=None, taylor_version_map
             # Skip tracks from the reputation tour playlist
             album_name = entry.get('master_metadata_album_album_name', '')
             if album_name == "reputation Stadium Tour Surprise Song Playlist":
-                continue  # Skip this entry entirely
+                continue
 
-
+            # Check if the entry is from June 8th, 2017 or later
+            dt = datetime.strptime(ts, "%Y-%m-%dT%H:%M:%SZ")
+            cutoff_date = datetime(2017, 6, 8)
+            if dt < cutoff_date:
+                continue
             
             ms_played = entry.get('ms_played', 0)
-            dt = datetime.strptime(ts, "%Y-%m-%dT%H:%M:%SZ")
             year_month = f"{dt.year}-{dt.month:02d}"
 
             # Skip tracks played for less than 30 seconds
             if ms_played < 30000:
                 continue
                 
-            year = datetime.strptime(ts, "%Y-%m-%dT%H:%M:%SZ").year
+            year = dt.year
             total_minutes_spotify[year] += ms_played
 
             song_name = entry.get('master_metadata_track_name', None)
             album_name = entry.get('master_metadata_album_album_name', None)
             artist_name = entry.get('master_metadata_album_artist_name', None)
 
-            if artist_name == "Taylor Swift" and song_name and album_name:
-                # Map song and album names
-                if taylor_version_mapping:
+            # Check if this is a Taylor Swift collaborative song
+            is_taylor_collaboration = False
+            original_artist = artist_name
+            
+            # Check if song is in collaborative mapping
+            if song_name in collaborative_songs_mapping:
+                is_taylor_collaboration = True
+                song_name = collaborative_songs_mapping[song_name]  # Use cleaned song name
+            elif song_name and any(pattern.lower() in song_name.lower() for pattern in taylor_feature_patterns):
+                is_taylor_collaboration = True
+            elif artist_name and artist_name != "Taylor Swift" and song_name and song_name in known_collaborations:
+                is_taylor_collaboration = True
+
+            # Process Taylor Swift content (both solo and collaborations)
+            if (artist_name == "Taylor Swift" or is_taylor_collaboration) and song_name and album_name:
+                # For collaborative songs, use "Other" as album name and clean song name
+                if is_taylor_collaboration:
+                    # Clean the song name by removing feat. Taylor Swift part (if not already cleaned)
+                    if song_name not in collaborative_songs_mapping.values():
+                        clean_song_name = song_name
+                        for pattern in taylor_feature_patterns:
+                            clean_song_name = clean_song_name.replace(pattern, "").replace(pattern.upper(), "")
+                        clean_song_name = clean_song_name.strip().strip('()').strip()
+                        if not clean_song_name:
+                            clean_song_name = song_name  # Fallback to original if cleaning removes everything
+                        song_name = clean_song_name
+                    
+                    # Use "Other" album for collaborations or specific album from mapping
+                    if original_artist in collaborative_albums:
+                        album_name = collaborative_albums[original_artist]
+                    else:
+                        album_name = "Other"
+                    
+                    # Track collaborative stats
+                    collaborative_stats[original_artist][song_name] += 1
+
+                # Map song and album names for Taylor's versions (only for non-collaborative)
+                if taylor_version_mapping and not is_taylor_collaboration:
                     song_name = taylor_version_mapping.get(song_name, song_name)
-                if album_mapping:
+                if album_mapping and not is_taylor_collaboration:
                     album_name = album_mapping.get(album_name, album_name)
 
                 # Track minutes for both yearly and album views
@@ -238,7 +300,7 @@ def analyze_taylor_swift_data(file_names, album_mapping=None, taylor_version_map
 
                 # Update monthly stats
                 monthly_stats[year_month]['minutes'] += ms_played
-                monthly_stats[year_month]['albums'][album_name] += 1  # Counting plays instead of ms
+                monthly_stats[year_month]['albums'][album_name] += 1
                 monthly_stats[year_month]['songs'][song_name] += 1
 
     # Convert milliseconds to minutes
@@ -256,14 +318,11 @@ def analyze_taylor_swift_data(file_names, album_mapping=None, taylor_version_map
         for album, minutes in albums.items():
             total_album_minutes[album] += minutes
 
-
     # Convert ms to minutes and prepare comparison data
     sorted_months = sorted(monthly_stats.keys())
     for i, month in enumerate(sorted_months):
-        # Convert to minutes
         monthly_stats[month]['minutes'] = round(monthly_stats[month]['minutes'] / 60000, 1)
         
-        # Prepare comparison data
         if i > 0:
             prev_month = sorted_months[i-1]
             prev_month_stats[month] = {
@@ -271,19 +330,18 @@ def analyze_taylor_swift_data(file_names, album_mapping=None, taylor_version_map
                 'songs': monthly_stats[prev_month]['songs'].copy()
             }
 
-
     # All-time stats
     all_time_spotify_minutes = sum(total_minutes_spotify.values())
     all_time_taylor_minutes = sum(taylor_minutes_by_year.values())
     all_time_percentage_taylor = (all_time_taylor_minutes / all_time_spotify_minutes) * 100 if all_time_spotify_minutes else 0
 
-    # Include song counters in all-time stats
     all_time_stats = {
         'total_spotify_minutes': all_time_spotify_minutes,
         'total_taylor_minutes': all_time_taylor_minutes,
         'percentage_taylor': all_time_percentage_taylor,
         'songs': total_song_counter,
-        'album_songs': album_song_counter
+        'album_songs': album_song_counter,
+        'collaborative_songs': dict(collaborative_stats)
     }
 
     return {
@@ -295,8 +353,10 @@ def analyze_taylor_swift_data(file_names, album_mapping=None, taylor_version_map
         'prev_month_stats': prev_month_stats,
         'sorted_months': sorted_months,
         'all_time_stats': all_time_stats,
+        'collaborative_stats': collaborative_stats,
         'all_data': all_data
     }
+
 
 def get_top_songs_for_year(results, year, taylor_version_mapping):
     """Get top songs for a specific year"""
@@ -322,6 +382,7 @@ def generate_html_report(results, album_colors, taylor_version_mapping):
     Generate an HTML report with toggleable yearly and album views.
     """
     release_anniversaries = {
+        2025: "03.10 <i>The Life of a Showgirl</i>",
         2024: "19.04 <i>THE TORTURED POETS DEPARTMENT</i>",
         2023: "07.07 <i>Speak Now (Taylor's Version)</i><br>27.10 <i>1989 (Taylor's Version)</i>",
         2022: "21.10 <i>Midnights</i>",
@@ -427,7 +488,9 @@ def generate_html_report(results, album_colors, taylor_version_mapping):
         "Red",
         "Speak Now",
         "Fearless",
-        "Taylor Swift"
+        "Taylor Swift",
+        "Other"
+        
     ]
 
     # Sort albums according to custom order
@@ -1729,6 +1792,80 @@ def generate_html_report(results, album_colors, taylor_version_mapping):
 
 
 
-# Run the analysis and generate the report with all required arguments
-results = analyze_taylor_swift_data(file_names, album_mapping, taylor_version_mapping)
+# Define your mappings
+collaborative_songs_mapping = {
+    "Us": "Gracie Abrams feat. Taylor Swift",
+    "The Alcott": "The National feat. Taylor Swift",
+    "Renegade": "Big Red Machine feat. Taylor Swift",
+    "Birch": "Big Red Machine feat. Taylor Swift",
+    "Both Of Us": "B.o.B feat. Taylor Swift",
+    "Highway Don't Care": "Tim McGraw feat. Taylor Swift",
+    "Two Is Better Than One": "Boys Like Girls feat. Taylor Swift",
+    "Half Of My Heart": "John Mayer feat. Taylor Swift",
+}
+
+collaborative_albums = {
+    "Gracie Abrams feat. Taylor Swift": "Other",
+    "The National feat. Taylor Swift": "Other",
+    "Big Red Machine feat. Taylor Swift": "Other",
+    "B.o.B feat. Taylor Swift": "Other",
+    "Tim McGraw feat. Taylor Swift": "Other",
+    "Boys Like Girls feat. Taylor Swift": "Other",
+    "John Mayer feat. Taylor Swift": "Other",
+}
+
+# Call the function with the new parameters
+results = analyze_taylor_swift_data(
+    file_names=file_names,
+    album_mapping=album_mapping,  # Your existing album mapping
+    taylor_version_mapping=taylor_version_mapping,  # Your existing TV mapping
+    collaborative_songs_mapping=collaborative_songs_mapping,
+    collaborative_albums=collaborative_albums
+)
+
+# Access collaborative stats
+print("Collaborative songs stats:")
+for artist, songs in results['collaborative_stats'].items():
+    print(f"{artist}: {dict(songs)}")
+
+    
+# Collaborative songs mapping - identifies songs featuring Taylor Swift
+collaborative_songs_mapping = {
+    "us. (feat. Taylor Swift)": "us. - <i>Gracie Abrams</i>",
+    "The Alcott (feat. Taylor Swift)": "The Alcott - <i>The National</i>",
+    "Two Is Better Than One (feat. Taylor Swift)": "Two Is Better Than One - <i>Boys Like Girls</i>",
+    "Gasoline (feat. Taylor Swift)": "Gasoline - <i>HAIM</i>",
+    "The Joker And The Queen (feat. Taylor Swift)": "The Joker And The Queen - <i>Ed Sheeran</i>",
+    "Birch": "Birch - <i>Big Red Machine</i>",
+    "Renegade": "Renegade - <i>Big Red Machine</i>",
+    "Both Of Us": "Both Of Us - <i>B.o.B</i>",
+    "Highway Don't Care": "Highway Don't Care - <i>Tim McGraw</i>",
+    "Half Of My Heart": "Half Of My Heart - <i>John Mayer</i>",
+}
+
+# Collaborative albums mapping - maps artists to "Other" album
+collaborative_albums = {
+    "Gracie Abrams": "Other",
+    "The National": "Other",
+    "Big Red Machine": "Other",
+    "HAIM": "Other",
+    "Ed Sheeran": "Other",
+    "B.o.B": "Other",
+    "Tim McGraw": "Other",
+    "Boys Like Girls": "Other",
+    "John Mayer": "Other",
+}
+
+# Call the function with the new parameters
+results = analyze_taylor_swift_data(
+    file_names=file_names,
+    album_mapping=album_mapping,
+    taylor_version_mapping=taylor_version_mapping,
+    collaborative_songs_mapping=collaborative_songs_mapping,
+    collaborative_albums=collaborative_albums
+)
+
+
+
+# Generate the HTML report
 generate_html_report(results, album_colors, taylor_version_mapping)
