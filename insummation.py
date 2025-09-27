@@ -1293,99 +1293,103 @@ def generate_html_report(results, album_colors, taylor_version_mapping):
             <h2>👋 Ohh, hi!! Welcome to <i>In Summation</i>. </h2>
 
             
-            {f'''
-            <div class="card" style="background-color: var(--secondary); border: var(--border); box-shadow: var(--shadow); margin: 20px 0; padding: 15px;">
-                <h3 style="margin-top: 0; color: var(--primary);">"{random_quote['quote']}"</h3>
-                <p style="margin: 0; font-size: 0.9rem; color: #666;">
-                    — {random_quote['song']} • {random_quote['album']}
-                </p>
-            </div>
-            ''' if random_quote else ''}
-            
-            <h2>From the Vault: <span id="current-date"></span></h2>
-            
-            <!-- Today Through the Years -->
-            <div class="album-row total-minutes-row" style="margin-top: 20px; background-color: var(--highlight);">
-                <div class="album-percentage total-minutes-value" style="text-align: left; color: black; flex-grow: 1; font-weight: 400;">
-                    Do you really wanna know where I was <span id="current-month-name"></span> <span id="day-ordinal"></span>?
-                </div>
-            </div>
-
-            {"".join([f"""
-            <div class="album-row">
-                <div class="album-info">
-                    <div class="album-color" style="background-color: var(--accent);"></div>
-                    <span>{year}</span>
-                </div>
-                <div class="album-percentage">{song}</div>
-            </div>
-            """ for year, song in sorted(time_capsule_songs.items(), reverse=True)])}
-            
-            <!-- Weekly Ranking -->
-            <div class="album-row total-minutes-row" style="margin-top: 30px; background-color: var(--highlight);">
-                <div class="album-percentage total-minutes-value" style="text-align: left; color: black; flex-grow: 1; font-weight: 400;">
-                    But you keep my old scarf from that very <span id="week-ordinal"></span> week
-                </div>
-            </div>
-            <ul class="song-list">
-                {"".join([f"""
-                <li class="song-item">
-                    <div class="album-info">
-                        <div class="song-number" style="background-color: var(--accent);">{i+1}</div>
-                        <span class="song-title">{song}</span>
-                        <div class="play-count">{count} <i class="fa-solid fa-play"></i></div>
-                    </div>
-                </li>
-                """ for i, (song, count) in enumerate(weekly_ranking)])}
-            </ul>
-            
-            <!-- Monthly Ranking -->
-            <div class="album-row total-minutes-row" style="margin-top: 30px; background-color: var(--highlight);">
-                <div class="album-percentage total-minutes-value" style="text-align: left; color: black; flex-grow: 1; font-weight: 400;">
-                    I go back to <span id="current-month">{current_month_name}</span> all the time
-                </div>
-            </div>
-            <ul class="song-list">
-                {"".join([f"""
-                <li class="song-item">
-                    <div class="album-info">
-                        <div class="song-number" style="background-color: var(--accent);">{i+1}</div>
-                        <span class="song-title">{song}</span>
-                        <div class="play-count">{count} <i class="fa-solid fa-play"></i></div>
-                    </div>
-                </li>
-                """ for i, (song, count) in enumerate(monthly_ranking)])}
-            </ul>
-            
-            <script>
-                // Update the date when the page loads
-                document.addEventListener('DOMContentLoaded', function() {{
-                    const now = new Date();
-                    const options = {{ month: 'long', day: 'numeric' }};
-                    document.getElementById('current-date').textContent = now.toLocaleDateString('en-US', options);
-                    
-                    // Add month name
-                    document.getElementById('current-month-name').textContent = now.toLocaleDateString('en-US', {{ month: 'long' }});
-                    
-                    // Add ordinal suffix to day
-                    const day = now.getDate();
-                    const ordinal = (day) => {{
-                        if (day > 3 && day < 21) return 'th';
-                        switch (day % 10) {{
-                            case 1: return "st";
-                            case 2: return "nd";
-                            case 3: return "rd";
-                            default: return "th";
-                        }}
-                    }};
-                    document.getElementById('day-ordinal').textContent = day + ordinal(day);
-                    
-                    // Add ordinal suffix to week
-                    const week = {current_week};
-                    document.getElementById('week-ordinal').textContent = week + ordinal(week);
-                }});
-            </script>
+    {f'''
+    <div class="card" style="background-color: var(--secondary); border: var(--border); box-shadow: var(--shadow); margin: 20px 0; padding: 15px;">
+        <h3 style="margin-top: 0; color: var(--primary);">"{random_quote['quote']}"</h3>
+        <p style="margin: 0; font-size: 0.9rem; color: #666;">
+            — {random_quote['song']} • {random_quote['album']}
+        </p>
+    </div>
+    ''' if random_quote else ''}
+    
+    <h2>From the Vault: <span id="current-date"></span></h2>
+    
+    <!-- Today Through the Years -->
+    <div class="album-row total-minutes-row" style="margin-top: 20px; background-color: var(--highlight);">
+        <div class="album-percentage total-minutes-value" style="text-align: left; color: black; flex-grow: 1; font-weight: 400;">
+            Do you really wanna know where I was <span id="current-month-name" style="color: #E91E63; font-weight: bold;"></span> <span id="day-ordinal" style="color: #E91E63; font-weight: bold;"></span>?
         </div>
+    </div>
+
+    {"".join([f"""
+    <div class="album-row">
+        <div class="album-info">
+            <div class="album-color" style="background-color: var(--accent);"></div>
+            <span>{year}</span>
+        </div>
+        <div class="album-percentage">{song}</div>
+    </div>
+    """ for year, song in sorted(time_capsule_songs.items(), reverse=True)])}
+    
+    <!-- Weekly Ranking -->
+    <div class="album-row total-minutes-row" style="margin-top: 30px; background-color: var(--highlight);">
+        <div class="album-percentage total-minutes-value" style="text-align: left; color: black; flex-grow: 1; font-weight: 400;">
+            But you keep my old scarf from that very <span id="week-ordinal" style="color: #E91E63; font-weight: bold;"></span> week
+        </div>
+    </div>
+    <ul class="song-list">
+        {"".join([f"""
+        <li class="song-item">
+            <div class="album-info" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <div class="song-number" style="background-color: var(--accent);">{i+1}</div>
+                    <span class="song-title">{song}</span>
+                </div>
+                <div class="play-count" style="margin-left: auto;">{count} <i class="fa-solid fa-play"></i></div>
+            </div>
+        </li>
+        """ for i, (song, count) in enumerate(weekly_ranking)])}
+    </ul>
+    
+    <!-- Monthly Ranking -->
+    <div class="album-row total-minutes-row" style="margin-top: 30px; background-color: var(--highlight);">
+        <div class="album-percentage total-minutes-value" style="text-align: left; color: black; flex-grow: 1; font-weight: 400;">
+            I go back to <span id="current-month" style="color: #E91E63; font-weight: bold;">{current_month_name}</span> all the time
+        </div>
+    </div>
+    <ul class="song-list">
+        {"".join([f"""
+        <li class="song-item">
+            <div class="album-info" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <div class="song-number" style="background-color: var(--accent);">{i+1}</div>
+                    <span class="song-title">{song}</span>
+                </div>
+                <div class="play-count" style="margin-left: auto;">{count} <i class="fa-solid fa-play"></i></div>
+            </div>
+        </li>
+        """ for i, (song, count) in enumerate(monthly_ranking)])}
+    </ul>
+    
+    <script>
+        // Update the date when the page loads
+        document.addEventListener('DOMContentLoaded', function() {{
+            const now = new Date();
+            const options = {{ month: 'long', day: 'numeric' }};
+            document.getElementById('current-date').textContent = now.toLocaleDateString('en-US', options);
+            
+            // Add month name
+            document.getElementById('current-month-name').textContent = now.toLocaleDateString('en-US', {{ month: 'long' }});
+            
+            // Add ordinal suffix to day
+            const day = now.getDate();
+            const ordinal = (day) => {{
+                if (day > 3 && day < 21) return 'th';
+                switch (day % 10) {{
+                    case 1: return "st";
+                    case 2: return "nd";
+                    case 3: return "rd";
+                    default: return "th";
+                }}
+            }};
+            document.getElementById('day-ordinal').textContent = day + ordinal(day);
+            
+            // Add ordinal suffix to week
+            const week = {current_week};
+            document.getElementById('week-ordinal').textContent = week + ordinal(week);
+        }});
+    </script>
+</div>
 
             
         <!-- TAB - By Year -->
