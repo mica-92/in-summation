@@ -766,7 +766,13 @@ def generate_html_report(results, album_colors, taylor_version_mapping):
     margin-bottom: 30px;
     position: relative;
     display: flex;
+    width: 100%;
     box-sizing: border-box;
+}}
+
+/* Remove the negative margin that was creating gaps */
+.stacked-segment:last-child {{
+    border-right: none; /* Remove border from last segment */
 }}
 
 /* Base segment style */
@@ -774,11 +780,10 @@ def generate_html_report(results, album_colors, taylor_version_mapping):
     height: 100%;
     position: relative;
     border-right: 2px solid var(--primary);
-    z-index: 1;
-    margin-right: -1px;
-    transform-origin: center;
     box-sizing: border-box;
     transition: all 0.2s ease;
+    /* Remove margin-right and transform-origin that were causing gaps */
+
 }}
 
 /* Highlighted segment - show tooltip */
@@ -1285,9 +1290,7 @@ def generate_html_report(results, album_colors, taylor_version_mapping):
         </div>
 
         <div id="home-view" class="stats-view active">
-            <h2>👋 Ohh, hi!!</h2>
-            <h3>Welcome to <i>In Summation</i>. The story of us, on this swift journey.</h3>
-            <p>
+            <h2>👋 Ohh, hi!! Welcome to <i>In Summation</i>. </h2>
 
             
             {f'''
@@ -1402,29 +1405,27 @@ def generate_html_report(results, album_colors, taylor_version_mapping):
 </div>
 
 
-            <h2>Yearly Breakdown</h2>
+            <h2>Yearly Breakdown</h2> 
             <!-- All Time Year View -->
             <div id="all-time-year-view" class="stats-view active">
-                <div class="stacked-bar">
-                    {"".join([f"""
-                    <div class="stacked-segment" style="width: {(minutes / all_time_spotify_minutes) * 100 if all_time_spotify_minutes > 0 else 0}%; background-color: {album_colors.get(album, '#FFFFFF')};">
-                        <div class="stacked-segment-tooltip">
-                            <b>{album}</b><br>
-                            {round(minutes)} min ({(minutes / all_time_spotify_minutes) * 100 if all_time_spotify_minutes > 0 else 0:.1f}%)
-                        </div>
-                    </div>
-                    """ for album, minutes in sorted(results['total_album_minutes'].items(), key=lambda x: x[1], reverse=True)])}
-                    
-                    <!-- Other Artists Segment -->
-                    {f"""
-                    <div class="stacked-segment" style="width: {(all_time_other_minutes / all_time_spotify_minutes) * 100 if all_time_spotify_minutes > 0 else 0}%; background-color: #CCCCCC;">
-                        <div class="stacked-segment-tooltip">
-                            <b>Other Artists</b><br>
-                            {round(all_time_other_minutes)} min ({(all_time_other_minutes / all_time_spotify_minutes) * 100 if all_time_spotify_minutes > 0 else 0:.1f}%)
-                        </div>
-                    </div>
-                    """ if all_time_other_minutes > 0 else ""}
-                </div>
+    <div class="stacked-bar">
+        {"".join([f"""
+        <div class="stacked-segment" style="width: {(minutes / total_taylor_minutes) * 100 if total_taylor_minutes > 0 else 0}%; background-color: {album_colors.get(album, '#FFFFFF')};">
+            <div class="stacked-segment-tooltip">
+                <b>{album}</b><br>
+                {round(minutes)} min ({(minutes / total_taylor_minutes) * 100 if total_taylor_minutes > 0 else 0:.1f}%)
+            </div>
+        </div>
+        """ for album, minutes in sorted(results['total_album_minutes'].items(), key=lambda x: x[1], reverse=True)])}
+        {"".join([f"""
+        <div class="stacked-segment" style="width: 0%; background-color: {album_colors.get('Other', '#FFFFFF')};">
+            <div class="stacked-segment-tooltip">
+                <b>Other</b><br>
+                0 min (0%)
+            </div>
+        </div>
+        """ if "Other" not in results['total_album_minutes'] else ""])}
+    </div>
                 
                 {"".join([f"""
                 <div class="album-row">
@@ -1956,9 +1957,9 @@ def generate_html_report(results, album_colors, taylor_version_mapping):
 
 
 
-# If the JSON file is in the same directory as your Python script
-mapped_file = "taylor_swift_mapping_template_MAPPED_ONLY.json"
+
+# Use the full path to your file
+mapped_file = r"C:\Users\mica_\Documents\202X - VisualStudio\Spotify\Final\taylor_swift_mapping_template_MAPPED_ONLY.json"
 results = analyze_taylor_swift_data(mapped_file)
 
 generate_html_report(results, album_colors, taylor_version_mapping)
-
