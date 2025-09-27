@@ -167,35 +167,68 @@ def get_time_capsule_songs(results, taylor_version_mapping):
     
     return time_capsule
 
-
-def analyze_taylor_swift_data(file_names, album_mapping=None, taylor_version_mapping=None, collaborative_songs_mapping=None, collaborative_albums=None):
-    """
-    Analyze Taylor Swift listening data with improved collaborative song detection.
-    """
-    # Initialize with default values if not provided
-    collaborative_songs_mapping = collaborative_songs_mapping or {}
-    collaborative_albums = collaborative_albums or {}
+def get_this_weeks_ranking(results, taylor_version_mapping):
+    """Get the most played songs from the current week (all years combined)"""
+    today = datetime.now()
+    current_week = today.isocalendar()[1]  # Get current week number
     
-    # Known collaborations without explicit "feat." in title
-    known_collaborations = {
-        "Birch": "Big Red Machine",
-        "Renegade": "Big Red Machine",
-        "Gasoline": "HAIM",
-        "The Joker And The Queen": "Ed Sheeran",
-        "Both Of Us": "B.o.B",
-        "Highway Don't Care": "Tim McGraw",
-        "Two Is Better Than One": "Boys Like Girls",
-        "Half Of My Heart": "John Mayer",
-        "The Alcott": "The National",
-        "us.": "Gracie Abrams"
-    }
+    weekly_songs = Counter()
+    
+    for entry in results['all_data']:
+        if not entry.get('ts'):
+            continue
+            
+        dt = datetime.strptime(entry['ts'], "%Y-%m-%dT%H:%M:%SZ")
+        entry_week = dt.isocalendar()[1]
+        
+        if entry_week == current_week:
+            artist = entry.get('master_metadata_album_artist_name')
+            song = entry.get('master_metadata_track_name')
+            
+            if artist == "Taylor Swift" and song:
+                unified_song = taylor_version_mapping.get(song, song)
+                weekly_songs[unified_song] += 1
+    
+    return weekly_songs.most_common(13)  # Top 13 songs for the week
 
-    # Patterns to identify Taylor Swift features in song titles
-    taylor_feature_patterns = [
+def get_this_months_ranking(results, taylor_version_mapping):
+    """Get the most played songs from the current month (all years combined)"""
+    today = datetime.now()
+    current_month = today.month
+    
+    monthly_songs = Counter()
+    
+    for entry in results['all_data']:
+        if not entry.get('ts'):
+            continue
+            
+        dt = datetime.strptime(entry['ts'], "%Y-%m-%dT%H:%M:%SZ")
+        entry_month = dt.month
+        
+        if entry_month == current_month:
+            artist = entry.get('master_metadata_album_artist_name')
+            song = entry.get('master_metadata_track_name')
+            
+            if artist == "Taylor Swift" and song:
+                unified_song = taylor_version_mapping.get(song, song)
+                monthly_songs[unified_song] += 1
+    
+    return monthly_songs.most_common(13)  # Top 13 songs for the month
 
-    ]
+def analyze_taylor_swift_data(mapped_only_file):
+    """
+    Analyze Taylor Swift listening data from the pre-mapped file.
+    """
+    # Load data directly from the mapped file
+    try:
+        with open(mapped_only_file, 'r', encoding='utf-8') as f:
+            all_data = json.load(f)
+        print(f"Loaded {len(all_data)} mapped Taylor Swift songs from {mapped_only_file}")
+    except (json.JSONDecodeError, FileNotFoundError) as e:
+        print(f"Error: Could not load {mapped_only_file}: {e}")
+        return None
 
-    all_data = []
+    # Initialize data structures
     total_minutes_spotify = defaultdict(int)
     taylor_minutes_by_year = defaultdict(int)
     album_minutes_by_year = defaultdict(lambda: defaultdict(int))
@@ -204,107 +237,77 @@ def analyze_taylor_swift_data(file_names, album_mapping=None, taylor_version_map
     monthly_stats = defaultdict(lambda: {
         'minutes': 0,
         'albums': Counter(),
-        'songs': Counter()
+        'songs': Counter(),
+        'unique_songs': set(),
+        'unique_albums': set()
     })
-    prev_month_stats = {}
-    collaborative_stats = defaultdict(lambda: defaultdict(int))
+    
+    # Track listening patterns
+    listening_sessions = defaultdict(list)
+    daily_patterns = defaultdict(lambda: defaultdict(int))
 
-    # Load data from all files
-    for file_name in file_names:
-        with open(file_name, 'r', encoding='utf-8') as f:
-            raw_data = json.load(f)
-            normalized_data = [
-                {k: (v.replace("\u2019", "'") if isinstance(v, str) else v) for k, v in entry.items()}
-                for entry in raw_data
-            ]
-            all_data.extend(normalized_data)
+    # Calculate total Spotify minutes from all_data
+    total_spotify_ms = sum(entry.get('ms_played', 0) for entry in all_data)
+    total_spotify_minutes = total_spotify_ms / 60000
 
-    # Filter and process data
+    # Process data - all entries are already Taylor Swift songs with consistent naming
     for entry in all_data:
-        ts = entry.get('ts', None)
-        if ts:
-            # Skip tracks from the reputation tour playlist
-            album_name = entry.get('master_metadata_album_album_name', '')
-            if album_name == "reputation Stadium Tour Surprise Song Playlist":
-                continue
-
-            # Check if the entry is from June 8th, 2017 or later
+        ts = entry.get('ts')
+        if not ts:
+            continue
+            
+        try:
             dt = datetime.strptime(ts, "%Y-%m-%dT%H:%M:%SZ")
-            cutoff_date = datetime(2017, 6, 8)
-            if dt < cutoff_date:
-                continue
-            
             ms_played = entry.get('ms_played', 0)
-            year_month = f"{dt.year}-{dt.month:02d}"
-
-            # Skip tracks played for less than 30 seconds
-            if ms_played < 30000:
-                continue
-                
-            year = dt.year
-            total_minutes_spotify[year] += ms_played
-
-            song_name = entry.get('master_metadata_track_name', None)
-            album_name = entry.get('master_metadata_album_album_name', None)
-            artist_name = entry.get('master_metadata_album_artist_name', None)
-
-            # Check if this is a Taylor Swift collaborative song
-            is_taylor_collaboration = False
-            original_artist = artist_name
             
-            # Check if song is in collaborative mapping
-            if song_name in collaborative_songs_mapping:
-                is_taylor_collaboration = True
-                song_name = collaborative_songs_mapping[song_name]  # Use cleaned song name
-            elif song_name and any(pattern.lower() in song_name.lower() for pattern in taylor_feature_patterns):
-                is_taylor_collaboration = True
-            elif artist_name and artist_name != "Taylor Swift" and song_name and song_name in known_collaborations:
-                is_taylor_collaboration = True
+            # Skip tracks played for less than 30 seconds
+            MIN_PLAY_THRESHOLD = 30000  # 30 seconds
+            if ms_played < MIN_PLAY_THRESHOLD:
+                continue
 
-            # Process Taylor Swift content (both solo and collaborations)
-            if (artist_name == "Taylor Swift" or is_taylor_collaboration) and song_name and album_name:
-                # For collaborative songs, use "Other" as album name and clean song name
-                if is_taylor_collaboration:
-                    # Clean the song name by removing feat. Taylor Swift part (if not already cleaned)
-                    if song_name not in collaborative_songs_mapping.values():
-                        clean_song_name = song_name
-                        for pattern in taylor_feature_patterns:
-                            clean_song_name = clean_song_name.replace(pattern, "").replace(pattern.upper(), "")
-                        clean_song_name = clean_song_name.strip().strip('()').strip()
-                        if not clean_song_name:
-                            clean_song_name = song_name  # Fallback to original if cleaning removes everything
-                        song_name = clean_song_name
-                    
-                    # Use "Other" album for collaborations or specific album from mapping
-                    if original_artist in collaborative_albums:
-                        album_name = collaborative_albums[original_artist]
-                    else:
-                        album_name = "Other"
-                    
-                    # Track collaborative stats
-                    collaborative_stats[original_artist][song_name] += 1
+            year = dt.year
+            year_month = f"{dt.year}-{dt.month:02d}"
+            hour_of_day = dt.hour
 
-                # Map song and album names for Taylor's versions (only for non-collaborative)
-                if taylor_version_mapping and not is_taylor_collaboration:
-                    song_name = taylor_version_mapping.get(song_name, song_name)
-                if album_mapping and not is_taylor_collaboration:
-                    album_name = album_mapping.get(album_name, album_name)
+            # Track total listening time (all Taylor Swift)
+            total_minutes_spotify[year] += ms_played
+            
+            # Track daily patterns
+            daily_patterns[year][hour_of_day] += ms_played
 
-                # Track minutes for both yearly and album views
+            # Get song and album info (already mapped and cleaned)
+            song_name = entry.get('master_metadata_track_name')
+            album_name = entry.get('master_metadata_album_album_name')
+            artist_name = entry.get('master_metadata_album_artist_name')
+
+            # All entries should be Taylor Swift songs, but double-check
+            if song_name and album_name and artist_name:
+                # Update all tracking metrics
                 taylor_minutes_by_year[year] += ms_played
                 album_minutes_by_year[year][album_name] += ms_played
                 
-                # Count song plays per album and overall
+                # Song counting
                 album_song_counter[album_name][song_name] += 1
                 total_song_counter[song_name] += 1
 
-                # Update monthly stats
+                # Enhanced monthly stats
                 monthly_stats[year_month]['minutes'] += ms_played
                 monthly_stats[year_month]['albums'][album_name] += 1
                 monthly_stats[year_month]['songs'][song_name] += 1
+                monthly_stats[year_month]['unique_songs'].add(song_name)
+                monthly_stats[year_month]['unique_albums'].add(album_name)
+                
+                # Track listening sessions (group plays within 30 minutes)
+                date_key = dt.date()
+                listening_sessions[date_key].append(dt)
+
+        except (ValueError, KeyError) as e:
+            print(f"Warning: Skipping invalid entry: {e}")
+            continue
 
     # Convert milliseconds to minutes
     convert_ms_to_minutes = lambda ms: ms / 60000
+    
     total_minutes_spotify = {year: convert_ms_to_minutes(ms) for year, ms in total_minutes_spotify.items()}
     taylor_minutes_by_year = {year: convert_ms_to_minutes(ms) for year, ms in taylor_minutes_by_year.items()}
     album_minutes_by_year = {
@@ -312,51 +315,96 @@ def analyze_taylor_swift_data(file_names, album_mapping=None, taylor_version_map
         for year, albums in album_minutes_by_year.items()
     }
 
-    # Calculate total minutes per album
-    total_album_minutes = defaultdict(float)
-    for year, albums in album_minutes_by_year.items():
-        for album, minutes in albums.items():
-            total_album_minutes[album] += minutes
+    # Calculate session statistics
+    session_stats = {}
+    for date, sessions in listening_sessions.items():
+        if len(sessions) > 1:
+            sessions.sort()
+            gaps = [(sessions[i+1] - sessions[i]).total_seconds() / 60 for i in range(len(sessions)-1)]
+            session_stats[str(date)] = {
+                'total_plays': len(sessions),
+                'avg_gap_minutes': sum(gaps) / len(gaps) if gaps else 0,
+                'session_duration': (sessions[-1] - sessions[0]).total_seconds() / 60
+            }
 
-    # Convert ms to minutes and prepare comparison data
+    # Prepare monthly comparison data
     sorted_months = sorted(monthly_stats.keys())
+    prev_month_stats = {}
+    
     for i, month in enumerate(sorted_months):
+        # Convert to minutes and add unique counts
         monthly_stats[month]['minutes'] = round(monthly_stats[month]['minutes'] / 60000, 1)
+        monthly_stats[month]['unique_songs_count'] = len(monthly_stats[month]['unique_songs'])
+        monthly_stats[month]['unique_albums_count'] = len(monthly_stats[month]['unique_albums'])
         
+        # Prepare comparison data
         if i > 0:
             prev_month = sorted_months[i-1]
             prev_month_stats[month] = {
                 'albums': monthly_stats[prev_month]['albums'].copy(),
-                'songs': monthly_stats[prev_month]['songs'].copy()
+                'songs': monthly_stats[prev_month]['songs'].copy(),
+                'unique_songs_count': monthly_stats[prev_month]['unique_songs_count'],
+                'unique_albums_count': monthly_stats[prev_month]['unique_albums_count']
             }
 
     # All-time stats
-    all_time_spotify_minutes = sum(total_minutes_spotify.values())
     all_time_taylor_minutes = sum(taylor_minutes_by_year.values())
-    all_time_percentage_taylor = (all_time_taylor_minutes / all_time_spotify_minutes) * 100 if all_time_spotify_minutes else 0
+
+    # Calculate total album minutes across all years (FIXED LINE)
+    total_album_minutes = Counter()
+    for year_data in album_minutes_by_year.values():
+        for album, minutes in year_data.items():
+            total_album_minutes[album] += minutes
+    total_album_minutes = dict(total_album_minutes)
+
+    # Calculate listening consistency
+    total_days = len(listening_sessions)
+    if total_days > 0:
+        date_range = (max(listening_sessions.keys()) - min(listening_sessions.keys())).days + 1
+        consistency_ratio = total_days / date_range
+    else:
+        consistency_ratio = 0
 
     all_time_stats = {
-        'total_spotify_minutes': all_time_spotify_minutes,
+        'total_spotify_minutes': total_spotify_minutes,  # This was added
         'total_taylor_minutes': all_time_taylor_minutes,
-        'percentage_taylor': all_time_percentage_taylor,
         'songs': total_song_counter,
         'album_songs': album_song_counter,
-        'collaborative_songs': dict(collaborative_stats)
+        'total_listening_days': total_days,
+        'consistency_ratio': consistency_ratio,
+        'session_stats': session_stats,
+        'daily_patterns': daily_patterns,
+        'unique_songs_count': len(total_song_counter),
+        'unique_albums_count': len(album_song_counter)
     }
 
     return {
-        'total_minutes_spotify': total_minutes_spotify,
         'taylor_minutes_by_year': taylor_minutes_by_year,
         'album_minutes_by_year': album_minutes_by_year,
-        'total_album_minutes': total_album_minutes,
+        'total_album_minutes': total_album_minutes,  # Use the fixed variable
         'monthly_stats': monthly_stats,
         'prev_month_stats': prev_month_stats,
         'sorted_months': sorted_months,
         'all_time_stats': all_time_stats,
-        'collaborative_stats': collaborative_stats,
-        'all_data': all_data
+        'all_data': all_data,
+        'session_stats': session_stats,
+        'daily_patterns': daily_patterns,
+        'total_minutes_spotify': total_minutes_spotify  # Add this for yearly breakdown
     }
 
+
+def calculate_other_listening_time(results, year):
+    """
+    Calculate listening time for non-Taylor Swift artists in a given year
+    """
+    if year == 'all-time':
+        total_minutes = results['all_time_stats']['total_spotify_minutes']
+        taylor_minutes = results['all_time_stats']['total_taylor_minutes']
+    else:
+        total_minutes = results['total_minutes_spotify'].get(int(year), 0)
+        taylor_minutes = results['taylor_minutes_by_year'].get(int(year), 0)
+    
+    return total_minutes - taylor_minutes
 
 def get_top_songs_for_year(results, year, taylor_version_mapping):
     """Get top songs for a specific year"""
@@ -374,23 +422,28 @@ def get_top_songs_for_year(results, year, taylor_version_mapping):
 def get_top_songs_for_album(results, album_name, taylor_version_mapping):
     """Get top songs for a specific album"""
     album_songs = results['all_time_stats']['album_songs'].get(album_name, Counter())
-    
-    # Remove specific songs if this is the "Other" album
-    if album_name == "Other":
-        songs_to_remove = ["Delicate", "Red"]
-        for song in songs_to_remove:
-            if song in album_songs:
-                del album_songs[song]
-    
     merged_songs = merge_taylor_versions(album_songs, taylor_version_mapping)
     return merged_songs.most_common()
+
 
 def generate_html_report(results, album_colors, taylor_version_mapping):
     """
     Generate an HTML report with toggleable yearly and album views.
     """
+    if results is None:
+        print("Error: No results to generate report from")
+        return ""
+
+    if 'total_spotify_minutes' not in results['all_time_stats']:
+        # Calculate total Spotify minutes from the data
+        total_ms = 0
+        for entry in results['all_data']:
+            total_ms += entry.get('ms_played', 0)
+        results['all_time_stats']['total_spotify_minutes'] = total_ms / 60000
+    
+    
+    
     release_anniversaries = {
-        2025: "03.10 <i>The Life of a Showgirl</i>",
         2024: "19.04 <i>THE TORTURED POETS DEPARTMENT</i>",
         2023: "07.07 <i>Speak Now (Taylor's Version)</i><br>27.10 <i>1989 (Taylor's Version)</i>",
         2022: "21.10 <i>Midnights</i>",
@@ -404,41 +457,22 @@ def generate_html_report(results, album_colors, taylor_version_mapping):
         2008: "11.11 <i>Fearless</i>",
         2006: "24.10 <i>Taylor Swift</i>"
     }
-
-    # Helper function to calculate segment widths that add up to exactly 100%
-    def calculate_segment_widths(minutes_dict, total_minutes):
-        """Calculate segment widths that add up to exactly 100%"""
-        if total_minutes <= 0:
-            return {album: 0 for album in minutes_dict}
-        
-        # Calculate percentages
-        percentages = {album: (minutes / total_minutes) * 100 for album, minutes in minutes_dict.items()}
-        
-        # Round to 2 decimal places to avoid floating point errors
-        rounded_percentages = {album: round(perc, 2) for album, perc in percentages.items()}
-        
-        # Check if they sum to 100%
-        total_perc = sum(rounded_percentages.values())
-        
-        # Adjust if needed to make sure it sums to exactly 100%
-        if total_perc != 100:
-            # Find the largest segment and adjust it
-            largest_album = max(rounded_percentages.items(), key=lambda x: x[1])[0]
-            rounded_percentages[largest_album] += 100 - total_perc
-            rounded_percentages[largest_album] = round(rounded_percentages[largest_album], 2)
-        
-        return rounded_percentages
-
+    
+    all_time_spotify_minutes = results['all_time_stats']['total_spotify_minutes']
+    all_time_taylor_minutes = results['all_time_stats']['total_taylor_minutes']
+    all_time_other_minutes = all_time_spotify_minutes - all_time_taylor_minutes
+    
+    yearly_other_minutes = {}
+    for year in results['taylor_minutes_by_year']:
+        total_minutes = results['total_minutes_spotify'].get(year, 0)
+        taylor_minutes = results['taylor_minutes_by_year'].get(year, 0)
+        yearly_other_minutes[year] = total_minutes - taylor_minutes
     # Calculate all-time album totals
     total_taylor_minutes = results['all_time_stats']['total_taylor_minutes']
     merged_songs = merge_taylor_versions(results['all_time_stats']['songs'], taylor_version_mapping)
     top_songs = merged_songs.most_common(89)
     
-    # Calculate widths for all albums - THIS MUST COME BEFORE THE HTML TEMPLATE
-    album_widths = calculate_segment_widths(results['total_album_minutes'], total_taylor_minutes)
-
-
-
+    # Get last played date
     last_song_date = max(
         datetime.strptime(entry['ts'], "%Y-%m-%dT%H:%M:%SZ") 
         for entry in results['all_data'] 
@@ -523,7 +557,6 @@ def generate_html_report(results, album_colors, taylor_version_mapping):
         "Fearless",
         "Taylor Swift",
         "Other"
-        
     ]
 
     # Sort albums according to custom order
@@ -532,7 +565,14 @@ def generate_html_report(results, album_colors, taylor_version_mapping):
         key=lambda x: custom_album_order.index(x[0]) if x[0] in custom_album_order else float('inf')
     )
     time_capsule_songs = get_time_capsule_songs(results, taylor_version_mapping)
-
+    
+    # NEW: Get weekly and monthly rankings
+    weekly_ranking = get_this_weeks_ranking(results, taylor_version_mapping)
+    monthly_ranking = get_this_months_ranking(results, taylor_version_mapping)
+    
+    # Get current week number for display
+    current_week = datetime.now().isocalendar()[1]
+    current_month_name = datetime.now().strftime('%B')
 
     html = f"""
 <!DOCTYPE html>
@@ -599,9 +639,10 @@ def generate_html_report(results, album_colors, taylor_version_mapping):
         }}
         
         h1 {{
-            font-size: 2.5rem;
+            font-size: 3.5rem;
             text-transform: uppercase;
             margin-bottom: 0;
+            font-style: italic;
         }}
         
         h2 {{
@@ -1230,7 +1271,6 @@ def generate_html_report(results, album_colors, taylor_version_mapping):
 <body>
     <header>
         <h1>In Summation</h1>
-                <p><i>A brutalist breakdown of your Taylor Swift listening habits</i></p>
 
     </header>
     
@@ -1246,17 +1286,28 @@ def generate_html_report(results, album_colors, taylor_version_mapping):
 
         <div id="home-view" class="stats-view active">
             <h2>👋 Ohh, hi!!</h2>
-            <h3>Welcome to <i>In Summation</i></h3>
-            <p>The most comprehensive musical report of your Swiftly listening habits.</p>
+            <h3>Welcome to <i>In Summation</i>. The story of us, on this swift journey.</h3>
+            <p>
+
             
             {f'''
-                <h3 style="margin-top: 0; color: var(--accent);">"{random_quote['quote']}"</h3>
+            <div class="card" style="background-color: var(--secondary); border: var(--border); box-shadow: var(--shadow); margin: 20px 0; padding: 15px;">
+                <h3 style="margin-top: 0; color: var(--primary);">"{random_quote['quote']}"</h3>
                 <p style="margin: 0; font-size: 0.9rem; color: #666;">
                     — {random_quote['song']} • {random_quote['album']}
                 </p>
+            </div>
             ''' if random_quote else ''}
             
             <h2>From the Vault: <span id="current-date"></span></h2>
+            
+            <!-- Today Through the Years -->
+            <div class="album-row total-minutes-row" style="margin-top: 20px; background-color: var(--highlight);">
+                <div class="album-percentage total-minutes-value" style="text-align: left; color: black; flex-grow: 1; font-weight: 400;">
+                    Do you really wanna know where I was <span id="current-month-name"></span> <span id="day-ordinal"></span>?
+                </div>
+            </div>
+
             {"".join([f"""
             <div class="album-row">
                 <div class="album-info">
@@ -1267,12 +1318,68 @@ def generate_html_report(results, album_colors, taylor_version_mapping):
             </div>
             """ for year, song in sorted(time_capsule_songs.items(), reverse=True)])}
             
+            <!-- Weekly Ranking -->
+            <div class="album-row total-minutes-row" style="margin-top: 30px; background-color: var(--highlight);">
+                <div class="album-percentage total-minutes-value" style="text-align: left; color: black; flex-grow: 1; font-weight: 400;">
+                    But you keep my old scarf from that very <span id="week-ordinal"></span> week
+                </div>
+            </div>
+            <ul class="song-list">
+                {"".join([f"""
+                <li class="song-item">
+                    <div class="album-info">
+                        <div class="song-number" style="background-color: var(--accent);">{i+1}</div>
+                        <span class="song-title">{song}</span>
+                        <div class="play-count">{count} <i class="fa-solid fa-play"></i></div>
+                    </div>
+                </li>
+                """ for i, (song, count) in enumerate(weekly_ranking)])}
+            </ul>
+            
+            <!-- Monthly Ranking -->
+            <div class="album-row total-minutes-row" style="margin-top: 30px; background-color: var(--highlight);">
+                <div class="album-percentage total-minutes-value" style="text-align: left; color: black; flex-grow: 1; font-weight: 400;">
+                    I go back to <span id="current-month">{current_month_name}</span> all the time
+                </div>
+            </div>
+            <ul class="song-list">
+                {"".join([f"""
+                <li class="song-item">
+                    <div class="album-info">
+                        <div class="song-number" style="background-color: var(--accent);">{i+1}</div>
+                        <span class="song-title">{song}</span>
+                        <div class="play-count">{count} <i class="fa-solid fa-play"></i></div>
+                    </div>
+                </li>
+                """ for i, (song, count) in enumerate(monthly_ranking)])}
+            </ul>
+            
             <script>
                 // Update the date when the page loads
                 document.addEventListener('DOMContentLoaded', function() {{
                     const now = new Date();
                     const options = {{ month: 'long', day: 'numeric' }};
                     document.getElementById('current-date').textContent = now.toLocaleDateString('en-US', options);
+                    
+                    // Add month name
+                    document.getElementById('current-month-name').textContent = now.toLocaleDateString('en-US', {{ month: 'long' }});
+                    
+                    // Add ordinal suffix to day
+                    const day = now.getDate();
+                    const ordinal = (day) => {{
+                        if (day > 3 && day < 21) return 'th';
+                        switch (day % 10) {{
+                            case 1: return "st";
+                            case 2: return "nd";
+                            case 3: return "rd";
+                            default: return "th";
+                        }}
+                    }};
+                    document.getElementById('day-ordinal').textContent = day + ordinal(day);
+                    
+                    // Add ordinal suffix to week
+                    const week = {current_week};
+                    document.getElementById('week-ordinal').textContent = week + ordinal(week);
                 }});
             </script>
         </div>
@@ -1300,13 +1407,23 @@ def generate_html_report(results, album_colors, taylor_version_mapping):
             <div id="all-time-year-view" class="stats-view active">
                 <div class="stacked-bar">
                     {"".join([f"""
-                    <div class="stacked-segment" style="width: {album_widths.get(album, 0)}%; background-color: {album_colors.get(album, '#FFFFFF')};">
+                    <div class="stacked-segment" style="width: {(minutes / all_time_spotify_minutes) * 100 if all_time_spotify_minutes > 0 else 0}%; background-color: {album_colors.get(album, '#FFFFFF')};">
                         <div class="stacked-segment-tooltip">
                             <b>{album}</b><br>
-                            {round(minutes)} min ({album_widths.get(album, 0):.1f}%)
+                            {round(minutes)} min ({(minutes / all_time_spotify_minutes) * 100 if all_time_spotify_minutes > 0 else 0:.1f}%)
                         </div>
                     </div>
                     """ for album, minutes in sorted(results['total_album_minutes'].items(), key=lambda x: x[1], reverse=True)])}
+                    
+                    <!-- Other Artists Segment -->
+                    {f"""
+                    <div class="stacked-segment" style="width: {(all_time_other_minutes / all_time_spotify_minutes) * 100 if all_time_spotify_minutes > 0 else 0}%; background-color: #CCCCCC;">
+                        <div class="stacked-segment-tooltip">
+                            <b>Other Artists</b><br>
+                            {round(all_time_other_minutes)} min ({(all_time_other_minutes / all_time_spotify_minutes) * 100 if all_time_spotify_minutes > 0 else 0:.1f}%)
+                        </div>
+                    </div>
+                    """ if all_time_other_minutes > 0 else ""}
                 </div>
                 
                 {"".join([f"""
@@ -1315,7 +1432,7 @@ def generate_html_report(results, album_colors, taylor_version_mapping):
                         <div class="album-color" style="background-color: {album_colors.get(album, '#FFFFFF')};"></div>
                         <span>{album}</span>
                     </div>
-                    <div class="album-percentage">{album_widths.get(album, 0):.1f}%</div>
+                    <div class="album-percentage">{(minutes / total_taylor_minutes) * 100 if total_taylor_minutes > 0 else 0:.1f}%</div>
                 </div>
                 """ for album, minutes in sorted(results['total_album_minutes'].items(), key=lambda x: x[1], reverse=True)])}
                 
@@ -1329,18 +1446,28 @@ def generate_html_report(results, album_colors, taylor_version_mapping):
             </div>
             
             <!-- Individual Year Views -->
-            {"".join([f"""
-            <div id="{year}-year-view" class="stats-view">
-                <div class="stacked-bar">
-                    {"".join([f"""
-                    <div class="stacked-segment" style="width: {calculate_segment_widths(results['album_minutes_by_year'].get(year, {}), results['taylor_minutes_by_year'][year]).get(album, 0)}%; background-color: {album_colors.get(album, '#FFFFFF')};">
-                        <div class="stacked-segment-tooltip">
-                            <b>{album}</b><br>
-                            {round(minutes)} min ({calculate_segment_widths(results['album_minutes_by_year'].get(year, {}), results['taylor_minutes_by_year'][year]).get(album, 0):.1f}%)
-                        </div>
+        {"".join([f"""
+        <div id="{year}-year-view" class="stats-view">
+            <div class="stacked-bar">
+                {"".join([f"""
+                <div class="stacked-segment" style="width: {(minutes / results['total_minutes_spotify'].get(year, 0)) * 100 if results['total_minutes_spotify'].get(year, 0) > 0 else 0}%; background-color: {album_colors.get(album, '#FFFFFF')};">
+                    <div class="stacked-segment-tooltip">
+                        <b>{album}</b><br>
+                        {round(minutes)} min ({(minutes / results['total_minutes_spotify'].get(year, 0)) * 100 if results['total_minutes_spotify'].get(year, 0) > 0 else 0:.1f}%)
                     </div>
-                    """ for album, minutes in sorted(results['album_minutes_by_year'].get(year, {}).items(), key=lambda x: x[1], reverse=True)])}
                 </div>
+                """ for album, minutes in sorted(results['album_minutes_by_year'].get(year, {}).items(), key=lambda x: x[1], reverse=True)])}
+                
+                <!-- Other Artists Segment -->
+                {f"""
+                <div class="stacked-segment" style="width: {(yearly_other_minutes.get(year, 0) / results['total_minutes_spotify'].get(year, 0)) * 100 if results['total_minutes_spotify'].get(year, 0) > 0 else 0}%; background-color: #CCCCCC;">
+                    <div class="stacked-segment-tooltip">
+                        <b>Other Artists</b><br>
+                        {round(yearly_other_minutes.get(year, 0))} min ({(yearly_other_minutes.get(year, 0) / results['total_minutes_spotify'].get(year, 0)) * 100 if results['total_minutes_spotify'].get(year, 0) > 0 else 0:.1f}%)
+                    </div>
+                </div>
+                """ if yearly_other_minutes.get(year, 0) > 0 else ""}
+            </div>
                 
                 {"".join([f"""
                 <div class="album-row">
@@ -1348,10 +1475,21 @@ def generate_html_report(results, album_colors, taylor_version_mapping):
                         <div class="album-color" style="background-color: {album_colors.get(album, '#FFFFFF')};"></div>
                         <span>{album}</span>
                     </div>
-                    <div class="album-percentage">{calculate_segment_widths(results['album_minutes_by_year'].get(year, {}), results['taylor_minutes_by_year'][year]).get(album, 0):.1f}%</div>
+                    <div class="album-percentage">{(minutes / results['total_minutes_spotify'].get(year, 0)) * 100 if results['total_minutes_spotify'].get(year, 0) > 0 else 0:.1f}%</div>
                 </div>
                 """ for album, minutes in sorted(results['album_minutes_by_year'].get(year, {}).items(), key=lambda x: x[1], reverse=True)])}
-                
+
+                <!-- Add Other Artists row if there are other artists -->
+                {f"""
+                <div class="album-row">
+                    <div class="album-info">
+                        <div class="album-color" style="background-color: #CCCCCC;"></div>
+                        <span>Other Artists</span>
+                    </div>
+                    <div class="album-percentage">{(yearly_other_minutes.get(year, 0) / results['total_minutes_spotify'].get(year, 0)) * 100 if results['total_minutes_spotify'].get(year, 0) > 0 else 0:.1f}%</div>
+                </div>
+                """ if yearly_other_minutes.get(year, 0) > 0 else ""}
+                                
                 <div class="album-row total-minutes-row">
                     <div class="album-info">
                         <div class="album-color" style="background-color: var(--accent);"></div>
@@ -1407,7 +1545,7 @@ def generate_html_report(results, album_colors, taylor_version_mapping):
     <button class="nav-tab active" onclick="showAlbumView('all-albums')">Swiftie Era</button>
     {"".join([f"""
     <button class="nav-tab" onclick="showAlbumView('{album}')">{album}</button>
-    """ for album in custom_album_order if album in results['total_album_minutes']])}
+    """ for album in custom_album_order if album in results['total_album_minutes'] or album == "Other"])}
 </div>
     
     <!-- All Albums View -->
@@ -1415,15 +1553,24 @@ def generate_html_report(results, album_colors, taylor_version_mapping):
         <h2>Yearly Breakdown</h2>
 
         
-        <div class="stacked-bar">
-            {"".join([f"""
-                <div class="stacked-segment" style="width: {album_widths.get(album, 0)}%; background-color: {album_colors.get(album, '#FFFFFF')};">                <div class="stacked-segment-tooltip">
-                    <b>{album}</b><br>
-                    {round(minutes)} min ({(minutes / total_taylor_minutes) * 100 if total_taylor_minutes > 0 else 0:.1f}%)
-                </div>
+    <div class="stacked-bar">
+        {"".join([f"""
+        <div class="stacked-segment" style="width: {(minutes / total_taylor_minutes) * 100 if total_taylor_minutes > 0 else 0}%; background-color: {album_colors.get(album, '#FFFFFF')};">
+            <div class="stacked-segment-tooltip">
+                <b>{album}</b><br>
+                {round(minutes)} min ({(minutes / total_taylor_minutes) * 100 if total_taylor_minutes > 0 else 0:.1f}%)
             </div>
-            """ for album, minutes in sorted(results['total_album_minutes'].items(), key=lambda x: x[1], reverse=True)])}
         </div>
+        """ for album, minutes in sorted(results['total_album_minutes'].items(), key=lambda x: x[1], reverse=True)])}
+        {"".join([f"""
+        <div class="stacked-segment" style="width: 0%; background-color: {album_colors.get('Other', '#FFFFFF')};">
+            <div class="stacked-segment-tooltip">
+                <b>Other</b><br>
+                0 min (0%)
+            </div>
+        </div>
+        """ if "Other" not in results['total_album_minutes'] else ""])}
+    </div>
         
         {"".join([f"""
         <div class="album-row">
@@ -1449,29 +1596,16 @@ def generate_html_report(results, album_colors, taylor_version_mapping):
     <div id="{album}-album-view" class="stats-view">
        
 
-        <div class="album-info-box" style="background-color: {album_colors.get(album, '#FFFFFF')}30;">  <!-- Added 30% opacity (hex '30') -->
-            <div class="album-cover">
-                <img src="{album_info.get(album, {}).get('image', 'default.jpg')}" alt="{album} Cover">
-            </div>
-            <div class="album-details">
-                <h3>{album}<br><i>{album_info.get(album, {}).get('fun_fact', '')}</i></h3>
-                <div class="album-meta">
-                    <p><b>Released:</b> {album_info.get(album, {}).get('release_date', 'N/A')}</p>
-                    <p><b>Taylor's Version:</b> {album_info.get(album, {}).get('taylor_version', 'N/A')}</p>                    
-                </div>
-            </div>
-        </div>
-
         <h2>Yearly Breakdown</h2>
 
-        <div class="stacked-bar">
+         <div class="stacked-bar">
             {"".join([f"""
             <div class="stacked-segment {'highlighted' if a == album else 'shaded'}" 
-                style="width: {album_widths.get(a, 0)}%; 
+                 style="width: {(m / total_taylor_minutes) * 100 if total_taylor_minutes > 0 else 0}%; 
                         background-color: {album_colors.get(a, '#FFFFFF')};">
                 <div class="stacked-segment-tooltip">
                     <b>{a}</b><br>
-                    {round(m)} min ({album_widths.get(a, 0):.1f}%)
+                    {round(m)} min ({(m / total_taylor_minutes) * 100 if total_taylor_minutes > 0 else 0:.1f}%)
                 </div>
             </div>
             """ for a, m in sorted(results['total_album_minutes'].items(), key=lambda x: x[1], reverse=True)])}
@@ -1823,81 +1957,8 @@ def generate_html_report(results, album_colors, taylor_version_mapping):
 
 
 
+# Use the full path to your file
+mapped_file = r"C:\Users\mica_\Documents\202X - VisualStudio\Spotify\Final\taylor_swift_mapping_template_MAPPED_ONLY.json"
+results = analyze_taylor_swift_data(mapped_file)
 
-# Define your mappings
-collaborative_songs_mapping = {
-    "Us": "Gracie Abrams feat. Taylor Swift",
-    "The Alcott": "The National feat. Taylor Swift",
-    "Renegade": "Big Red Machine feat. Taylor Swift",
-    "Birch": "Big Red Machine feat. Taylor Swift",
-    "Both Of Us": "B.o.B feat. Taylor Swift",
-    "Highway Don't Care": "Tim McGraw feat. Taylor Swift",
-    "Two Is Better Than One": "Boys Like Girls feat. Taylor Swift",
-    "Half Of My Heart": "John Mayer feat. Taylor Swift",
-}
-
-collaborative_albums = {
-    "Gracie Abrams feat. Taylor Swift": "Other",
-    "The National feat. Taylor Swift": "Other",
-    "Big Red Machine feat. Taylor Swift": "Other",
-    "B.o.B feat. Taylor Swift": "Other",
-    "Tim McGraw feat. Taylor Swift": "Other",
-    "Boys Like Girls feat. Taylor Swift": "Other",
-    "John Mayer feat. Taylor Swift": "Other",
-}
-
-# Call the function with the new parameters
-results = analyze_taylor_swift_data(
-    file_names=file_names,
-    album_mapping=album_mapping,  # Your existing album mapping
-    taylor_version_mapping=taylor_version_mapping,  # Your existing TV mapping
-    collaborative_songs_mapping=collaborative_songs_mapping,
-    collaborative_albums=collaborative_albums
-)
-
-# Access collaborative stats
-print("Collaborative songs stats:")
-for artist, songs in results['collaborative_stats'].items():
-    print(f"{artist}: {dict(songs)}")
-
-    
-# Collaborative songs mapping - identifies songs featuring Taylor Swift
-collaborative_songs_mapping = {
-    "us. (feat. Taylor Swift)": "us. - <i>Gracie Abrams</i>",
-    "The Alcott (feat. Taylor Swift)": "The Alcott - <i>The National</i>",
-    "Two Is Better Than One (feat. Taylor Swift)": "Two Is Better Than One - <i>Boys Like Girls</i>",
-    "Gasoline (feat. Taylor Swift)": "Gasoline - <i>HAIM</i>",
-    "The Joker And The Queen (feat. Taylor Swift)": "The Joker And The Queen - <i>Ed Sheeran</i>",
-    "Birch": "Birch - <i>Big Red Machine</i>",
-    "Renegade": "Renegade - <i>Big Red Machine</i>",
-    "Both Of Us": "Both Of Us - <i>B.o.B</i>",
-    "Highway Don't Care": "Highway Don't Care - <i>Tim McGraw</i>",
-    "Half Of My Heart": "Half Of My Heart - <i>John Mayer</i>",
-}
-
-# Collaborative albums mapping - maps artists to "Other" album
-collaborative_albums = {
-    "Gracie Abrams": "Other",
-    "The National": "Other",
-    "Big Red Machine": "Other",
-    "HAIM": "Other",
-    "Ed Sheeran": "Other",
-    "B.o.B": "Other",
-    "Tim McGraw": "Other",
-    "Boys Like Girls": "Other",
-    "John Mayer": "Other",
-}
-
-# Call the function with the new parameters
-results = analyze_taylor_swift_data(
-    file_names=file_names,
-    album_mapping=album_mapping,
-    taylor_version_mapping=taylor_version_mapping,
-    collaborative_songs_mapping=collaborative_songs_mapping,
-    collaborative_albums=collaborative_albums
-)
-
-
-
-# Generate the HTML report
 generate_html_report(results, album_colors, taylor_version_mapping)
