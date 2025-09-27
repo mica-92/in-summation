@@ -426,6 +426,10 @@ def get_top_songs_for_album(results, album_name, taylor_version_mapping):
     return merged_songs.most_common()
 
 
+
+
+
+
 def generate_html_report(results, album_colors, taylor_version_mapping):
     """
     Generate an HTML report with toggleable yearly and album views.
