@@ -1302,7 +1302,7 @@ def generate_html_report(results, album_colors, taylor_version_mapping):
     </div>
     ''' if random_quote else ''}
     
-    <h2>From the Vault: <span id="current-date"></span></h2>
+    <h2>From the Vault <span id="current-date" style="display: none;"></span></h2>
     
     <!-- Today Through the Years -->
     <div class="album-row total-minutes-row" style="margin-top: 20px; background-color: var(--highlight);">
