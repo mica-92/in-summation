@@ -1956,9 +1956,9 @@ def generate_html_report(results, album_colors, taylor_version_mapping):
 
 
 
-
-# Use the full path to your file
-mapped_file = r"C:\Users\mica_\Documents\202X - VisualStudio\Spotify\Final\taylor_swift_mapping_template_MAPPED_ONLY.json"
+# If the JSON file is in the same directory as your Python script
+mapped_file = "taylor_swift_mapping_template_MAPPED_ONLY.json"
 results = analyze_taylor_swift_data(mapped_file)
 
 generate_html_report(results, album_colors, taylor_version_mapping)
+
