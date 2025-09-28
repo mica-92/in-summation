@@ -16,7 +16,7 @@ jobs:
           python-version: '3.x'
           
       - name: Run update script
-        run: python insummation.py  # Your script name
+        run: python insummation_facts.py  # Your script name
         
       - name: Commit and push changes
         run: |
