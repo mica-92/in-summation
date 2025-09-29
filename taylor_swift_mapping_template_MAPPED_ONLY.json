@@ -58,7 +58,7 @@
   {
     "ts": "2017-06-19T14:53:07Z",
     "ms_played": 96216,
-    "master_metadata_track_name": "Drops Of Jupiter - Train Cover",
+    "master_metadata_track_name": "Drops Of Jupiter - <i class=\"fa-solid fa-train\"></i> Cover",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:0WQGZK4x9PdXLoB7AQwFNL"
@@ -18882,7 +18882,7 @@
   {
     "ts": "2019-12-20T19:05:22Z",
     "ms_played": 922,
-    "master_metadata_track_name": "Christmas Tree Farm - Holiday Collection",
+    "master_metadata_track_name": "Christmas Tree Farm <i>- Holiday Collection</i>",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:2mvabkN1i2gLnGAPUVdwek"
@@ -18898,7 +18898,7 @@
   {
     "ts": "2019-12-20T19:05:25Z",
     "ms_played": 1278,
-    "master_metadata_track_name": "Christmas Tree Farm - Holiday Collection",
+    "master_metadata_track_name": "Christmas Tree Farm <i>- Holiday Collection</i>",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:2mvabkN1i2gLnGAPUVdwek"
@@ -19098,7 +19098,7 @@
   {
     "ts": "2020-01-05T14:04:45Z",
     "ms_played": 108608,
-    "master_metadata_track_name": "Christmas Tree Farm - Holiday Collection",
+    "master_metadata_track_name": "Christmas Tree Farm <i>- Holiday Collection</i>",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:2mvabkN1i2gLnGAPUVdwek"
@@ -21570,7 +21570,7 @@
   {
     "ts": "2020-02-29T13:56:58Z",
     "ms_played": 16871,
-    "master_metadata_track_name": "Christmas Tree Farm - Holiday Collection",
+    "master_metadata_track_name": "Christmas Tree Farm <i>- Holiday Collection</i>",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:2mvabkN1i2gLnGAPUVdwek"
@@ -22018,7 +22018,7 @@
   {
     "ts": "2020-03-12T23:53:35Z",
     "ms_played": 11600,
-    "master_metadata_track_name": "Christmas Tree Farm - Holiday Collection",
+    "master_metadata_track_name": "Christmas Tree Farm <i>- Holiday Collection</i>",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:2mvabkN1i2gLnGAPUVdwek"
@@ -22434,7 +22434,7 @@
   {
     "ts": "2020-03-13T12:46:15Z",
     "ms_played": 39241,
-    "master_metadata_track_name": "Christmas Tree Farm - Holiday Collection",
+    "master_metadata_track_name": "Christmas Tree Farm <i>- Holiday Collection</i>",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:2mvabkN1i2gLnGAPUVdwek"
@@ -22906,7 +22906,7 @@
   {
     "ts": "2020-03-20T11:56:32Z",
     "ms_played": 62328,
-    "master_metadata_track_name": "Christmas Tree Farm - Holiday Collection",
+    "master_metadata_track_name": "Christmas Tree Farm <i>- Holiday Collection</i>",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:2mvabkN1i2gLnGAPUVdwek"
@@ -23826,7 +23826,7 @@
   {
     "ts": "2020-03-26T13:46:48Z",
     "ms_played": 840,
-    "master_metadata_track_name": "Christmas Tree Farm - Holiday Collection",
+    "master_metadata_track_name": "Christmas Tree Farm <i>- Holiday Collection</i>",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:2mvabkN1i2gLnGAPUVdwek"
@@ -24594,7 +24594,7 @@
   {
     "ts": "2020-04-15T07:50:21Z",
     "ms_played": 188981,
-    "master_metadata_track_name": "Christmas Tree Farm - Holiday Collection",
+    "master_metadata_track_name": "Christmas Tree Farm <i>- Holiday Collection</i>",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:2mvabkN1i2gLnGAPUVdwek"
@@ -24602,7 +24602,7 @@
   {
     "ts": "2020-04-15T13:53:46Z",
     "ms_played": 5168,
-    "master_metadata_track_name": "Christmas Tree Farm - Holiday Collection",
+    "master_metadata_track_name": "Christmas Tree Farm <i>- Holiday Collection</i>",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:2mvabkN1i2gLnGAPUVdwek"
@@ -25578,7 +25578,7 @@
   {
     "ts": "2020-05-19T22:37:45Z",
     "ms_played": 853,
-    "master_metadata_track_name": "Christmases When You Were Mine - Holiday Collection",
+    "master_metadata_track_name": "Christmases When You Were Mine <i>- Holiday Collection</i>",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:1g09DZjQ7yBommCT6POY2n"
@@ -25658,7 +25658,7 @@
   {
     "ts": "2020-05-19T22:45:50Z",
     "ms_played": 35378,
-    "master_metadata_track_name": "White Christmas - Holiday Collection",
+    "master_metadata_track_name": "White Christmas <i>- Holiday Collection</i>",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:7GZ3KDorsc1yWndEtzGTjf"
@@ -25722,7 +25722,7 @@
   {
     "ts": "2020-05-19T22:45:57Z",
     "ms_played": 0,
-    "master_metadata_track_name": "Santa Baby - Holiday Collection",
+    "master_metadata_track_name": "Santa Baby <i>- Holiday Collection</i>",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:71IScwIe7bcIlpnlkbKVQw"
@@ -25738,7 +25738,7 @@
   {
     "ts": "2020-05-20T15:30:38Z",
     "ms_played": 3520,
-    "master_metadata_track_name": "Santa Baby - Holiday Collection",
+    "master_metadata_track_name": "Santa Baby <i>- Holiday Collection</i>",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:71IScwIe7bcIlpnlkbKVQw"
@@ -25786,7 +25786,7 @@
   {
     "ts": "2020-05-20T15:50:11Z",
     "ms_played": 20209,
-    "master_metadata_track_name": "Christmas Tree Farm - Holiday Collection",
+    "master_metadata_track_name": "Christmas Tree Farm <i>- Holiday Collection</i>",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:2mvabkN1i2gLnGAPUVdwek"
@@ -26170,7 +26170,7 @@
   {
     "ts": "2020-05-21T12:05:26Z",
     "ms_played": 14471,
-    "master_metadata_track_name": "September - Earth, Wind & Fire Cover",
+    "master_metadata_track_name": "September - <i class=\"fa-solid fa-tree\"> </i><i class=\"fa-solid fa-wind\"> </i><i class=\"fa-solid fa-fire\"></i> Cover",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:5eGX87IiKsGuzS3iw4CfCX"
@@ -26186,7 +26186,7 @@
   {
     "ts": "2020-05-21T12:05:34Z",
     "ms_played": 7023,
-    "master_metadata_track_name": "September - Earth, Wind & Fire Cover",
+    "master_metadata_track_name": "September - <i class=\"fa-solid fa-tree\"> </i><i class=\"fa-solid fa-wind\"> </i><i class=\"fa-solid fa-fire\"></i> Cover",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:5eGX87IiKsGuzS3iw4CfCX"
@@ -26434,7 +26434,7 @@
   {
     "ts": "2020-05-21T13:55:23Z",
     "ms_played": 1222,
-    "master_metadata_track_name": "Christmas Tree Farm - Holiday Collection",
+    "master_metadata_track_name": "Christmas Tree Farm <i>- Holiday Collection</i>",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:2mvabkN1i2gLnGAPUVdwek"
@@ -26770,7 +26770,7 @@
   {
     "ts": "2020-05-21T17:57:39Z",
     "ms_played": 749,
-    "master_metadata_track_name": "Christmas Tree Farm - Holiday Collection",
+    "master_metadata_track_name": "Christmas Tree Farm <i>- Holiday Collection</i>",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:2mvabkN1i2gLnGAPUVdwek"
@@ -29146,7 +29146,7 @@
   {
     "ts": "2020-07-10T19:52:57Z",
     "ms_played": 228026,
-    "master_metadata_track_name": "Christmas Tree Farm - Holiday Collection",
+    "master_metadata_track_name": "Christmas Tree Farm <i>- Holiday Collection</i>",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:2mvabkN1i2gLnGAPUVdwek"
@@ -29682,7 +29682,7 @@
   {
     "ts": "2020-07-24T16:27:02Z",
     "ms_played": 199690,
-    "master_metadata_track_name": "Silent Night - Holiday Collection",
+    "master_metadata_track_name": "Silent Night <i>- Holiday Collection</i>",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:1cJkUN5LAotktryx2nPCr7"
@@ -29818,7 +29818,7 @@
   {
     "ts": "2020-07-24T16:35:37Z",
     "ms_played": 990,
-    "master_metadata_track_name": "Santa Baby - Holiday Collection",
+    "master_metadata_track_name": "Santa Baby <i>- Holiday Collection</i>",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:71IScwIe7bcIlpnlkbKVQw"
@@ -31578,7 +31578,7 @@
   {
     "ts": "2020-08-09T16:20:29Z",
     "ms_played": 1017,
-    "master_metadata_track_name": "Christmas Tree Farm - Holiday Collection",
+    "master_metadata_track_name": "Christmas Tree Farm <i>- Holiday Collection</i>",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:2mvabkN1i2gLnGAPUVdwek"
@@ -51034,7 +51034,7 @@
   {
     "ts": "2021-01-03T16:56:01Z",
     "ms_played": 67811,
-    "master_metadata_track_name": "Sweeter Than Fiction - From \"One Chance\" Soundtrack",
+    "master_metadata_track_name": "Sweeter Than Fiction - <i>\"One Chance\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:0RFCHlNuTeUHIB36VuVbOL"
@@ -51042,7 +51042,7 @@
   {
     "ts": "2021-01-03T16:57:46Z",
     "ms_played": 104647,
-    "master_metadata_track_name": "Christmas Tree Farm - Holiday Collection",
+    "master_metadata_track_name": "Christmas Tree Farm <i>- Holiday Collection</i>",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:2ziekbazMdLS2Gtdo78RID"
@@ -51050,7 +51050,7 @@
   {
     "ts": "2021-01-03T17:01:53Z",
     "ms_played": 247154,
-    "master_metadata_track_name": "I Don't Wanna Live Forever - \"Fifty Shades Darker\" Soundtrack",
+    "master_metadata_track_name": "I Don't Wanna Live Forever - <i>\"Fifty Shades Darker\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:55n9yjI6qqXh5F2mYvUc2y"
@@ -53290,7 +53290,7 @@
   {
     "ts": "2021-01-23T15:27:21Z",
     "ms_played": 9640,
-    "master_metadata_track_name": "Sweeter Than Fiction - From \"One Chance\" Soundtrack",
+    "master_metadata_track_name": "Sweeter Than Fiction - <i>\"One Chance\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:0RFCHlNuTeUHIB36VuVbOL"
@@ -58914,7 +58914,7 @@
   {
     "ts": "2021-03-05T20:23:28Z",
     "ms_played": 154000,
-    "master_metadata_track_name": "White Christmas - Holiday Collection",
+    "master_metadata_track_name": "White Christmas <i>- Holiday Collection</i>",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:7GZ3KDorsc1yWndEtzGTjf"
@@ -61018,7 +61018,7 @@
   {
     "ts": "2021-03-20T16:56:18Z",
     "ms_played": 75516,
-    "master_metadata_track_name": "Crazier - Hannah Montana The Movie Soundtrack",
+    "master_metadata_track_name": "Crazier - <i>\"Hannah Montana: The Movie\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:5vyxXfD5gLlyPxGZMEjtmd"
@@ -61026,7 +61026,7 @@
   {
     "ts": "2021-03-20T16:56:18Z",
     "ms_played": 75516,
-    "master_metadata_track_name": "Crazier - Hannah Montana The Movie Soundtrack",
+    "master_metadata_track_name": "Crazier - <i>\"Hannah Montana: The Movie\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:5vyxXfD5gLlyPxGZMEjtmd"
@@ -61090,7 +61090,7 @@
   {
     "ts": "2021-03-20T16:56:28Z",
     "ms_played": 438,
-    "master_metadata_track_name": "Eyes Open - \"Hunger Games\" Soundtrack",
+    "master_metadata_track_name": "Eyes Open - <i>\"Hunger Games\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:7wjbSn8QHsxqKXU5M0jXGM"
@@ -61098,7 +61098,7 @@
   {
     "ts": "2021-03-20T16:56:28Z",
     "ms_played": 438,
-    "master_metadata_track_name": "Eyes Open - \"Hunger Games\" Soundtrack",
+    "master_metadata_track_name": "Eyes Open - <i>\"Hunger Games\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:7wjbSn8QHsxqKXU5M0jXGM"
@@ -94274,7 +94274,7 @@
   {
     "ts": "2021-12-13T00:12:31Z",
     "ms_played": 191946,
-    "master_metadata_track_name": "Crazier - Hannah Montana The Movie Soundtrack",
+    "master_metadata_track_name": "Crazier - <i>\"Hannah Montana: The Movie\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:5vyxXfD5gLlyPxGZMEjtmd"
@@ -94978,7 +94978,7 @@
   {
     "ts": "2021-12-18T21:20:52Z",
     "ms_played": 212362,
-    "master_metadata_track_name": "Christmas Tree Farm - Holiday Collection",
+    "master_metadata_track_name": "Christmas Tree Farm <i>- Holiday Collection</i>",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:2mvabkN1i2gLnGAPUVdwek"
@@ -95434,7 +95434,7 @@
   {
     "ts": "2022-01-01T01:44:32Z",
     "ms_played": 153152,
-    "master_metadata_track_name": "Christmas Tree Farm - Holiday Collection",
+    "master_metadata_track_name": "Christmas Tree Farm <i>- Holiday Collection</i>",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:2mvabkN1i2gLnGAPUVdwek"
@@ -95442,7 +95442,7 @@
   {
     "ts": "2022-01-01T01:52:28Z",
     "ms_played": 157200,
-    "master_metadata_track_name": "Christmas Must Be Something More - Holiday Collection",
+    "master_metadata_track_name": "Christmas Must Be Something More <i>- Holiday Collection</i>",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:31JVjy3XWnh6C2zf4kLCXN"
@@ -124722,7 +124722,7 @@
   {
     "ts": "2022-06-24T13:28:19Z",
     "ms_played": 264438,
-    "master_metadata_track_name": "Carolina - \"Where The Crawdads Sing\" Soundtrack",
+    "master_metadata_track_name": "Carolina - <i>\"Where The Crawdads Sing\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:4axSuOg3BqsowKjRpj59RU"
@@ -124730,7 +124730,7 @@
   {
     "ts": "2022-06-24T19:20:38Z",
     "ms_played": 139481,
-    "master_metadata_track_name": "Carolina - \"Where The Crawdads Sing\" Soundtrack",
+    "master_metadata_track_name": "Carolina - <i>\"Where The Crawdads Sing\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:12xIjI9A9UlB6zEc7kyZ06"
@@ -124738,7 +124738,7 @@
   {
     "ts": "2022-06-24T19:20:48Z",
     "ms_played": 908,
-    "master_metadata_track_name": "Carolina - \"Where The Crawdads Sing\" Soundtrack",
+    "master_metadata_track_name": "Carolina - <i>\"Where The Crawdads Sing\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:12xIjI9A9UlB6zEc7kyZ06"
@@ -124746,7 +124746,7 @@
   {
     "ts": "2022-06-24T19:20:50Z",
     "ms_played": 722,
-    "master_metadata_track_name": "Carolina - \"Where The Crawdads Sing\" Soundtrack",
+    "master_metadata_track_name": "Carolina - <i>\"Where The Crawdads Sing\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:12xIjI9A9UlB6zEc7kyZ06"
@@ -124754,7 +124754,7 @@
   {
     "ts": "2022-06-24T19:22:00Z",
     "ms_played": 69201,
-    "master_metadata_track_name": "Carolina - \"Where The Crawdads Sing\" Soundtrack",
+    "master_metadata_track_name": "Carolina - <i>\"Where The Crawdads Sing\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:4axSuOg3BqsowKjRpj59RU"
@@ -124762,7 +124762,7 @@
   {
     "ts": "2022-06-24T19:24:44Z",
     "ms_played": 163937,
-    "master_metadata_track_name": "Carolina - \"Where The Crawdads Sing\" Soundtrack",
+    "master_metadata_track_name": "Carolina - <i>\"Where The Crawdads Sing\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:12xIjI9A9UlB6zEc7kyZ06"
@@ -124770,7 +124770,7 @@
   {
     "ts": "2022-06-24T19:24:56Z",
     "ms_played": 11498,
-    "master_metadata_track_name": "Carolina - \"Where The Crawdads Sing\" Soundtrack",
+    "master_metadata_track_name": "Carolina - <i>\"Where The Crawdads Sing\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:4axSuOg3BqsowKjRpj59RU"
@@ -124834,7 +124834,7 @@
   {
     "ts": "2022-06-24T20:02:50Z",
     "ms_played": 118218,
-    "master_metadata_track_name": "Carolina - \"Where The Crawdads Sing\" Soundtrack",
+    "master_metadata_track_name": "Carolina - <i>\"Where The Crawdads Sing\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:12xIjI9A9UlB6zEc7kyZ06"
@@ -125210,7 +125210,7 @@
   {
     "ts": "2022-06-27T18:59:32Z",
     "ms_played": 685,
-    "master_metadata_track_name": "Carolina - \"Where The Crawdads Sing\" Soundtrack",
+    "master_metadata_track_name": "Carolina - <i>\"Where The Crawdads Sing\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:4axSuOg3BqsowKjRpj59RU"
@@ -125218,7 +125218,7 @@
   {
     "ts": "2022-06-27T18:59:39Z",
     "ms_played": 6179,
-    "master_metadata_track_name": "Carolina - \"Where The Crawdads Sing\" Soundtrack",
+    "master_metadata_track_name": "Carolina - <i>\"Where The Crawdads Sing\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:4axSuOg3BqsowKjRpj59RU"
@@ -125458,7 +125458,7 @@
   {
     "ts": "2022-06-27T19:53:02Z",
     "ms_played": 197540,
-    "master_metadata_track_name": "Carolina - \"Where The Crawdads Sing\" Soundtrack",
+    "master_metadata_track_name": "Carolina - <i>\"Where The Crawdads Sing\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:4axSuOg3BqsowKjRpj59RU"
@@ -126002,7 +126002,7 @@
   {
     "ts": "2022-06-29T16:16:23Z",
     "ms_played": 3446,
-    "master_metadata_track_name": "Carolina - \"Where The Crawdads Sing\" Soundtrack",
+    "master_metadata_track_name": "Carolina - <i>\"Where The Crawdads Sing\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:4axSuOg3BqsowKjRpj59RU"
@@ -128658,7 +128658,7 @@
   {
     "ts": "2022-07-21T19:10:11Z",
     "ms_played": 264438,
-    "master_metadata_track_name": "Carolina - \"Where The Crawdads Sing\" Soundtrack",
+    "master_metadata_track_name": "Carolina - <i>\"Where The Crawdads Sing\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:4axSuOg3BqsowKjRpj59RU"
@@ -129498,7 +129498,7 @@
   {
     "ts": "2022-08-07T14:15:01Z",
     "ms_played": 263774,
-    "master_metadata_track_name": "Carolina - \"Where The Crawdads Sing\" Soundtrack",
+    "master_metadata_track_name": "Carolina - <i>\"Where The Crawdads Sing\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:4axSuOg3BqsowKjRpj59RU"
@@ -130506,7 +130506,7 @@
   {
     "ts": "2022-08-13T19:26:53Z",
     "ms_played": 330002,
-    "master_metadata_track_name": "Birch - (feat. Big Red Machine)",
+    "master_metadata_track_name": "Birch (feat. Big Red Machine)",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:7wo2UNeQBowm28hfAJsEMz"
@@ -130522,7 +130522,7 @@
   {
     "ts": "2022-08-13T20:31:33Z",
     "ms_played": 329816,
-    "master_metadata_track_name": "Birch - (feat. Big Red Machine)",
+    "master_metadata_track_name": "Birch (feat. Big Red Machine)",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:7wo2UNeQBowm28hfAJsEMz"
@@ -132522,7 +132522,7 @@
   {
     "ts": "2022-08-29T20:51:54Z",
     "ms_played": 263250,
-    "master_metadata_track_name": "Carolina - \"Where The Crawdads Sing\" Soundtrack",
+    "master_metadata_track_name": "Carolina - <i>\"Where The Crawdads Sing\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:4axSuOg3BqsowKjRpj59RU"
@@ -132738,7 +132738,7 @@
   {
     "ts": "2022-08-30T00:09:53Z",
     "ms_played": 227648,
-    "master_metadata_track_name": "Christmas Tree Farm - Holiday Collection",
+    "master_metadata_track_name": "Christmas Tree Farm <i>- Holiday Collection</i>",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:2mvabkN1i2gLnGAPUVdwek"
@@ -134226,7 +134226,7 @@
   {
     "ts": "2022-09-02T01:06:29Z",
     "ms_played": 263910,
-    "master_metadata_track_name": "Carolina - \"Where The Crawdads Sing\" Soundtrack",
+    "master_metadata_track_name": "Carolina - <i>\"Where The Crawdads Sing\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:4axSuOg3BqsowKjRpj59RU"
@@ -134634,7 +134634,7 @@
   {
     "ts": "2022-09-02T15:22:05Z",
     "ms_played": 0,
-    "master_metadata_track_name": "Crazier - Hannah Montana The Movie Soundtrack",
+    "master_metadata_track_name": "Crazier - <i>\"Hannah Montana: The Movie\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:5vyxXfD5gLlyPxGZMEjtmd"
@@ -134738,7 +134738,7 @@
   {
     "ts": "2022-09-02T15:51:00Z",
     "ms_played": 54308,
-    "master_metadata_track_name": "September - Earth, Wind & Fire Cover",
+    "master_metadata_track_name": "September - <i class=\"fa-solid fa-tree\"> </i><i class=\"fa-solid fa-wind\"> </i><i class=\"fa-solid fa-fire\"></i> Cover",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:5eGX87IiKsGuzS3iw4CfCX"
@@ -135250,7 +135250,7 @@
   {
     "ts": "2022-09-07T12:34:27Z",
     "ms_played": 163287,
-    "master_metadata_track_name": "Carolina - \"Where The Crawdads Sing\" Soundtrack",
+    "master_metadata_track_name": "Carolina - <i>\"Where The Crawdads Sing\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:12xIjI9A9UlB6zEc7kyZ06"
@@ -135266,7 +135266,7 @@
   {
     "ts": "2022-09-07T12:44:38Z",
     "ms_played": 219423,
-    "master_metadata_track_name": "Christmas Must Be Something More - Holiday Collection",
+    "master_metadata_track_name": "Christmas Must Be Something More <i>- Holiday Collection</i>",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:31JVjy3XWnh6C2zf4kLCXN"
@@ -135290,7 +135290,7 @@
   {
     "ts": "2022-09-07T12:44:44Z",
     "ms_played": 0,
-    "master_metadata_track_name": "Carolina - \"Where The Crawdads Sing\" Soundtrack",
+    "master_metadata_track_name": "Carolina - <i>\"Where The Crawdads Sing\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:4axSuOg3BqsowKjRpj59RU"
@@ -138970,7 +138970,7 @@
   {
     "ts": "2022-09-19T00:55:43Z",
     "ms_played": 223843,
-    "master_metadata_track_name": "I Don't Wanna Live Forever - \"Fifty Shades Darker\" Soundtrack",
+    "master_metadata_track_name": "I Don't Wanna Live Forever - <i>\"Fifty Shades Darker\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:55n9yjI6qqXh5F2mYvUc2y"
@@ -138986,7 +138986,7 @@
   {
     "ts": "2022-09-19T02:53:27Z",
     "ms_played": 247160,
-    "master_metadata_track_name": "I Don't Wanna Live Forever - \"Fifty Shades Darker\" Soundtrack",
+    "master_metadata_track_name": "I Don't Wanna Live Forever - <i>\"Fifty Shades Darker\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:55n9yjI6qqXh5F2mYvUc2y"
@@ -139650,7 +139650,7 @@
   {
     "ts": "2022-09-20T17:16:32Z",
     "ms_played": 246974,
-    "master_metadata_track_name": "I Don't Wanna Live Forever - \"Fifty Shades Darker\" Soundtrack",
+    "master_metadata_track_name": "I Don't Wanna Live Forever - <i>\"Fifty Shades Darker\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:55n9yjI6qqXh5F2mYvUc2y"
@@ -139666,7 +139666,7 @@
   {
     "ts": "2022-09-20T17:37:21Z",
     "ms_played": 101341,
-    "master_metadata_track_name": "Birch - (feat. Big Red Machine)",
+    "master_metadata_track_name": "Birch (feat. Big Red Machine)",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:7wo2UNeQBowm28hfAJsEMz"
@@ -140114,7 +140114,7 @@
   {
     "ts": "2022-09-26T00:51:15Z",
     "ms_played": 247160,
-    "master_metadata_track_name": "I Don't Wanna Live Forever - \"Fifty Shades Darker\" Soundtrack",
+    "master_metadata_track_name": "I Don't Wanna Live Forever - <i>\"Fifty Shades Darker\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:55n9yjI6qqXh5F2mYvUc2y"
@@ -140874,7 +140874,7 @@
   {
     "ts": "2022-09-30T14:27:14Z",
     "ms_played": 247160,
-    "master_metadata_track_name": "I Don't Wanna Live Forever - \"Fifty Shades Darker\" Soundtrack",
+    "master_metadata_track_name": "I Don't Wanna Live Forever - <i>\"Fifty Shades Darker\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:55n9yjI6qqXh5F2mYvUc2y"
@@ -141610,7 +141610,7 @@
   {
     "ts": "2022-10-06T19:01:54Z",
     "ms_played": 246974,
-    "master_metadata_track_name": "I Don't Wanna Live Forever - \"Fifty Shades Darker\" Soundtrack",
+    "master_metadata_track_name": "I Don't Wanna Live Forever - <i>\"Fifty Shades Darker\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:55n9yjI6qqXh5F2mYvUc2y"
@@ -145290,7 +145290,7 @@
   {
     "ts": "2022-10-21T20:13:35Z",
     "ms_played": 55989,
-    "master_metadata_track_name": "I Don't Wanna Live Forever - \"Fifty Shades Darker\" Soundtrack",
+    "master_metadata_track_name": "I Don't Wanna Live Forever - <i>\"Fifty Shades Darker\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:55n9yjI6qqXh5F2mYvUc2y"
@@ -158954,7 +158954,7 @@
   {
     "ts": "2023-01-26T12:17:42Z",
     "ms_played": 4100,
-    "master_metadata_track_name": "I Don't Wanna Live Forever - \"Fifty Shades Darker\" Soundtrack",
+    "master_metadata_track_name": "I Don't Wanna Live Forever - <i>\"Fifty Shades Darker\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:55n9yjI6qqXh5F2mYvUc2y"
@@ -160738,7 +160738,7 @@
   {
     "ts": "2023-02-05T16:41:23Z",
     "ms_played": 53993,
-    "master_metadata_track_name": "I Don't Wanna Live Forever - \"Fifty Shades Darker\" Soundtrack",
+    "master_metadata_track_name": "I Don't Wanna Live Forever - <i>\"Fifty Shades Darker\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:55n9yjI6qqXh5F2mYvUc2y"
@@ -161146,7 +161146,7 @@
   {
     "ts": "2023-02-06T19:42:34Z",
     "ms_played": 171055,
-    "master_metadata_track_name": "I Don't Wanna Live Forever - \"Fifty Shades Darker\" Soundtrack",
+    "master_metadata_track_name": "I Don't Wanna Live Forever - <i>\"Fifty Shades Darker\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:55n9yjI6qqXh5F2mYvUc2y"
@@ -163154,7 +163154,7 @@
   {
     "ts": "2023-02-15T22:42:08Z",
     "ms_played": 227841,
-    "master_metadata_track_name": "Christmas Tree Farm - Holiday Collection",
+    "master_metadata_track_name": "Christmas Tree Farm <i>- Holiday Collection</i>",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:2mvabkN1i2gLnGAPUVdwek"
@@ -167338,7 +167338,7 @@
   {
     "ts": "2023-04-06T18:46:23Z",
     "ms_played": 247160,
-    "master_metadata_track_name": "I Don't Wanna Live Forever - \"Fifty Shades Darker\" Soundtrack",
+    "master_metadata_track_name": "I Don't Wanna Live Forever - <i>\"Fifty Shades Darker\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:55n9yjI6qqXh5F2mYvUc2y"
@@ -167722,7 +167722,7 @@
   {
     "ts": "2023-04-16T16:36:52Z",
     "ms_played": 0,
-    "master_metadata_track_name": "Christmas Tree Farm - Holiday Collection",
+    "master_metadata_track_name": "Christmas Tree Farm <i>- Holiday Collection</i>",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:2mvabkN1i2gLnGAPUVdwek"
@@ -167986,7 +167986,7 @@
   {
     "ts": "2023-04-16T23:14:45Z",
     "ms_played": 247160,
-    "master_metadata_track_name": "I Don't Wanna Live Forever - \"Fifty Shades Darker\" Soundtrack",
+    "master_metadata_track_name": "I Don't Wanna Live Forever - <i>\"Fifty Shades Darker\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:55n9yjI6qqXh5F2mYvUc2y"
@@ -169274,7 +169274,7 @@
   {
     "ts": "2023-05-01T19:56:25Z",
     "ms_played": 247160,
-    "master_metadata_track_name": "I Don't Wanna Live Forever - \"Fifty Shades Darker\" Soundtrack",
+    "master_metadata_track_name": "I Don't Wanna Live Forever - <i>\"Fifty Shades Darker\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:55n9yjI6qqXh5F2mYvUc2y"
@@ -169986,7 +169986,7 @@
   {
     "ts": "2023-05-22T18:37:01Z",
     "ms_played": 159928,
-    "master_metadata_track_name": "I Don't Wanna Live Forever - \"Fifty Shades Darker\" Soundtrack",
+    "master_metadata_track_name": "I Don't Wanna Live Forever - <i>\"Fifty Shades Darker\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:55n9yjI6qqXh5F2mYvUc2y"
@@ -172226,7 +172226,7 @@
   {
     "ts": "2023-06-08T16:04:01Z",
     "ms_played": 264438,
-    "master_metadata_track_name": "Carolina - \"Where The Crawdads Sing\" Soundtrack",
+    "master_metadata_track_name": "Carolina - <i>\"Where The Crawdads Sing\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:4axSuOg3BqsowKjRpj59RU"
@@ -173450,7 +173450,7 @@
   {
     "ts": "2023-06-12T19:41:58Z",
     "ms_played": 228026,
-    "master_metadata_track_name": "Christmas Tree Farm - Holiday Collection",
+    "master_metadata_track_name": "Christmas Tree Farm <i>- Holiday Collection</i>",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:2mvabkN1i2gLnGAPUVdwek"
@@ -174554,7 +174554,7 @@
   {
     "ts": "2023-06-20T18:10:21Z",
     "ms_played": 43274,
-    "master_metadata_track_name": "September - Earth, Wind & Fire Cover",
+    "master_metadata_track_name": "September - <i class=\"fa-solid fa-tree\"> </i><i class=\"fa-solid fa-wind\"> </i><i class=\"fa-solid fa-fire\"></i> Cover",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:5eGX87IiKsGuzS3iw4CfCX"
@@ -174682,7 +174682,7 @@
   {
     "ts": "2023-06-23T23:56:08Z",
     "ms_played": 45376,
-    "master_metadata_track_name": "September - Earth, Wind & Fire Cover",
+    "master_metadata_track_name": "September - <i class=\"fa-solid fa-tree\"> </i><i class=\"fa-solid fa-wind\"> </i><i class=\"fa-solid fa-fire\"></i> Cover",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:5eGX87IiKsGuzS3iw4CfCX"
@@ -174850,7 +174850,7 @@
   {
     "ts": "2023-06-25T18:42:29Z",
     "ms_played": 264438,
-    "master_metadata_track_name": "Carolina - \"Where The Crawdads Sing\" Soundtrack",
+    "master_metadata_track_name": "Carolina - <i>\"Where The Crawdads Sing\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:4axSuOg3BqsowKjRpj59RU"
@@ -175330,7 +175330,7 @@
   {
     "ts": "2023-06-26T13:54:06Z",
     "ms_played": 187823,
-    "master_metadata_track_name": "September - Earth, Wind & Fire Cover",
+    "master_metadata_track_name": "September - <i class=\"fa-solid fa-tree\"> </i><i class=\"fa-solid fa-wind\"> </i><i class=\"fa-solid fa-fire\"></i> Cover",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:5eGX87IiKsGuzS3iw4CfCX"
@@ -175594,7 +175594,7 @@
   {
     "ts": "2023-06-29T18:27:35Z",
     "ms_played": 247160,
-    "master_metadata_track_name": "I Don't Wanna Live Forever - \"Fifty Shades Darker\" Soundtrack",
+    "master_metadata_track_name": "I Don't Wanna Live Forever - <i>\"Fifty Shades Darker\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:55n9yjI6qqXh5F2mYvUc2y"
@@ -175842,7 +175842,7 @@
   {
     "ts": "2023-06-29T20:51:46Z",
     "ms_played": 187823,
-    "master_metadata_track_name": "September - Earth, Wind & Fire Cover",
+    "master_metadata_track_name": "September - <i class=\"fa-solid fa-tree\"> </i><i class=\"fa-solid fa-wind\"> </i><i class=\"fa-solid fa-fire\"></i> Cover",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:5eGX87IiKsGuzS3iw4CfCX"
@@ -176738,7 +176738,7 @@
   {
     "ts": "2023-07-05T19:17:31Z",
     "ms_played": 187823,
-    "master_metadata_track_name": "September - Earth, Wind & Fire Cover",
+    "master_metadata_track_name": "September - <i class=\"fa-solid fa-tree\"> </i><i class=\"fa-solid fa-wind\"> </i><i class=\"fa-solid fa-fire\"></i> Cover",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:5eGX87IiKsGuzS3iw4CfCX"
@@ -179514,7 +179514,7 @@
   {
     "ts": "2023-09-18T14:29:45Z",
     "ms_played": 187823,
-    "master_metadata_track_name": "September - Earth, Wind & Fire Cover",
+    "master_metadata_track_name": "September - <i class=\"fa-solid fa-tree\"> </i><i class=\"fa-solid fa-wind\"> </i><i class=\"fa-solid fa-fire\"></i> Cover",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:5eGX87IiKsGuzS3iw4CfCX"
@@ -179650,7 +179650,7 @@
   {
     "ts": "2023-09-18T15:43:42Z",
     "ms_played": 264438,
-    "master_metadata_track_name": "Carolina - \"Where The Crawdads Sing\" Soundtrack",
+    "master_metadata_track_name": "Carolina - <i>\"Where The Crawdads Sing\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:4axSuOg3BqsowKjRpj59RU"
@@ -180442,7 +180442,7 @@
   {
     "ts": "2023-09-22T18:57:41Z",
     "ms_played": 58633,
-    "master_metadata_track_name": "Christmas Tree Farm - Holiday Collection",
+    "master_metadata_track_name": "Christmas Tree Farm <i>- Holiday Collection</i>",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:2mvabkN1i2gLnGAPUVdwek"
@@ -181810,7 +181810,7 @@
   {
     "ts": "2023-09-27T21:37:12Z",
     "ms_played": 187823,
-    "master_metadata_track_name": "September - Earth, Wind & Fire Cover",
+    "master_metadata_track_name": "September - <i class=\"fa-solid fa-tree\"> </i><i class=\"fa-solid fa-wind\"> </i><i class=\"fa-solid fa-fire\"></i> Cover",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:5eGX87IiKsGuzS3iw4CfCX"
@@ -182058,7 +182058,7 @@
   {
     "ts": "2023-09-28T18:12:47Z",
     "ms_played": 264438,
-    "master_metadata_track_name": "Carolina - \"Where The Crawdads Sing\" Soundtrack",
+    "master_metadata_track_name": "Carolina - <i>\"Where The Crawdads Sing\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:4axSuOg3BqsowKjRpj59RU"
@@ -182610,7 +182610,7 @@
   {
     "ts": "2023-10-09T17:31:15Z",
     "ms_played": 264438,
-    "master_metadata_track_name": "Carolina - \"Where The Crawdads Sing\" Soundtrack",
+    "master_metadata_track_name": "Carolina - <i>\"Where The Crawdads Sing\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:4axSuOg3BqsowKjRpj59RU"
@@ -183250,7 +183250,7 @@
   {
     "ts": "2023-10-16T02:17:30Z",
     "ms_played": 24532,
-    "master_metadata_track_name": "Carolina - \"Where The Crawdads Sing\" Soundtrack",
+    "master_metadata_track_name": "Carolina - <i>\"Where The Crawdads Sing\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:4axSuOg3BqsowKjRpj59RU"
@@ -183450,7 +183450,7 @@
   {
     "ts": "2023-10-17T16:36:41Z",
     "ms_played": 264438,
-    "master_metadata_track_name": "Carolina - \"Where The Crawdads Sing\" Soundtrack",
+    "master_metadata_track_name": "Carolina - <i>\"Where The Crawdads Sing\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:4axSuOg3BqsowKjRpj59RU"
@@ -183554,7 +183554,7 @@
   {
     "ts": "2023-10-17T17:20:47Z",
     "ms_played": 228026,
-    "master_metadata_track_name": "Christmas Tree Farm - Holiday Collection",
+    "master_metadata_track_name": "Christmas Tree Farm <i>- Holiday Collection</i>",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:2mvabkN1i2gLnGAPUVdwek"
@@ -184714,7 +184714,7 @@
   {
     "ts": "2023-10-23T18:24:11Z",
     "ms_played": 228026,
-    "master_metadata_track_name": "Christmas Tree Farm - Holiday Collection",
+    "master_metadata_track_name": "Christmas Tree Farm <i>- Holiday Collection</i>",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:2mvabkN1i2gLnGAPUVdwek"
@@ -185658,7 +185658,7 @@
   {
     "ts": "2023-10-28T16:31:15Z",
     "ms_played": 0,
-    "master_metadata_track_name": "Carolina - \"Where The Crawdads Sing\" Soundtrack",
+    "master_metadata_track_name": "Carolina - <i>\"Where The Crawdads Sing\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:4axSuOg3BqsowKjRpj59RU"
@@ -185770,7 +185770,7 @@
   {
     "ts": "2023-10-28T17:12:51Z",
     "ms_played": 227628,
-    "master_metadata_track_name": "Christmas Tree Farm - Holiday Collection",
+    "master_metadata_track_name": "Christmas Tree Farm <i>- Holiday Collection</i>",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:2mvabkN1i2gLnGAPUVdwek"
@@ -186178,7 +186178,7 @@
   {
     "ts": "2023-10-29T17:51:42Z",
     "ms_played": 187724,
-    "master_metadata_track_name": "September - Earth, Wind & Fire Cover",
+    "master_metadata_track_name": "September - <i class=\"fa-solid fa-tree\"> </i><i class=\"fa-solid fa-wind\"> </i><i class=\"fa-solid fa-fire\"></i> Cover",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:5eGX87IiKsGuzS3iw4CfCX"
@@ -186194,7 +186194,7 @@
   {
     "ts": "2023-10-29T18:00:04Z",
     "ms_played": 264412,
-    "master_metadata_track_name": "Carolina - \"Where The Crawdads Sing\" Soundtrack",
+    "master_metadata_track_name": "Carolina - <i>\"Where The Crawdads Sing\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:4axSuOg3BqsowKjRpj59RU"
@@ -186474,7 +186474,7 @@
   {
     "ts": "2023-10-29T20:09:03Z",
     "ms_played": 187824,
-    "master_metadata_track_name": "September - Earth, Wind & Fire Cover",
+    "master_metadata_track_name": "September - <i class=\"fa-solid fa-tree\"> </i><i class=\"fa-solid fa-wind\"> </i><i class=\"fa-solid fa-fire\"></i> Cover",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:5eGX87IiKsGuzS3iw4CfCX"
@@ -186490,7 +186490,7 @@
   {
     "ts": "2023-10-29T20:17:25Z",
     "ms_played": 264219,
-    "master_metadata_track_name": "Carolina - \"Where The Crawdads Sing\" Soundtrack",
+    "master_metadata_track_name": "Carolina - <i>\"Where The Crawdads Sing\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:4axSuOg3BqsowKjRpj59RU"
@@ -189514,7 +189514,7 @@
   {
     "ts": "2023-11-12T17:27:56Z",
     "ms_played": 187823,
-    "master_metadata_track_name": "September - Earth, Wind & Fire Cover",
+    "master_metadata_track_name": "September - <i class=\"fa-solid fa-tree\"> </i><i class=\"fa-solid fa-wind\"> </i><i class=\"fa-solid fa-fire\"></i> Cover",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:5eGX87IiKsGuzS3iw4CfCX"
@@ -189738,7 +189738,7 @@
   {
     "ts": "2023-11-12T19:26:19Z",
     "ms_played": 264438,
-    "master_metadata_track_name": "Carolina - \"Where The Crawdads Sing\" Soundtrack",
+    "master_metadata_track_name": "Carolina - <i>\"Where The Crawdads Sing\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:4axSuOg3BqsowKjRpj59RU"
@@ -190754,7 +190754,7 @@
   {
     "ts": "2023-11-18T17:23:33Z",
     "ms_played": 263861,
-    "master_metadata_track_name": "Carolina - \"Where The Crawdads Sing\" Soundtrack",
+    "master_metadata_track_name": "Carolina - <i>\"Where The Crawdads Sing\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:4axSuOg3BqsowKjRpj59RU"
@@ -191410,7 +191410,7 @@
   {
     "ts": "2023-11-21T17:20:45Z",
     "ms_played": 263869,
-    "master_metadata_track_name": "Carolina - \"Where The Crawdads Sing\" Soundtrack",
+    "master_metadata_track_name": "Carolina - <i>\"Where The Crawdads Sing\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:4axSuOg3BqsowKjRpj59RU"
@@ -192618,7 +192618,7 @@
   {
     "ts": "2023-11-26T22:39:58Z",
     "ms_played": 187638,
-    "master_metadata_track_name": "September - Earth, Wind & Fire Cover",
+    "master_metadata_track_name": "September - <i class=\"fa-solid fa-tree\"> </i><i class=\"fa-solid fa-wind\"> </i><i class=\"fa-solid fa-fire\"></i> Cover",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:5eGX87IiKsGuzS3iw4CfCX"
@@ -192842,7 +192842,7 @@
   {
     "ts": "2023-11-27T00:34:31Z",
     "ms_played": 264252,
-    "master_metadata_track_name": "Carolina - \"Where The Crawdads Sing\" Soundtrack",
+    "master_metadata_track_name": "Carolina - <i>\"Where The Crawdads Sing\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:4axSuOg3BqsowKjRpj59RU"
@@ -193538,7 +193538,7 @@
   {
     "ts": "2023-11-29T15:56:04Z",
     "ms_played": 247160,
-    "master_metadata_track_name": "I Don't Wanna Live Forever - \"Fifty Shades Darker\" Soundtrack",
+    "master_metadata_track_name": "I Don't Wanna Live Forever - <i>\"Fifty Shades Darker\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:55n9yjI6qqXh5F2mYvUc2y"
@@ -193698,7 +193698,7 @@
   {
     "ts": "2023-11-29T19:47:10Z",
     "ms_played": 264438,
-    "master_metadata_track_name": "Carolina - \"Where The Crawdads Sing\" Soundtrack",
+    "master_metadata_track_name": "Carolina - <i>\"Where The Crawdads Sing\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:4axSuOg3BqsowKjRpj59RU"
@@ -193794,7 +193794,7 @@
   {
     "ts": "2023-11-29T20:33:38Z",
     "ms_played": 228026,
-    "master_metadata_track_name": "Christmas Tree Farm - Holiday Collection",
+    "master_metadata_track_name": "Christmas Tree Farm <i>- Holiday Collection</i>",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:2mvabkN1i2gLnGAPUVdwek"
@@ -194202,7 +194202,7 @@
   {
     "ts": "2023-12-01T17:07:30Z",
     "ms_played": 187823,
-    "master_metadata_track_name": "September - Earth, Wind & Fire Cover",
+    "master_metadata_track_name": "September - <i class=\"fa-solid fa-tree\"> </i><i class=\"fa-solid fa-wind\"> </i><i class=\"fa-solid fa-fire\"></i> Cover",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:5eGX87IiKsGuzS3iw4CfCX"
@@ -194490,7 +194490,7 @@
   {
     "ts": "2023-12-01T19:56:48Z",
     "ms_played": 247160,
-    "master_metadata_track_name": "I Don't Wanna Live Forever - \"Fifty Shades Darker\" Soundtrack",
+    "master_metadata_track_name": "I Don't Wanna Live Forever - <i>\"Fifty Shades Darker\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:55n9yjI6qqXh5F2mYvUc2y"
@@ -194674,7 +194674,7 @@
   {
     "ts": "2023-12-01T21:19:26Z",
     "ms_played": 247160,
-    "master_metadata_track_name": "I Don't Wanna Live Forever - \"Fifty Shades Darker\" Soundtrack",
+    "master_metadata_track_name": "I Don't Wanna Live Forever - <i>\"Fifty Shades Darker\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:55n9yjI6qqXh5F2mYvUc2y"
@@ -194890,7 +194890,7 @@
   {
     "ts": "2023-12-04T17:47:34Z",
     "ms_played": 247160,
-    "master_metadata_track_name": "I Don't Wanna Live Forever - \"Fifty Shades Darker\" Soundtrack",
+    "master_metadata_track_name": "I Don't Wanna Live Forever - <i>\"Fifty Shades Darker\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:55n9yjI6qqXh5F2mYvUc2y"
@@ -195034,7 +195034,7 @@
   {
     "ts": "2023-12-04T19:06:30Z",
     "ms_played": 187823,
-    "master_metadata_track_name": "September - Earth, Wind & Fire Cover",
+    "master_metadata_track_name": "September - <i class=\"fa-solid fa-tree\"> </i><i class=\"fa-solid fa-wind\"> </i><i class=\"fa-solid fa-fire\"></i> Cover",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:5eGX87IiKsGuzS3iw4CfCX"
@@ -195266,7 +195266,7 @@
   {
     "ts": "2023-12-04T23:49:01Z",
     "ms_played": 247160,
-    "master_metadata_track_name": "I Don't Wanna Live Forever - \"Fifty Shades Darker\" Soundtrack",
+    "master_metadata_track_name": "I Don't Wanna Live Forever - <i>\"Fifty Shades Darker\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:55n9yjI6qqXh5F2mYvUc2y"
@@ -195282,7 +195282,7 @@
   {
     "ts": "2023-12-06T16:26:37Z",
     "ms_played": 107966,
-    "master_metadata_track_name": "Christmas Tree Farm - Holiday Collection",
+    "master_metadata_track_name": "Christmas Tree Farm <i>- Holiday Collection</i>",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:2mvabkN1i2gLnGAPUVdwek"
@@ -195458,7 +195458,7 @@
   {
     "ts": "2023-12-06T18:29:11Z",
     "ms_played": 228026,
-    "master_metadata_track_name": "Christmas Tree Farm - Holiday Collection",
+    "master_metadata_track_name": "Christmas Tree Farm <i>- Holiday Collection</i>",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:2mvabkN1i2gLnGAPUVdwek"
@@ -195618,7 +195618,7 @@
   {
     "ts": "2023-12-07T18:58:04Z",
     "ms_played": 228026,
-    "master_metadata_track_name": "Christmas Tree Farm - Holiday Collection",
+    "master_metadata_track_name": "Christmas Tree Farm <i>- Holiday Collection</i>",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:2mvabkN1i2gLnGAPUVdwek"
@@ -195898,7 +195898,7 @@
   {
     "ts": "2023-12-07T21:58:14Z",
     "ms_played": 247160,
-    "master_metadata_track_name": "I Don't Wanna Live Forever - \"Fifty Shades Darker\" Soundtrack",
+    "master_metadata_track_name": "I Don't Wanna Live Forever - <i>\"Fifty Shades Darker\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:55n9yjI6qqXh5F2mYvUc2y"
@@ -196458,7 +196458,7 @@
   {
     "ts": "2023-12-09T23:12:23Z",
     "ms_played": 116992,
-    "master_metadata_track_name": "I Don't Wanna Live Forever - \"Fifty Shades Darker\" Soundtrack",
+    "master_metadata_track_name": "I Don't Wanna Live Forever - <i>\"Fifty Shades Darker\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:55n9yjI6qqXh5F2mYvUc2y"
@@ -196498,7 +196498,7 @@
   {
     "ts": "2023-12-10T07:52:52Z",
     "ms_played": 228026,
-    "master_metadata_track_name": "Christmas Tree Farm - Holiday Collection",
+    "master_metadata_track_name": "Christmas Tree Farm <i>- Holiday Collection</i>",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:2mvabkN1i2gLnGAPUVdwek"
@@ -197250,7 +197250,7 @@
   {
     "ts": "2023-12-11T02:43:51Z",
     "ms_played": 228026,
-    "master_metadata_track_name": "Christmas Tree Farm - Holiday Collection",
+    "master_metadata_track_name": "Christmas Tree Farm <i>- Holiday Collection</i>",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:2mvabkN1i2gLnGAPUVdwek"
@@ -197842,7 +197842,7 @@
   {
     "ts": "2023-12-12T03:33:30Z",
     "ms_played": 247160,
-    "master_metadata_track_name": "I Don't Wanna Live Forever - \"Fifty Shades Darker\" Soundtrack",
+    "master_metadata_track_name": "I Don't Wanna Live Forever - <i>\"Fifty Shades Darker\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:55n9yjI6qqXh5F2mYvUc2y"
@@ -198122,7 +198122,7 @@
   {
     "ts": "2023-12-13T02:56:03Z",
     "ms_played": 247160,
-    "master_metadata_track_name": "I Don't Wanna Live Forever - \"Fifty Shades Darker\" Soundtrack",
+    "master_metadata_track_name": "I Don't Wanna Live Forever - <i>\"Fifty Shades Darker\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:55n9yjI6qqXh5F2mYvUc2y"
@@ -198306,7 +198306,7 @@
   {
     "ts": "2023-12-13T04:30:14Z",
     "ms_played": 246662,
-    "master_metadata_track_name": "I Don't Wanna Live Forever - \"Fifty Shades Darker\" Soundtrack",
+    "master_metadata_track_name": "I Don't Wanna Live Forever - <i>\"Fifty Shades Darker\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:55n9yjI6qqXh5F2mYvUc2y"
@@ -198458,7 +198458,7 @@
   {
     "ts": "2023-12-13T22:59:02Z",
     "ms_played": 12207,
-    "master_metadata_track_name": "I Don't Wanna Live Forever - \"Fifty Shades Darker\" Soundtrack",
+    "master_metadata_track_name": "I Don't Wanna Live Forever - <i>\"Fifty Shades Darker\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:55n9yjI6qqXh5F2mYvUc2y"
@@ -198466,7 +198466,7 @@
   {
     "ts": "2023-12-13T22:59:24Z",
     "ms_played": 11872,
-    "master_metadata_track_name": "I Don't Wanna Live Forever - \"Fifty Shades Darker\" Soundtrack",
+    "master_metadata_track_name": "I Don't Wanna Live Forever - <i>\"Fifty Shades Darker\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:55n9yjI6qqXh5F2mYvUc2y"
@@ -198538,7 +198538,7 @@
   {
     "ts": "2023-12-14T16:09:47Z",
     "ms_played": 673,
-    "master_metadata_track_name": "I Don't Wanna Live Forever - \"Fifty Shades Darker\" Soundtrack",
+    "master_metadata_track_name": "I Don't Wanna Live Forever - <i>\"Fifty Shades Darker\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:55n9yjI6qqXh5F2mYvUc2y"
@@ -199010,7 +199010,7 @@
   {
     "ts": "2023-12-16T16:30:18Z",
     "ms_played": 246665,
-    "master_metadata_track_name": "I Don't Wanna Live Forever - \"Fifty Shades Darker\" Soundtrack",
+    "master_metadata_track_name": "I Don't Wanna Live Forever - <i>\"Fifty Shades Darker\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:55n9yjI6qqXh5F2mYvUc2y"
@@ -199330,7 +199330,7 @@
   {
     "ts": "2023-12-17T21:59:48Z",
     "ms_played": 953,
-    "master_metadata_track_name": "September - Earth, Wind & Fire Cover",
+    "master_metadata_track_name": "September - <i class=\"fa-solid fa-tree\"> </i><i class=\"fa-solid fa-wind\"> </i><i class=\"fa-solid fa-fire\"></i> Cover",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:5eGX87IiKsGuzS3iw4CfCX"
@@ -199642,7 +199642,7 @@
   {
     "ts": "2023-12-19T20:32:24Z",
     "ms_played": 227638,
-    "master_metadata_track_name": "Christmas Tree Farm - Holiday Collection",
+    "master_metadata_track_name": "Christmas Tree Farm <i>- Holiday Collection</i>",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:2mvabkN1i2gLnGAPUVdwek"
@@ -200074,7 +200074,7 @@
   {
     "ts": "2023-12-21T17:58:34Z",
     "ms_played": 187823,
-    "master_metadata_track_name": "September - Earth, Wind & Fire Cover",
+    "master_metadata_track_name": "September - <i class=\"fa-solid fa-tree\"> </i><i class=\"fa-solid fa-wind\"> </i><i class=\"fa-solid fa-fire\"></i> Cover",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:5eGX87IiKsGuzS3iw4CfCX"
@@ -200554,7 +200554,7 @@
   {
     "ts": "2023-12-22T22:29:23Z",
     "ms_played": 77740,
-    "master_metadata_track_name": "I Don't Wanna Live Forever - \"Fifty Shades Darker\" Soundtrack",
+    "master_metadata_track_name": "I Don't Wanna Live Forever - <i>\"Fifty Shades Darker\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:55n9yjI6qqXh5F2mYvUc2y"
@@ -200562,7 +200562,7 @@
   {
     "ts": "2023-12-22T22:38:15Z",
     "ms_played": 246714,
-    "master_metadata_track_name": "I Don't Wanna Live Forever - \"Fifty Shades Darker\" Soundtrack",
+    "master_metadata_track_name": "I Don't Wanna Live Forever - <i>\"Fifty Shades Darker\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:55n9yjI6qqXh5F2mYvUc2y"
@@ -201666,7 +201666,7 @@
   {
     "ts": "2023-12-26T17:46:22Z",
     "ms_played": 14028,
-    "master_metadata_track_name": "I Don't Wanna Live Forever - \"Fifty Shades Darker\" Soundtrack",
+    "master_metadata_track_name": "I Don't Wanna Live Forever - <i>\"Fifty Shades Darker\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:55n9yjI6qqXh5F2mYvUc2y"
@@ -201962,7 +201962,7 @@
   {
     "ts": "2023-12-28T17:52:18Z",
     "ms_played": 246566,
-    "master_metadata_track_name": "I Don't Wanna Live Forever - \"Fifty Shades Darker\" Soundtrack",
+    "master_metadata_track_name": "I Don't Wanna Live Forever - <i>\"Fifty Shades Darker\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:55n9yjI6qqXh5F2mYvUc2y"
@@ -202066,7 +202066,7 @@
   {
     "ts": "2023-12-28T18:47:50Z",
     "ms_played": 246618,
-    "master_metadata_track_name": "I Don't Wanna Live Forever - \"Fifty Shades Darker\" Soundtrack",
+    "master_metadata_track_name": "I Don't Wanna Live Forever - <i>\"Fifty Shades Darker\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:55n9yjI6qqXh5F2mYvUc2y"
@@ -202722,7 +202722,7 @@
   {
     "ts": "2023-12-29T12:59:55Z",
     "ms_played": 247160,
-    "master_metadata_track_name": "I Don't Wanna Live Forever - \"Fifty Shades Darker\" Soundtrack",
+    "master_metadata_track_name": "I Don't Wanna Live Forever - <i>\"Fifty Shades Darker\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:55n9yjI6qqXh5F2mYvUc2y"
@@ -202746,7 +202746,7 @@
   {
     "ts": "2023-12-29T13:12:12Z",
     "ms_played": 247160,
-    "master_metadata_track_name": "I Don't Wanna Live Forever - \"Fifty Shades Darker\" Soundtrack",
+    "master_metadata_track_name": "I Don't Wanna Live Forever - <i>\"Fifty Shades Darker\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:55n9yjI6qqXh5F2mYvUc2y"
@@ -202970,7 +202970,7 @@
   {
     "ts": "2023-12-29T17:02:30Z",
     "ms_played": 228026,
-    "master_metadata_track_name": "Christmas Tree Farm - Holiday Collection",
+    "master_metadata_track_name": "Christmas Tree Farm <i>- Holiday Collection</i>",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:2mvabkN1i2gLnGAPUVdwek"
@@ -203274,7 +203274,7 @@
   {
     "ts": "2023-12-29T18:54:09Z",
     "ms_played": 147880,
-    "master_metadata_track_name": "I Don't Wanna Live Forever - \"Fifty Shades Darker\" Soundtrack",
+    "master_metadata_track_name": "I Don't Wanna Live Forever - <i>\"Fifty Shades Darker\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:55n9yjI6qqXh5F2mYvUc2y"
@@ -203482,7 +203482,7 @@
   {
     "ts": "2023-12-31T15:35:05Z",
     "ms_played": 246978,
-    "master_metadata_track_name": "I Don't Wanna Live Forever - \"Fifty Shades Darker\" Soundtrack",
+    "master_metadata_track_name": "I Don't Wanna Live Forever - <i>\"Fifty Shades Darker\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:55n9yjI6qqXh5F2mYvUc2y"
@@ -208874,7 +208874,7 @@
   {
     "ts": "2024-01-29T15:39:22Z",
     "ms_played": 264438,
-    "master_metadata_track_name": "Carolina - \"Where The Crawdads Sing\" Soundtrack",
+    "master_metadata_track_name": "Carolina - <i>\"Where The Crawdads Sing\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:4axSuOg3BqsowKjRpj59RU"
@@ -209442,7 +209442,7 @@
   {
     "ts": "2024-01-30T17:37:50Z",
     "ms_played": 972,
-    "master_metadata_track_name": "Two Is Better Than One (feat. BOYS LIKE GIR)",
+    "master_metadata_track_name": "Two Is Better Than One (feat. BOYS LIKE GIRL)",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:1MaqkdFNIKPdpQGDzme5ss"
@@ -209554,7 +209554,7 @@
   {
     "ts": "2024-01-30T17:59:55Z",
     "ms_played": 264438,
-    "master_metadata_track_name": "Carolina - \"Where The Crawdads Sing\" Soundtrack",
+    "master_metadata_track_name": "Carolina - <i>\"Where The Crawdads Sing\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:4axSuOg3BqsowKjRpj59RU"
@@ -209610,7 +209610,7 @@
   {
     "ts": "2024-01-30T18:18:49Z",
     "ms_played": 1224,
-    "master_metadata_track_name": "Silent Night - Holiday Collection",
+    "master_metadata_track_name": "Silent Night <i>- Holiday Collection</i>",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:1cJkUN5LAotktryx2nPCr7"
@@ -218898,7 +218898,7 @@
   {
     "ts": "2024-03-08T15:44:18Z",
     "ms_played": 264438,
-    "master_metadata_track_name": "Carolina - \"Where The Crawdads Sing\" Soundtrack",
+    "master_metadata_track_name": "Carolina - <i>\"Where The Crawdads Sing\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:4axSuOg3BqsowKjRpj59RU"
@@ -219122,7 +219122,7 @@
   {
     "ts": "2024-03-08T17:43:54Z",
     "ms_played": 19233,
-    "master_metadata_track_name": "Christmas Tree Farm - Holiday Collection",
+    "master_metadata_track_name": "Christmas Tree Farm <i>- Holiday Collection</i>",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:2mvabkN1i2gLnGAPUVdwek"
@@ -220850,7 +220850,7 @@
   {
     "ts": "2024-03-20T20:35:53Z",
     "ms_played": 187823,
-    "master_metadata_track_name": "September - Earth, Wind & Fire Cover",
+    "master_metadata_track_name": "September - <i class=\"fa-solid fa-tree\"> </i><i class=\"fa-solid fa-wind\"> </i><i class=\"fa-solid fa-fire\"></i> Cover",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:5eGX87IiKsGuzS3iw4CfCX"
@@ -223634,7 +223634,7 @@
   {
     "ts": "2024-03-27T19:30:20Z",
     "ms_played": 33706,
-    "master_metadata_track_name": "Christmas Tree Farm - Holiday Collection",
+    "master_metadata_track_name": "Christmas Tree Farm <i>- Holiday Collection</i>",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:2mvabkN1i2gLnGAPUVdwek"
@@ -223682,7 +223682,7 @@
   {
     "ts": "2024-03-27T19:52:47Z",
     "ms_played": 264438,
-    "master_metadata_track_name": "Carolina - \"Where The Crawdads Sing\" Soundtrack",
+    "master_metadata_track_name": "Carolina - <i>\"Where The Crawdads Sing\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:4axSuOg3BqsowKjRpj59RU"
@@ -223842,7 +223842,7 @@
   {
     "ts": "2024-03-27T21:10:34Z",
     "ms_played": 187823,
-    "master_metadata_track_name": "September - Earth, Wind & Fire Cover",
+    "master_metadata_track_name": "September - <i class=\"fa-solid fa-tree\"> </i><i class=\"fa-solid fa-wind\"> </i><i class=\"fa-solid fa-fire\"></i> Cover",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:5eGX87IiKsGuzS3iw4CfCX"
@@ -225106,7 +225106,7 @@
   {
     "ts": "2024-04-10T16:28:39Z",
     "ms_played": 2630,
-    "master_metadata_track_name": "September - Earth, Wind & Fire Cover",
+    "master_metadata_track_name": "September - <i class=\"fa-solid fa-tree\"> </i><i class=\"fa-solid fa-wind\"> </i><i class=\"fa-solid fa-fire\"></i> Cover",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:5eGX87IiKsGuzS3iw4CfCX"
@@ -225322,7 +225322,7 @@
   {
     "ts": "2024-04-10T23:57:28Z",
     "ms_played": 247160,
-    "master_metadata_track_name": "I Don't Wanna Live Forever - \"Fifty Shades Darker\" Soundtrack",
+    "master_metadata_track_name": "I Don't Wanna Live Forever - <i>\"Fifty Shades Darker\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:55n9yjI6qqXh5F2mYvUc2y"
@@ -225610,7 +225610,7 @@
   {
     "ts": "2024-04-12T19:41:17Z",
     "ms_played": 246644,
-    "master_metadata_track_name": "I Don't Wanna Live Forever - \"Fifty Shades Darker\" Soundtrack",
+    "master_metadata_track_name": "I Don't Wanna Live Forever - <i>\"Fifty Shades Darker\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:55n9yjI6qqXh5F2mYvUc2y"
@@ -245498,7 +245498,7 @@
   {
     "ts": "2024-06-15T16:51:15Z",
     "ms_played": 187823,
-    "master_metadata_track_name": "September - Earth, Wind & Fire Cover",
+    "master_metadata_track_name": "September - <i class=\"fa-solid fa-tree\"> </i><i class=\"fa-solid fa-wind\"> </i><i class=\"fa-solid fa-fire\"></i> Cover",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:5eGX87IiKsGuzS3iw4CfCX"
@@ -245562,7 +245562,7 @@
   {
     "ts": "2024-06-15T17:24:04Z",
     "ms_played": 264438,
-    "master_metadata_track_name": "Carolina - \"Where The Crawdads Sing\" Soundtrack",
+    "master_metadata_track_name": "Carolina - <i>\"Where The Crawdads Sing\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:4axSuOg3BqsowKjRpj59RU"
@@ -247402,7 +247402,7 @@
   {
     "ts": "2024-06-25T00:04:01Z",
     "ms_played": 228026,
-    "master_metadata_track_name": "Christmas Tree Farm - Holiday Collection",
+    "master_metadata_track_name": "Christmas Tree Farm <i>- Holiday Collection</i>",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:2mvabkN1i2gLnGAPUVdwek"
@@ -247498,7 +247498,7 @@
   {
     "ts": "2024-06-25T00:58:42Z",
     "ms_played": 187823,
-    "master_metadata_track_name": "September - Earth, Wind & Fire Cover",
+    "master_metadata_track_name": "September - <i class=\"fa-solid fa-tree\"> </i><i class=\"fa-solid fa-wind\"> </i><i class=\"fa-solid fa-fire\"></i> Cover",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:5eGX87IiKsGuzS3iw4CfCX"
@@ -252170,7 +252170,7 @@
   {
     "ts": "2024-07-10T22:28:49Z",
     "ms_played": 3728,
-    "master_metadata_track_name": "Christmas Tree Farm - Holiday Collection",
+    "master_metadata_track_name": "Christmas Tree Farm <i>- Holiday Collection</i>",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:2mvabkN1i2gLnGAPUVdwek"
@@ -256306,7 +256306,7 @@
   {
     "ts": "2024-07-31T22:06:40Z",
     "ms_played": 174791,
-    "master_metadata_track_name": "I Don't Wanna Live Forever - \"Fifty Shades Darker\" Soundtrack",
+    "master_metadata_track_name": "I Don't Wanna Live Forever - <i>\"Fifty Shades Darker\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:55n9yjI6qqXh5F2mYvUc2y"
@@ -259210,7 +259210,7 @@
   {
     "ts": "2024-08-28T22:34:40Z",
     "ms_played": 400,
-    "master_metadata_track_name": "Sweeter Than Fiction - From \"One Chance\" Soundtrack",
+    "master_metadata_track_name": "Sweeter Than Fiction - <i>\"One Chance\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:0RFCHlNuTeUHIB36VuVbOL"
@@ -259378,7 +259378,7 @@
   {
     "ts": "2024-08-28T22:42:39Z",
     "ms_played": 2393,
-    "master_metadata_track_name": "Carolina - \"Where The Crawdads Sing\" Soundtrack",
+    "master_metadata_track_name": "Carolina - <i>\"Where The Crawdads Sing\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:4axSuOg3BqsowKjRpj59RU"
@@ -259850,7 +259850,7 @@
   {
     "ts": "2024-08-31T04:47:21Z",
     "ms_played": 843,
-    "master_metadata_track_name": "Crazier - Hannah Montana The Movie Soundtrack",
+    "master_metadata_track_name": "Crazier - <i>\"Hannah Montana: The Movie\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:5vyxXfD5gLlyPxGZMEjtmd"
@@ -259858,7 +259858,7 @@
   {
     "ts": "2024-08-31T04:53:05Z",
     "ms_played": 191946,
-    "master_metadata_track_name": "Crazier - Hannah Montana The Movie Soundtrack",
+    "master_metadata_track_name": "Crazier - <i>\"Hannah Montana: The Movie\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:5vyxXfD5gLlyPxGZMEjtmd"
@@ -259874,7 +259874,7 @@
   {
     "ts": "2024-08-31T15:08:09Z",
     "ms_played": 840,
-    "master_metadata_track_name": "Crazier - Hannah Montana The Movie Soundtrack",
+    "master_metadata_track_name": "Crazier - <i>\"Hannah Montana: The Movie\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:5vyxXfD5gLlyPxGZMEjtmd"
@@ -260890,7 +260890,7 @@
   {
     "ts": "2024-09-07T01:13:28Z",
     "ms_played": 2626,
-    "master_metadata_track_name": "Crazier - Hannah Montana The Movie Soundtrack",
+    "master_metadata_track_name": "Crazier - <i>\"Hannah Montana: The Movie\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:5vyxXfD5gLlyPxGZMEjtmd"
@@ -269586,7 +269586,7 @@
   {
     "ts": "2024-10-29T17:34:29Z",
     "ms_played": 47653,
-    "master_metadata_track_name": "Crazier - Hannah Montana The Movie Soundtrack",
+    "master_metadata_track_name": "Crazier - <i>\"Hannah Montana: The Movie\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:5vyxXfD5gLlyPxGZMEjtmd"
@@ -273826,7 +273826,7 @@
   {
     "ts": "2024-11-12T03:48:44Z",
     "ms_played": 131200,
-    "master_metadata_track_name": "Crazier - Hannah Montana The Movie Soundtrack",
+    "master_metadata_track_name": "Crazier - <i>\"Hannah Montana: The Movie\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:5vyxXfD5gLlyPxGZMEjtmd"
@@ -274546,7 +274546,7 @@
   {
     "ts": "2024-11-14T18:55:07Z",
     "ms_played": 61088,
-    "master_metadata_track_name": "Crazier - Hannah Montana The Movie Soundtrack",
+    "master_metadata_track_name": "Crazier - <i>\"Hannah Montana: The Movie\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:5vyxXfD5gLlyPxGZMEjtmd"
@@ -277250,7 +277250,7 @@
   {
     "ts": "2024-12-01T15:17:05Z",
     "ms_played": 188245,
-    "master_metadata_track_name": "Crazier - Hannah Montana The Movie Soundtrack",
+    "master_metadata_track_name": "Crazier - <i>\"Hannah Montana: The Movie\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:5vyxXfD5gLlyPxGZMEjtmd"
@@ -282298,7 +282298,7 @@
   {
     "ts": "2024-12-24T17:27:14Z",
     "ms_played": 903,
-    "master_metadata_track_name": "Christmas Tree Farm - Holiday Collection",
+    "master_metadata_track_name": "Christmas Tree Farm <i>- Holiday Collection</i>",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:2mvabkN1i2gLnGAPUVdwek"
@@ -282306,7 +282306,7 @@
   {
     "ts": "2024-12-24T18:18:11Z",
     "ms_played": 227164,
-    "master_metadata_track_name": "Christmas Tree Farm - Holiday Collection",
+    "master_metadata_track_name": "Christmas Tree Farm <i>- Holiday Collection</i>",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:2mvabkN1i2gLnGAPUVdwek"
@@ -286010,7 +286010,7 @@
   {
     "ts": "2025-01-10T15:55:31Z",
     "ms_played": 264438,
-    "master_metadata_track_name": "Carolina - \"Where The Crawdads Sing\" Soundtrack",
+    "master_metadata_track_name": "Carolina - <i>\"Where The Crawdads Sing\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:4axSuOg3BqsowKjRpj59RU"
@@ -291178,7 +291178,7 @@
   {
     "ts": "2025-02-25T13:34:37Z",
     "ms_played": 247160,
-    "master_metadata_track_name": "I Don't Wanna Live Forever - \"Fifty Shades Darker\" Soundtrack",
+    "master_metadata_track_name": "I Don't Wanna Live Forever - <i>\"Fifty Shades Darker\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:55n9yjI6qqXh5F2mYvUc2y"
@@ -291970,7 +291970,7 @@
   {
     "ts": "2025-02-28T15:22:27Z",
     "ms_played": 191946,
-    "master_metadata_track_name": "Crazier - Hannah Montana The Movie Soundtrack",
+    "master_metadata_track_name": "Crazier - <i>\"Hannah Montana: The Movie\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:5vyxXfD5gLlyPxGZMEjtmd"
@@ -298514,7 +298514,7 @@
   {
     "ts": "2025-04-29T15:11:52Z",
     "ms_played": 264438,
-    "master_metadata_track_name": "Carolina - \"Where The Crawdads Sing\" Soundtrack",
+    "master_metadata_track_name": "Carolina - <i>\"Where The Crawdads Sing\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:4axSuOg3BqsowKjRpj59RU"
@@ -300810,7 +300810,7 @@
   {
     "ts": "2025-05-06T23:06:22Z",
     "ms_played": 96532,
-    "master_metadata_track_name": "Birch - (feat. Big Red Machine)",
+    "master_metadata_track_name": "Birch (feat. Big Red Machine)",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:7wo2UNeQBowm28hfAJsEMz"
@@ -301290,7 +301290,7 @@
   {
     "ts": "2025-05-07T14:27:05Z",
     "ms_played": 248629,
-    "master_metadata_track_name": "Carolina - \"Where The Crawdads Sing\" Soundtrack",
+    "master_metadata_track_name": "Carolina - <i>\"Where The Crawdads Sing\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:4axSuOg3BqsowKjRpj59RU"
@@ -302706,7 +302706,7 @@
   {
     "ts": "2025-05-10T18:18:43Z",
     "ms_played": 17674,
-    "master_metadata_track_name": "Two Is Better Than One (feat. BOYS LIKE GIR)",
+    "master_metadata_track_name": "Two Is Better Than One (feat. BOYS LIKE GIRL)",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:1MaqkdFNIKPdpQGDzme5ss"
@@ -303610,7 +303610,7 @@
   {
     "ts": "2025-05-14T12:52:55Z",
     "ms_played": 66194,
-    "master_metadata_track_name": "Birch - (feat. Big Red Machine)",
+    "master_metadata_track_name": "Birch (feat. Big Red Machine)",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:7wo2UNeQBowm28hfAJsEMz"
@@ -304386,7 +304386,7 @@
   {
     "ts": "2025-05-16T04:57:49Z",
     "ms_played": 264438,
-    "master_metadata_track_name": "Carolina - \"Where The Crawdads Sing\" Soundtrack",
+    "master_metadata_track_name": "Carolina - <i>\"Where The Crawdads Sing\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:4axSuOg3BqsowKjRpj59RU"
@@ -304850,7 +304850,7 @@
   {
     "ts": "2025-05-20T16:05:03Z",
     "ms_played": 9278,
-    "master_metadata_track_name": "Two Is Better Than One (feat. BOYS LIKE GIR)",
+    "master_metadata_track_name": "Two Is Better Than One (feat. BOYS LIKE GIRL)",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:1MaqkdFNIKPdpQGDzme5ss"
@@ -304858,7 +304858,7 @@
   {
     "ts": "2025-05-20T16:05:19Z",
     "ms_played": 14288,
-    "master_metadata_track_name": "Two Is Better Than One (feat. BOYS LIKE GIR)",
+    "master_metadata_track_name": "Two Is Better Than One (feat. BOYS LIKE GIRL)",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:1MaqkdFNIKPdpQGDzme5ss"
@@ -304866,7 +304866,7 @@
   {
     "ts": "2025-05-20T16:07:04Z",
     "ms_played": 102596,
-    "master_metadata_track_name": "Two Is Better Than One (feat. BOYS LIKE GIR)",
+    "master_metadata_track_name": "Two Is Better Than One (feat. BOYS LIKE GIRL)",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:1MaqkdFNIKPdpQGDzme5ss"
@@ -304906,7 +304906,7 @@
   {
     "ts": "2025-05-20T16:24:55Z",
     "ms_played": 88053,
-    "master_metadata_track_name": "Birch - (feat. Big Red Machine)",
+    "master_metadata_track_name": "Birch (feat. Big Red Machine)",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:7wo2UNeQBowm28hfAJsEMz"
@@ -305338,7 +305338,7 @@
   {
     "ts": "2025-05-21T22:29:09Z",
     "ms_played": 129281,
-    "master_metadata_track_name": "Carolina - \"Where The Crawdads Sing\" Soundtrack",
+    "master_metadata_track_name": "Carolina - <i>\"Where The Crawdads Sing\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:4axSuOg3BqsowKjRpj59RU"
@@ -305346,7 +305346,7 @@
   {
     "ts": "2025-05-21T22:50:35Z",
     "ms_played": 6836,
-    "master_metadata_track_name": "Carolina - \"Where The Crawdads Sing\" Soundtrack",
+    "master_metadata_track_name": "Carolina - <i>\"Where The Crawdads Sing\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:4axSuOg3BqsowKjRpj59RU"
@@ -305706,7 +305706,7 @@
   {
     "ts": "2025-05-23T20:48:55Z",
     "ms_played": 4848,
-    "master_metadata_track_name": "Carolina - \"Where The Crawdads Sing\" Soundtrack",
+    "master_metadata_track_name": "Carolina - <i>\"Where The Crawdads Sing\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:4axSuOg3BqsowKjRpj59RU"
@@ -306106,7 +306106,7 @@
   {
     "ts": "2025-05-26T21:24:21Z",
     "ms_played": 4813,
-    "master_metadata_track_name": "Two Is Better Than One (feat. BOYS LIKE GIR)",
+    "master_metadata_track_name": "Two Is Better Than One (feat. BOYS LIKE GIRL)",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:1MaqkdFNIKPdpQGDzme5ss"
@@ -306242,7 +306242,7 @@
   {
     "ts": "2025-05-27T16:57:03Z",
     "ms_played": 329580,
-    "master_metadata_track_name": "Birch - (feat. Big Red Machine)",
+    "master_metadata_track_name": "Birch (feat. Big Red Machine)",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:7wo2UNeQBowm28hfAJsEMz"
@@ -306578,7 +306578,7 @@
   {
     "ts": "2025-05-29T17:12:16Z",
     "ms_played": 242242,
-    "master_metadata_track_name": "Two Is Better Than One (feat. BOYS LIKE GIR)",
+    "master_metadata_track_name": "Two Is Better Than One (feat. BOYS LIKE GIRL)",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:1MaqkdFNIKPdpQGDzme5ss"
@@ -306794,7 +306794,7 @@
   {
     "ts": "2025-05-30T19:43:38Z",
     "ms_played": 105304,
-    "master_metadata_track_name": "Carolina - \"Where The Crawdads Sing\" Soundtrack",
+    "master_metadata_track_name": "Carolina - <i>\"Where The Crawdads Sing\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:4axSuOg3BqsowKjRpj59RU"
@@ -306858,7 +306858,7 @@
   {
     "ts": "2025-05-30T23:37:41Z",
     "ms_played": 330066,
-    "master_metadata_track_name": "Birch - (feat. Big Red Machine)",
+    "master_metadata_track_name": "Birch (feat. Big Red Machine)",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:7wo2UNeQBowm28hfAJsEMz"
@@ -307690,7 +307690,7 @@
   {
     "ts": "2025-06-30T14:12:32Z",
     "ms_played": 130317,
-    "master_metadata_track_name": "Two Is Better Than One (feat. BOYS LIKE GIR)",
+    "master_metadata_track_name": "Two Is Better Than One (feat. BOYS LIKE GIRL)",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:1MaqkdFNIKPdpQGDzme5ss"
@@ -307706,7 +307706,7 @@
   {
     "ts": "2025-06-30T14:17:20Z",
     "ms_played": 46855,
-    "master_metadata_track_name": "Birch - (feat. Big Red Machine)",
+    "master_metadata_track_name": "Birch (feat. Big Red Machine)",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:7wo2UNeQBowm28hfAJsEMz"
@@ -308058,7 +308058,7 @@
   {
     "ts": "2025-06-30T20:35:41Z",
     "ms_played": 3253,
-    "master_metadata_track_name": "Birch - (feat. Big Red Machine)",
+    "master_metadata_track_name": "Birch (feat. Big Red Machine)",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:7wo2UNeQBowm28hfAJsEMz"
@@ -308202,7 +308202,7 @@
   {
     "ts": "2025-07-01T16:40:42Z",
     "ms_played": 242840,
-    "master_metadata_track_name": "Two Is Better Than One (feat. BOYS LIKE GIR)",
+    "master_metadata_track_name": "Two Is Better Than One (feat. BOYS LIKE GIRL)",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:1MaqkdFNIKPdpQGDzme5ss"
@@ -308434,7 +308434,7 @@
   {
     "ts": "2025-07-03T17:57:32Z",
     "ms_played": 15296,
-    "master_metadata_track_name": "Two Is Better Than One (feat. BOYS LIKE GIR)",
+    "master_metadata_track_name": "Two Is Better Than One (feat. BOYS LIKE GIRL)",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:1MaqkdFNIKPdpQGDzme5ss"
@@ -309090,7 +309090,7 @@
   {
     "ts": "2025-07-13T23:04:34Z",
     "ms_played": 242319,
-    "master_metadata_track_name": "Two Is Better Than One (feat. BOYS LIKE GIR)",
+    "master_metadata_track_name": "Two Is Better Than One (feat. BOYS LIKE GIRL)",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:1MaqkdFNIKPdpQGDzme5ss"
@@ -309194,7 +309194,7 @@
   {
     "ts": "2025-07-15T18:18:24Z",
     "ms_played": 309295,
-    "master_metadata_track_name": "Birch - (feat. Big Red Machine)",
+    "master_metadata_track_name": "Birch (feat. Big Red Machine)",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:7wo2UNeQBowm28hfAJsEMz"
@@ -309202,7 +309202,7 @@
   {
     "ts": "2025-07-15T18:41:45Z",
     "ms_played": 15166,
-    "master_metadata_track_name": "Birch - (feat. Big Red Machine)",
+    "master_metadata_track_name": "Birch (feat. Big Red Machine)",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:7wo2UNeQBowm28hfAJsEMz"
@@ -310738,7 +310738,7 @@
   {
     "ts": "2025-07-24T19:32:12Z",
     "ms_played": 264438,
-    "master_metadata_track_name": "Carolina - \"Where The Crawdads Sing\" Soundtrack",
+    "master_metadata_track_name": "Carolina - <i>\"Where The Crawdads Sing\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:4axSuOg3BqsowKjRpj59RU"
@@ -312274,7 +312274,7 @@
   {
     "ts": "2025-08-09T22:35:51Z",
     "ms_played": 243873,
-    "master_metadata_track_name": "Carolina - \"Where The Crawdads Sing\" Soundtrack",
+    "master_metadata_track_name": "Carolina - <i>\"Where The Crawdads Sing\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:4axSuOg3BqsowKjRpj59RU"
@@ -312282,7 +312282,7 @@
   {
     "ts": "2025-08-09T22:36:26Z",
     "ms_played": 20096,
-    "master_metadata_track_name": "Carolina - \"Where The Crawdads Sing\" Soundtrack",
+    "master_metadata_track_name": "Carolina - <i>\"Where The Crawdads Sing\"</i> Soundtrack",
     "master_metadata_album_artist_name": "Taylor Swift",
     "master_metadata_album_album_name": "Other",
     "spotify_track_uri": "spotify:track:4axSuOg3BqsowKjRpj59RU"
