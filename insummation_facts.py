@@ -1549,11 +1549,17 @@ def generate_html_report(results, album_colors, taylor_version_mapping):
                 <ul class="song-list">
                     {"".join([f"""
                     <li class="{'total-minutes-row' if i < 3 else 'song-item'}">
-                        <div class="album-info">
+                        <div class="album-info" style="display: flex; align-items: center; width: 100%;">
                             <div class="song-number {'song-number-top' if i < 3 else ''}" 
-                                style="background-color: {album_colors.get(album, '#FFFFFF')};">{i+1}</div>
-                            <span class="{'total-minutes-text' if i < 3 else 'song-title'}">{song}</span>
-                            {f'<div class="album-percentage total-minutes-value">{count} <i class="fa-solid fa-play"></i></div>' if i < 3 else ''}
+                                style="background-color: {album_colors.get(album, '#FFFFFF')}; flex-shrink: 0; min-width: 25px; width: 25px; height: 25px; display: flex; align-items: center; justify-content: center;">
+                                {i+1}
+                            </div>
+                            <span class="{'total-minutes-text' if i < 3 else 'song-title'}" style="flex: 1; min-width: 0; padding: 0 10px; word-wrap: break-word; text-align: left;">
+                                {song}
+                            </span>
+                            <div class="{'album-percentage total-minutes-value' if i < 3 else 'play-count'}" style="flex-shrink: 0; margin-left: auto;">
+                                {count} <i class="fa-solid fa-play"></i>
+                            </div>
                         </div>
                     </li>
                     """ for i, (song, count) in enumerate(get_top_songs_for_album(results, album, taylor_version_mapping))])}
@@ -1562,7 +1568,7 @@ def generate_html_report(results, album_colors, taylor_version_mapping):
             """ for album, _ in sorted_albums])}
             </div>
 
-        <!-- TAB - By Year -->
+<!-- TAB 3 - By Year -->
         <div id="years-view" class="stats-view">
             <!-- Year Navigation Tabs -->
             <div class="nav-tabs">
@@ -1679,18 +1685,24 @@ def generate_html_report(results, album_colors, taylor_version_mapping):
 
             <!-- All Time Songs View -->
             <div id="all-time-songs-view" class="stats-view active">
-                <ul class="song-list">
-                    {"".join([f"""
-                    <li class="{'total-minutes-row' if i < 3 else 'song-item'}">
-                        <div class="album-info">
-                            <div class="song-number {'song-number-top' if i < 3 else ''}" 
-                                style="background-color: var(--accent);">{i+1}</div>
-                            <span class="{'total-minutes-text' if i < 3 else 'song-title'}">{song}</span>
-                            {f'<div class="album-percentage total-minutes-value">{count} <i class="fa-solid fa-play"></i></div>' if i < 3 else ''}
-                        </div>
-                    </li>
-                    """ for i, (song, count) in enumerate(top_songs)])}
-                </ul>
+                    <ul class="song-list">
+                        {"".join([f"""
+                        <li class="{'total-minutes-row' if i < 3 else 'song-item'}">
+                            <div class="album-info" style="display: flex; align-items: center; width: 100%;">
+                                <div class="song-number {'song-number-top' if i < 3 else ''}" 
+                                    style="background-color: var(--accent); flex-shrink: 0; min-width: 25px; width: 25px; height: 25px; display: flex; align-items: center; justify-content: center;">
+                                    {i+1}
+                                </div>
+                                <span class="{'total-minutes-text' if i < 3 else 'song-title'}" style="flex: 1; min-width: 0; padding: 0 10px; word-wrap: break-word; text-align: left;">
+                                    {song}
+                                </span>
+                                <div class="{'album-percentage total-minutes-value' if i < 3 else 'play-count'}" style="flex-shrink: 0; margin-left: auto;">
+                                    {count} <i class="fa-solid fa-play"></i>
+                                </div>
+                            </div>
+                        </li>
+                        """ for i, (song, count) in enumerate(top_songs)])}
+                    </ul>
             </div>
 
             <!-- Yearly Songs Views -->
@@ -1699,11 +1711,17 @@ def generate_html_report(results, album_colors, taylor_version_mapping):
                 <ul class="song-list">
                     {"".join([f"""
                     <li class="{'total-minutes-row' if i < 3 else 'song-item'}">
-                        <div class="album-info">
+                        <div class="album-info" style="display: flex; align-items: center; width: 100%;">
                             <div class="song-number {'song-number-top' if i < 3 else ''}" 
-                                style="background-color: var(--accent);">{i+1}</div>
-                            <span class="{'total-minutes-text' if i < 3 else 'song-title'}">{song}</span>
-                            {f'<div class="album-percentage total-minutes-value">{count} <i class="fa-solid fa-play"></i></div>' if i < 3 else ''}
+                                style="background-color: var(--accent); flex-shrink: 0; min-width: 25px; width: 25px; height: 25px; display: flex; align-items: center; justify-content: center;">
+                                {i+1}
+                            </div>
+                            <span class="{'total-minutes-text' if i < 3 else 'song-title'}" style="flex: 1; min-width: 0; padding: 0 10px; word-wrap: break-word; text-align: left;">
+                                {song}
+                            </span>
+                            <div class="{'album-percentage total-minutes-value' if i < 3 else 'play-count'}" style="flex-shrink: 0; margin-left: auto;">
+                                {count} <i class="fa-solid fa-play"></i>
+                            </div>
                         </div>
                     </li>
                     """ for i, (song, count) in enumerate(get_top_songs_for_year(results, year, taylor_version_mapping))])}
@@ -2003,7 +2021,7 @@ def generate_html_report(results, album_colors, taylor_version_mapping):
 
 
 # Use the full path to your file
-mapped_file = r"C:\Users\mica_\Documents\202X - VisualStudio\Spotify\Final\taylor_swift_mapping_template_MAPPED_ONLY.json"
+mapped_file = "taylor_swift_mapping_template_MAPPED_ONLY.json"
 results = analyze_taylor_swift_data(mapped_file)
 
 generate_html_report(results, album_colors, taylor_version_mapping)
