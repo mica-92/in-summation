@@ -29,101 +29,6 @@ def format_anniversaries(text):
     import re
     return re.sub(r'([A-Za-z]+ \d{1,2}(?:, \d{4})?)', r'<strong>\1</strong>', text)
 
-album_info = {
-    "Taylor Swift": {
-        "image": "TS1.png",
-        "release_date": "24.10.2006",
-        "taylor_version": "<i>unreleased</i>",
-        "era_period": "Oct 2006 - Nov 2008",
-        "fun_fact": "debut."
-    },
-    "Fearless": {
-        "image": "TS2.png",
-        "release_date": "11.11.2008",
-        "taylor_version": "09.04.2021",
-        "era_period": "Nov 2008 - Oct 2010 & Apr 2021 - Nov 2021",
-        "fun_fact": "next chapter."
-    },
-    "Speak Now": {
-        "image": "TS3.png",
-        "release_date": "25.10.2010",
-        "taylor_version": "07.07.2023",
-        "era_period": "Oct 2010 - Oct 2012 & Jul 2023 - Oct 2023",
-        "fun_fact": "I had the time of my life fighting dragons with you."
-    },    
-    "Red": {
-        "image": "TS7.png",
-        "release_date": "22.10.2012",
-        "taylor_version": "12.11.2021",
-        "era_period": "Oct 2012 - Oct 2014 & Apr 2021 - Oct 2022",
-        "fun_fact": "loving him was red."
-    },
-    "1989": {
-        "image": "TS4.png",
-        "release_date": "27.10.2014",
-        "taylor_version": "27.10.2023",
-        "era_period": "Oct 2014 -  Nov 2017 & Oct 2023 - Apr 2024",
-        "fun_fact": "fell down a rabbit hole."
-    },
-    "reputation": {
-        "image": "TS8.png",
-        "release_date": "10.11.2017",
-        "taylor_version": "<i>unreleased</i>",
-        "era_period": "Oct 2017 - Aug 2019",
-        "fun_fact": "and in the death of her reputation she felt truly alive."
-    },
-
-    "Lover": {
-        "image": "TS5.png",
-        "release_date": "23.08.2019",
-        "taylor_version": "<i>always was</i>",
-        "era_period": "Aug 2019 - Jul 2020",
-        "fun_fact": "I wanna be defined by the things that I love."
-
-    },
-    "folklore": {
-        "image": "TS9.png",
-        "release_date": "24.07.2020",
-        "taylor_version": "<i>always was</i>",
-        "era_period": "Jul 2020 - Dec 2020",
-        "fun_fact": "not a lot going on at the moment."
-    },
-    "evermore": {
-        "image": "TS10.png",
-        "release_date": "11.12.2020",
-        "taylor_version": "<i>always was</i>",
-        "era_period": "Dec 2020 - Apr 2021",
-        "fun_fact": "folklore's sister album."
-    },
-    "Midnights": {
-        "image": "TS11.png",
-        "release_date": "21.10.2022",
-        "taylor_version": "<i>always was</i>",
-        "era_period": "Oct 2022 -  Jul 2023",
-        "fun_fact": "<i>the stories of 13 sleepless nights.</i>"
-    },
-    "THE TORTURED POETS DEPARTMENT": {
-        "image": "TS6.png",
-        "release_date": "19.04.2024",
-        "taylor_version": "<i>always was</i>",
-        "era_period": "Apr 2024 -  Oct 2025",
-        "fun_fact": "<i>all's fair in love & poetry.</i>"
-    },
-    "The Life of a Showgirl": {
-        "image": "TS12.png",
-        "release_date": "October 21, 2022",
-        "era_period": "Oct 2015 - ",
-        "fun_fact": ""
-    },
-
-    "Other": {
-        "image": "TSO.png",
-        "release_date": "multiple",
-        "taylor_version": "multiple",
-        "era_period": "multiples",
-        "fun_fact": "soundtracks, features & other shenanigans."
-    } 
-}
 
 def merge_taylor_versions(song_counter, version_mapping):
     """
@@ -540,6 +445,12 @@ def generate_html_report(results, album_colors, taylor_version_mapping):
         2008: "11.11 <i>Fearless</i>",
         2006: "24.10 <i>Taylor Swift</i>"
     }
+
+    release_dates = {
+        "October 27, 2014 - 1989",
+        "July 24, 2020 - Folklore",
+        "November 12, 2021 - Red (Taylor's Version)"
+    }
     
     all_time_spotify_minutes = results['all_time_stats']['total_spotify_minutes']
     all_time_taylor_minutes = results['all_time_stats']['total_taylor_minutes']
@@ -661,6 +572,52 @@ def generate_html_report(results, album_colors, taylor_version_mapping):
     time_capsule_eras = get_time_capsule_eras(results, taylor_version_mapping)
     weekly_top_era = get_this_weeks_top_era(results, taylor_version_mapping)
     monthly_top_era = get_this_months_top_era(results, taylor_version_mapping)
+
+    # Check if today matches any release date
+
+    # Check if today is a release date
+    today = datetime.now()
+    today_str = today.strftime("%m.%d")
+    release_dates_formatted = {
+        "03.10": "The Life of a Showgirl",
+        "04.19": "THE TORTURED POETS DEPARTMENT", 
+        "07.07": "Speak Now (Taylor's Version)",
+        "10.27": "1989 (Taylor's Version)",
+        "10.21": "Midnights",
+        "04.09": "Fearless (Taylor's Version)",
+        "11.12": "Red (Taylor's Version)",
+        "07.24": "folklore",
+        "12.11": "evermore",
+        "08.23": "Lover",
+        "11.10": "reputation",
+        "10.27": "1989",
+        "10.22": "Red", 
+        "10.25": "Speak Now",
+        "11.11": "Fearless",
+        "10.24": "Debut",
+        "04.29": "<i>do you really wanna know where I was April 29th?</i> - High Infidelity",
+        "07.04": "<i>something was born on the forth of july</i> - End Game",
+        "08.01": "<i>salt air, and the rust on your door </i> - august",
+        "01.01": "<i>there's glitter on the floor after the party</i> - New Year Day",
+        "12.25": "<i>we could leave the Christmas lights up til January</i> - Lover",
+        "12.13": "<i>december thirteenth</i>",
+        "11.02": "<i>Gray November, I've been down since July</i> - evermore",
+        "12.02": "<i>Hey, December, guess I'm feeling unmoored</i> - evermore",
+        "30.05": "Swiftie Independence Date",
+        "09.11": "N1 Buenos Aires - <i>The Very First Night & Labyrinth</i>",
+        "11.11": "N3 Buenos Aires - <i>Better Than Revenge & Slut!</i>",
+        "05.26": "<i>Hits Different</i>",
+        "11.29": "<i>You're Losing Me</i>",
+        "06.09": "<i>The Return to Spotify</i>",
+        
+    }
+
+    today_release = None
+    for date_str, album_name in release_dates_formatted.items():
+        if today_str == date_str:
+            today_release = album_name
+            break
+
 
     html = f"""
 <!DOCTYPE html>
@@ -1283,6 +1240,14 @@ def generate_html_report(results, album_colors, taylor_version_mapping):
         <div id="home-view" class="stats-view active">
             <h2>👋 Ohh, hi!! Welcome to <i>In Summation</i>. </h2>
 
+            {f'''
+            <div style="text-align: left; margin: 20px 0; padding: 15px;">
+                <h3 style="margin: 0; color: var(--accent); font-size: 1.1rem">
+                    <i class="fa-solid fa-t" style="color: var(--accent);"></i><i class="fa-solid fa-s" style="color: var(--accent);"></i> {today_release} Anniversary
+                </h3>
+            </div>
+            ''' if today_release else ''}
+
         {f'''
         <div class="card" style="background-color: var(--secondary); border: var(--border); box-shadow: var(--shadow); margin: 20px 0; padding: 15px;">
             <h3 style="margin-top: 0; color: var(--primary);">"{random_quote['quote']}"</h3>
@@ -1340,7 +1305,7 @@ def generate_html_report(results, album_colors, taylor_version_mapping):
                 <div class="album-color" style="background-color: {album_colors.get(weekly_top_era[0], '#CCCCCC')};"></div>
                 <span style="font-size: 0.9rem;">{weekly_top_era[0]}</span>
             </div>
-            <div class="album-percentage" style="font-size: 0.9rem;">{weekly_top_era[1]} plays</div>
+            <div class="album-percentage" style="font-size: 0.9rem;">{weekly_top_era[1]} songs</div>
         </div>
 
         <!-- Weekly Songs -->
@@ -1373,7 +1338,7 @@ def generate_html_report(results, album_colors, taylor_version_mapping):
                 <div class="album-color" style="background-color: {album_colors.get(monthly_top_era[0], '#CCCCCC')};"></div>
                 <span style="font-size: 0.9rem;">{monthly_top_era[0]}</span>
             </div>
-            <div class="album-percentage" style="font-size: 0.9rem;">{monthly_top_era[1]} plays</div>
+            <div class="album-percentage" style="font-size: 0.9rem;">{monthly_top_era[1]} songs</div>
         </div>
 
 <p style="margin-top: 10px; border-bottom: var(--border)"></p>
@@ -1794,11 +1759,11 @@ def generate_html_report(results, album_colors, taylor_version_mapping):
         <ul class="song-list">
             {"".join([f"""
             <li class="{'total-minutes-row' if i < 3 else 'song-item'}">
-                <div class="album-info">
+                <div class="album-info" style="display: flex; align-items: center; width: 100%;">
                     <div class="song-number {'song-number-top' if i < 3 else ''}" 
-                        style="background-color: var(--accent);">{i+1}</div>
-                    <span class="{'total-minutes-text' if i < 3 else 'song-title'}">{song}</span>
-                    <div class="{'album-percentage total-minutes-value' if i < 3 else 'play-count'}">{get_position_trend(month, song, 'songs', monthly_stats, prev_month_stats)}</div>
+                        style="background-color: var(--accent); flex-shrink: 0; min-width: 25px; width: 25px; height: 25px; display: flex; align-items: center; justify-content: center;">{i+1}</div>
+                    <span class="{'total-minutes-text' if i < 3 else 'song-title'}" style="flex: 1; min-width: 0; padding: 0 10px; word-wrap: break-word; text-align: left;">{song}</span>
+                    <div class="{'album-percentage total-minutes-value' if i < 3 else 'play-count'}" style="flex-shrink: 0; margin-left: auto;">{get_position_trend(month, song, 'songs', monthly_stats, prev_month_stats)}</div>
                 </div>
             </li>
             """ for i, (song, count) in enumerate(monthly_stats[month]['songs'].most_common(31))])}
