@@ -425,10 +425,88 @@ def get_top_songs_for_album(results, album_name, taylor_version_mapping):
     merged_songs = merge_taylor_versions(album_songs, taylor_version_mapping)
     return merged_songs.most_common()
 
+def get_time_capsule_eras(results, taylor_version_mapping):
+    """Get the most listened era for each year on today's date"""
+    today = datetime.now()
+    current_month_day = f"{today.month:02d}-{today.day:02d}"
+    
+    yearly_eras = defaultdict(Counter)
+    
+    for entry in results['all_data']:
+        if not entry.get('ts'):
+            continue
+            
+        dt = datetime.strptime(entry['ts'], "%Y-%m-%dT%H:%M:%SZ")
+        entry_month_day = f"{dt.month:02d}-{dt.day:02d}"
+        
+        if entry_month_day == current_month_day:
+            year = dt.year
+            artist = entry.get('master_metadata_album_artist_name')
+            album = entry.get('master_metadata_album_album_name')
+            
+            if artist == "Taylor Swift" and album:
+                # Map album to era name
+                era = album_mapping.get(album, album)
+                yearly_eras[year][era] += 1
+    
+    # Get top era for each year
+    time_capsule = {}
+    for year, eras in yearly_eras.items():
+        if eras:
+            top_era = eras.most_common(1)[0]
+            time_capsule[year] = top_era[0]
+    
+    return time_capsule
 
+def get_this_weeks_top_era(results, taylor_version_mapping):
+    """Get the most played era from the current week (all years combined)"""
+    today = datetime.now()
+    current_week = today.isocalendar()[1]
+    
+    weekly_eras = Counter()
+    
+    for entry in results['all_data']:
+        if not entry.get('ts'):
+            continue
+            
+        dt = datetime.strptime(entry['ts'], "%Y-%m-%dT%H:%M:%SZ")
+        entry_week = dt.isocalendar()[1]
+        
+        if entry_week == current_week:
+            artist = entry.get('master_metadata_album_artist_name')
+            album = entry.get('master_metadata_album_album_name')
+            
+            if artist == "Taylor Swift" and album:
+                era = album_mapping.get(album, album)
+                weekly_eras[era] += 1
+    
+    # Return only the top era
+    return weekly_eras.most_common(1)[0] if weekly_eras else ("No era", 0)
 
-
-
+def get_this_months_top_era(results, taylor_version_mapping):
+    """Get the most played era from the current month (all years combined)"""
+    today = datetime.now()
+    current_month = today.month
+    
+    monthly_eras = Counter()
+    
+    for entry in results['all_data']:
+        if not entry.get('ts'):
+            continue
+            
+        dt = datetime.strptime(entry['ts'], "%Y-%m-%dT%H:%M:%SZ")
+        entry_month = dt.month
+        
+        if entry_month == current_month:
+            artist = entry.get('master_metadata_album_artist_name')
+            album = entry.get('master_metadata_album_album_name')
+            
+            if artist == "Taylor Swift" and album:
+                era = album_mapping.get(album, album)
+                monthly_eras[era] += 1
+    
+    # Return only the top era
+    return monthly_eras.most_common(1)[0] if monthly_eras else ("No era", 0)
 
 def generate_html_report(results, album_colors, taylor_version_mapping):
     """
@@ -448,6 +526,7 @@ def generate_html_report(results, album_colors, taylor_version_mapping):
     
     
     release_anniversaries = {
+        2025: "03.10 <i>The Life of a Showgirl</i>",
         2024: "19.04 <i>THE TORTURED POETS DEPARTMENT</i>",
         2023: "07.07 <i>Speak Now (Taylor's Version)</i><br>27.10 <i>1989 (Taylor's Version)</i>",
         2022: "21.10 <i>Midnights</i>",
@@ -578,708 +657,616 @@ def generate_html_report(results, album_colors, taylor_version_mapping):
     current_week = datetime.now().isocalendar()[1]
     current_month_name = datetime.now().strftime('%B')
 
+    # Replace the existing calls with these:
+    time_capsule_eras = get_time_capsule_eras(results, taylor_version_mapping)
+    weekly_top_era = get_this_weeks_top_era(results, taylor_version_mapping)
+    monthly_top_era = get_this_months_top_era(results, taylor_version_mapping)
+
     html = f"""
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>In Summation</title>
     <link rel="icon" href="fav.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <style>
-        :root {{
-            --primary: #000000;
-            --secondary: #ffd1a3;
-            --accent: #7FB069;
-            --highlight: #ADEBB3;
-            --border: 3px solid var(--primary);
-            --shadow: 8px 8px 0px var(--primary);
-            --font-main: 'DM Sans', monospace;
-            --font-size: 18px;
-        }}
-
-        /* Add this to your existing CSS */
-        button, .nav-tab  {{
-            cursor: pointer; /* Shows hand cursor on hover */
-        }}
-
-        /* Prevent text selection on interactive elements */
-        button, .nav-tab, .song-item, .album-row, .total-minutes-text, .total-minutes-value {{
-            user-select: none;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-        }}
-        
-        body {{
-            font-family: var(--font-main);
-            background: 
-                linear-gradient(rgba(255, 209, 163, 0.65), rgba(255, 209, 163, 0.2)),
-                url('back.jpg') no-repeat center center;            
-            color: var(--primary);
-            background-size: cover;
-            background-attachment: fixed;
-            font-size: var(--font-size);
-            line-height: 1.6;
-            padding: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }}
-
-        header {{
-            border: var(--border);
-            padding: 20px;
-            margin-bottom: 15px;
-            background-color: var(--highlight);
-            border-radius: 5px;
-        }}
-        
-        h1, h2, h3 {{
-            margin-top: 0;
-            font-weight: 700;
-        }}
-        
-        h1 {{
-            font-size: 3.5rem;
-            text-transform: uppercase;
-            margin-bottom: 0;
-            font-style: italic;
-        }}
-        
-        h2 {{
-            font-size: 1.8rem;
-            border-bottom: var(--border);
-            padding-bottom: 10px;
-            margin-top: 40px;
-        }}
-
-        h3 {{
-            font-size: 1.5rem;
-            margin-top: 30px;
-        }}
-
-        .card {{
-            border: var(--border);
-            border-radius: 5px;
-            padding: 20px;
-            margin-bottom: 15px;
-            background-color: #FFFFFF;
-        }}
-        
-        /* Top Songs Styling */
-        .song-list {{
-            list-style-type: none;
-            padding: 0;
-        }}
-        
-        .song-item {{
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 12px 15px;
-            border-bottom: 2px solid #f0f0f0;
-        }}
-        
-        .song-item-top {{
-            width: 40px;
-            height: 40px;
-            font-size: 1.5rem;
-        }}
-        
-        .song-info {{
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }}
-        
-        .song-number {{
-            width: 25px;
-            height: 25px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            border: var(--border);
-            border-radius: 2px;
-            margin-right: 10px;
-            color: var(--secondary)
-        }}
-        
-        .song-number-top {{
-            font-size: 1.5rem;
-            width: 40px;
-            height: 40px;
-        }}
-        
-        .song-title {{
-            font-weight: 500;
-            flex-grow: 1;
-        }}
-        
-        .song-title-top {{
-            font-size: 1.2rem;
-            font-weight: 700;
-        }}
-        
-        .play-count {{
-            font-weight: bold;
-            margin-right: 15px;
-        }}
-        
-        .play-count-top {{
-            font-size: 1.2rem;
-        }}
-        
-        .album-row {{
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 12px 15px;
-            border-bottom: 2px solid #f0f0f0;
-        }}
-        
-        .album-row:last-child {{
-            border-bottom: none;
-        }}
-        
-        .album-info {{
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }}
-        
-        .album-color {{
-            width: 20px;
-            height: 20px;
-            border: var(--border);
-            border-radius: 2px;
-        }}
-        
-        .album-percentage {{
-            font-weight: bold;
-        }}
-            
-/* Stacked bar container */
-.stacked-bar {{
-    height: 40px;
-    background-color: #D8F3DC;
-    border: var(--border);
-    margin-bottom: 30px;
-    position: relative;
-    display: flex;
-    width: 100%;
-    box-sizing: border-box;
-}}
-
-/* Remove the negative margin that was creating gaps */
-.stacked-segment:last-child {{
-    border-right: none; /* Remove border from last segment */
-}}
-
-/* Base segment style */
-.stacked-segment {{
-    height: 100%;
-    position: relative;
-    border-right: 2px solid var(--primary);
-    box-sizing: border-box;
-    transition: all 0.2s ease;
-    /* Remove margin-right and transform-origin that were causing gaps */
-
-}}
-
-/* Highlighted segment - show tooltip */
-.stacked-segment.highlighted {{
-    opacity: 1 !important;
-    transform: scaleY(1.1);
-    z-index: 2;
-    border: 2px solid var(--primary) !important;
-    margin: -1px -1px -1px -1px;
-}}
-
-/* Shaded segment - hide tooltip */
-.stacked-segment.shaded {{
-    opacity: 0.2 !important;
-    filter: grayscale(90%);
-    border-right: none !important;
-    pointer-events: none; /* This prevents hover on shaded segments */
-}}
-
-/* Only show tooltip on highlighted segments */
-.stacked-segment.highlighted:hover .stacked-segment-tooltip {{
-    opacity: 1;
-    visibility: visible;
-}}
-
-/* Hide tooltip on shaded segments */
-.stacked-segment.shaded .stacked-segment-tooltip {{
-    display: none;
-}}
-
-/* Tooltip styles */
-.stacked-segment-tooltip {{
-    position: absolute;
-    bottom: calc(100% + 5px);
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #D8F3DC;
-    color: black;
-    padding: 5px 10px;
-    border-radius: 2px 2px 0 0;
-    box-shadow: 2px 2px 0px var(--primary);
-    border: var(--border);
-    font-size: 16px;
-    white-space: nowrap;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.2s ease;
-    z-index: 100;
-}}
-
-.stacked-segment-tooltip::after {{
-    content: "";
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    margin-left: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: #D8F3DC transparent transparent transparent;
-}}
-
-/* All-albums view - show all tooltips */
-#all-albums-album-view .stacked-segment:hover .stacked-segment-tooltip {{
-    opacity: 1;
-    visibility: visible;
-}}
-        /* Navigation tabs */
-        .nav-tabs {{
-                display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            overflow-x: auto;
-            white-space: nowrap;
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: none;
-            flex-wrap: wrap;
-            row-gap: 8px;
-        }}
-
-        .nav-tabs::-webkit-scrollbar {{
-            display: none;
-        }}
-        
-        .nav-tab {{
-            padding: 8px 15px;
-            background: none;
-            border: 2px solid var(--primary);
-            
-            border-radius: 2px 2px 0 0;
-            font-family: var(--font-main);
-            font-size: clamp(0.8rem, 3vw, 1rem);
-            margin-right: 0;
-            flex-shrink: 0;
-            min-width: max-content;
-            box-shadow: 2px 2px 0px var(--primary);
-            transition: all 0.2s ease;
-            position: relative;
-            top: 0;
-        }}
-        
-        .nav-tab:hover {{
-                background-color: #D8F3DC;
-    box-shadow: none;
-    top: 4px;
-        }}
-        
-        .nav-tab.active {{
-    background-color: var(--highlight);
-    font-weight: bold;
-    box-shadow: none;
-    top: 4px;
-        }}
-        
-        .stats-view {{
-            display: none;
-        }}
-        
-        .stats-view.active {{
-            display: block;
-        }}
-        
-        .minutes-header {{
-            font-size: 1.2rem;
-            font-weight: bold;
-            margin-bottom: 15px;
-            padding: 10px;
-            background-color: #FFF5E6;
-            border: var(--border);
-            display: inline-block;
-        }}
-        
-        footer {{
-            text-align: center;
-            margin-top: 50px;
-            padding: 20px;
-            border: var(--border);
-            background-color: var(--secondary);
-        }}
-        
-        .total-minutes-row {{
-            background-color: var(--secondary);
-            padding: 15px;
-            margin: 15px 0;
-            border: var(--border);
-            box-shadow: var(--shadow);
-        }}
-
-        .total-minutes-text {{
-            font-weight: bold;
-            font-size: 1.1rem;
-            flex-grow: 1;
-        }}
-
-        .total-minutes-value {{
-            font-weight: bold;
-            font-size: 1.1rem;
-            color: var(--accent);
-            margin-right: 15px;
-        }}
-
-        .card-highlight {{
-            font-weight: bold;
-            font-size: 1.1rem;
-            color: var(--accent);
-            border: var(--border);
-            border-radius: 5px;
-            padding: 20px;
-            margin-bottom: 15px;
-            box-shadow: 8px 0px 0px var(--primary);
-            background-color: var(--accent);        
-        }}
-
-        .big-number {{
-            font-size: 2rem;
-            font-weight: 900;
-            color: var(--secondary);
-            line-height: 1;
-            margin-bottom: 10px;
-        }}
-        
-        .unit {{
-            font-size: 1.1rem;
-            font-weight: 00;
-            margin-left: 5px;
-            color: var(--primary);
-        }}
-
-        @media (max-width: 768px) {{
-            .nav-tabs {{
-                gap: 8px;
-                padding-bottom: 8px;
-                flex-wrap: wrap;
-            }}
-    
-            .nav-tab {{
-                padding: 6px 12px;
-                margin-bottom: 8px;
-            }}
-        }}
-
-
-        .calendar-list {{
-    list-style-type: none;
-    padding: 0;
-}}
-
-.calendar-list h2 {{
-    border-bottom: var(--border);
-    padding-bottom: 5px;
-    margin-top: 30px;
-}}
-
-.calendar-item {{
-    display: flex;
-    align-items: center;
-    padding: 12px 15px;
-    border-bottom: 2px solid #f0f0f0;
-    gap: 20px;
-}}
-
-.calendar-date {{
-    font-weight: bold;
-    min-width: 100px;
-    text-align: center;
-    
-}}
-
-.calendar-event {{
-    flex-grow: 1;
-}}
-
-
-        .legend {{
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 20px;
-        }}
-        
-        .legend-item {{
-            display: flex;
-            align-items: center;
-            margin-right: 15px;
-        }}
-        
-        .legend-color {{
-            width: 20px;
-            height: 20px;
-            border: var(--border);
-            margin-right: 5px;
-        }}
-
-        
-        .month-section {{
-            margin-bottom: 40px;
-            background-color: white;
-   
-        }}
-        
-        .month-header {{
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-        }}
-        
-        .total-minutes {{
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: var(--accent);
-        }}
-        
-        .album-list, .song-list {{
-            list-style-type: none;
-            padding: 0;
-        }}
-        
-        .album-item, .song-item {{
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 12px 15px;
-            border-bottom: 2px solid #f0f0f0;
-        }}
-        
-        .album-info, .song-info {{
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }}
-        
-        .album-color {{
-            width: 20px;
-            height: 20px;
-            border: var(--border);
-            border-radius: 2px;
-        }}
-        
-        .trend-indicator {{
-            font-weight: bold;
-            margin-left: 10px;
-            font-weight: 900;
-        }}
-        
-        .up {{
-            color: green;
-        }}
-        
-        .down {{
-            color: red;
-        }}
-        
-        .same {{
-            color: #666;
-        }}
-        
-        .new {{
-            color: var(--accent);
-        }}
-        
-        /* Navigation tabs */
-        .nav-tabs {{
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            overflow-x: auto;
-            white-space: nowrap;
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: none;
-            flex-wrap: wrap;
-            row-gap: 8px;
-        }}
-
-        .nav-tabs::-webkit-scrollbar {{
-            display: none;
-        }}
-        
-        .nav-tab {{
-            padding: 8px 15px;
-            background: none;
-            border: 2px solid var(--primary);
-            border-radius: 2px 2px 0 0;
-            font-family: var(--font-main);
-            font-size: clamp(0.8rem, 3vw, 1rem);
-            margin-right: 0;
-            flex-shrink: 0;
-            min-width: max-content;
-            box-shadow: 2px 2px 0px var(--primary);
-            transition: all 0.2s ease;
-            position: relative;
-            top: 0;
-        }}
-        
-        .nav-tab:hover {{
-            background-color: #D8F3DC;
-            box-shadow: none;
-            top: 4px;
-        }}
-        
-        .nav-tab.active {{
-            background-color: var(--highlight);
-            font-weight: bold;
-            box-shadow: none;
-            top: 4px;
-        }}
-        
-        .month-nav {{
-            display: none;
-        }}
-        
-        .month-nav.active {{
-            display: flex;
-        }}
-        
-        .stats-view {{
-            display: none;
-        }}
-        
-        .stats-view.active {{
-            display: block;
-        }}
-        
-        footer {{
-            text-align: center;
-            margin-top: 50px;
-            padding: 20px;
-            border: var(--border);
-            background-color: var(--secondary);
-        }}
-
-        @media (max-width: 768px) {{
-            .nav-tabs {{
-                gap: 8px;
-                padding-bottom: 8px;
-                flex-wrap: wrap;
-            }}
-    
-            .nav-tab {{
-                padding: 6px 12px;
-                margin-bottom: 8px;
-            }}
-
-            .total-minutes-text, .total-minutes-value {{
-                font-size: 0.9rem;
-            }}
-
-            body {{
-                font-size: 0.9rem;
-            }}
-        }}
-
-    .fa-heart, .fa-music{{
-        margin: 0 5px; /* Spacing */
+<style>
+    :root {{
+        --primary: #000000;
+        --secondary: #ffd1a3;
+        --accent: #7FB069;
+        --highlight: #ADEBB3;
+        --border: 3px solid var(--primary);
+        --shadow: 8px 8px 0px var(--primary);
+        --font-main: 'DM Sans', monospace;
+        --font-size: 18px;
     }}
-/* Album Info Box - Neobrutalism Style */
-.album-info-box {{
-    display: flex;
-    border: var(--border);
-    margin-bottom: 20px;
-    box-shadow: var(--shadow);
-    background-color: white;
-    padding: 0;
-    overflow: hidden;
-}}
 
-.album-cover {{
-    width: 250px;
-    height: 250px;
-    border-right: var(--border);
-    overflow: hidden;
-    flex-shrink: 0;
-}}
-
-.album-cover img {{
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}}
-
-.album-details {{
-    padding: 15px;
-    flex-grow: 1;
-}}
-
-.album-details h3 {{
-    margin-top: 0;
-    font-size: 1.5rem;
-    border-bottom: var(--border);
-    padding-bottom: 5px;
-}}
-
-.album-meta p {{
-    margin: 8px 0;
-    line-height: 1.4;
-}}
-
-/* Responsive adjustments */
-@media (max-width: 600px) {{
-    .album-info-box {{
-        flex-direction: column;
+    /* Base Styles */
+    body {{
+        font-family: var(--font-main);
+        background: 
+            linear-gradient(rgba(255, 209, 163, 0.65), rgba(255, 209, 163, 0.2)),
+            url('back.jpg') no-repeat center center;            
+        color: var(--primary);
+        background-size: cover;
+        background-attachment: fixed;
+        font-size: var(--font-size);
+        line-height: 1.6;
+        padding: 20px;
+        max-width: 1200px;
+        margin: 0 auto;
+        
     }}
-    
-    .album-cover {{
-        width: 100%;
-        height: auto;
-        aspect-ratio: 1/1;
-        border-right: none;
+
+    header {{
+        border: var(--border);
+        padding: 20px;
+        margin-bottom: 15px;
+        background-color: var(--highlight);
+        border-radius: 5px;
+    }}
+
+    footer {{
+        text-align: center;
+        margin-top: 50px;
+        padding: 20px;
+        border: var(--border);
+        background-color: var(--secondary);
+        margin-bottom: 50px;
+    }}
+
+    /* Typography */
+    h1, h2, h3 {{
+        margin-top: 0;
+        font-weight: 700;
+    }}
+
+    h1 {{
+        font-size: 2.2rem;
+        text-transform: uppercase;
+        margin-bottom: 0;
+        font-style: italic;
+    }}
+
+    h2 {{
+        font-size: 1.8rem;
         border-bottom: var(--border);
+        padding-bottom: 10px;
+        margin-top: 40px;
     }}
-    
+
+    h3 {{
+        font-size: 1.5rem;
+        margin-top: 30px;
+    }}
+
+    /* Interactive Elements */
+    button, .nav-tab {{
+        cursor: pointer;
+    }}
+
+    button, .nav-tab, .song-item, .album-row, .total-minutes-text, .total-minutes-value {{
+        user-select: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+    }}
+
+    /* Cards & Layout */
+    .card {{
+        border: var(--border);
+        border-radius: 5px;
+        padding: 20px;
+        margin-bottom: 15px;
+        background-color: #FFFFFF;
+    }}
+
+    .card-highlight {{
+        font-weight: bold;
+        font-size: 1.1rem;
+        color: var(--accent);
+        border: var(--border);
+        border-radius: 5px;
+        padding: 20px;
+        margin-bottom: 15px;
+        box-shadow: 8px 0px 0px var(--primary);
+        background-color: var(--accent);        
+    }}
+
+    .big-number {{
+        font-size: 2rem;
+        font-weight: 900;
+        color: var(--secondary);
+        line-height: 1;
+        margin-bottom: 10px;
+    }}
+
+    .unit {{
+        font-size: 1.1rem;
+        font-weight: 00;
+        margin-left: 5px;
+        color: var(--primary);
+    }}
+
+    /* Navigation */
+    .nav-tabs {{
+        display: flex;
+        gap: 10px;
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        overflow-x: auto;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        flex-wrap: wrap;
+        row-gap: 8px;
+    }}
+
+    .nav-tabs::-webkit-scrollbar {{
+        display: none;
+    }}
+
+    .nav-tab {{
+        padding: 8px 15px;
+        background: none;
+        border: 2px solid var(--primary);
+        border-radius: 2px 2px 0 0;
+        font-family: var(--font-main);
+        font-size: clamp(0.8rem, 3vw, 1rem);
+        margin-right: 0;
+        flex-shrink: 0;
+        min-width: max-content;
+        box-shadow: 2px 2px 0px var(--primary);
+        transition: all 0.2s ease;
+        position: relative;
+        top: 0;
+    }}
+
+    .nav-tab:hover {{
+        background-color: #D8F3DC;
+        box-shadow: none;
+        top: 4px;
+    }}
+
+    .nav-tab.active {{
+        background-color: var(--highlight);
+        font-weight: bold;
+        box-shadow: none;
+        top: 4px;
+    }}
+
+    /* Views & Sections */
+    .stats-view {{
+        display: none;
+    }}
+
+    .stats-view.active {{
+        display: block;
+    }}
+
+    .month-nav {{
+        display: none;
+    }}
+
+    .month-nav.active {{
+        display: flex;
+    }}
+
+    .month-section {{
+        margin-bottom: 40px;
+        background-color: white;
+    }}
+
+    .month-header {{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+    }}
+
+    /* Song Lists */
+    .song-list {{
+        list-style-type: none;
+        padding: 0;
+    }}
+
+    .song-item {{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 15px;
+        border-bottom: 2px solid #f0f0f0;
+    }}
+
+    .song-item-top {{
+        width: 40px;
+        height: 40px;
+        font-size: 1.5rem;
+    }}
+
+    .song-info {{
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }}
+
+    .song-number {{
+        width: 25px;
+        height: 25px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        border: var(--border);
+        border-radius: 2px;
+        margin-right: 10px;
+        color: var(--secondary)
+    }}
+
+    .song-number-top {{
+        font-size: 1.5rem;
+        width: 40px;
+        height: 40px;
+    }}
+
+    .song-title {{
+        font-weight: 500;
+        flex-grow: 1;
+    }}
+
+    .song-title-top {{
+        font-size: 1.2rem;
+        font-weight: 700;
+    }}
+
+    .play-count {{
+        font-weight: bold;
+        margin-right: 15px;
+    }}
+
+    .play-count-top {{
+        font-size: 1.2rem;
+    }}
+
+    /* Album Styles */
+    .album-row {{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 15px;
+        border-bottom: 2px solid #f0f0f0;
+    }}
+
+    .album-row:last-child {{
+        border-bottom: none;
+    }}
+
+    .album-info {{
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }}
+
+    .album-color {{
+        width: 20px;
+        height: 20px;
+        border: var(--border);
+        border-radius: 2px;
+    }}
+
+    .album-percentage {{
+        font-weight: bold;
+    }}
+
+    .album-list {{
+        list-style-type: none;
+        padding: 0;
+    }}
+
+    .album-item {{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 15px;
+        border-bottom: 2px solid #f0f0f0;
+    }}
+
+    /* Album Info Box */
+    .album-info-box {{
+        display: flex;
+        border: var(--border);
+        margin-bottom: 20px;
+        box-shadow: var(--shadow);
+        background-color: white;
+        padding: 0;
+        overflow: hidden;
+    }}
+
+    .album-cover {{
+        width: 250px;
+        height: 250px;
+        border-right: var(--border);
+        overflow: hidden;
+        flex-shrink: 0;
+    }}
+
     .album-cover img {{
         width: 100%;
-        height: auto;
+        height: 100%;
+        object-fit: cover;
+        display: block;
     }}
-}}
 
+    .album-details {{
+        padding: 15px;
+        flex-grow: 1;
+    }}
 
-/* Add this to your CSS to ensure tooltips work in all views */
-#years-view .stacked-segment:hover .stacked-segment-tooltip {{
-    opacity: 1;
-    visibility: visible;
-}}
+    .album-details h3 {{
+        margin-top: 0;
+        font-size: 1.5rem;
+        border-bottom: var(--border);
+        padding-bottom: 5px;
+    }}
 
-    </style>
+    .album-meta p {{
+        margin: 8px 0;
+        line-height: 1.4;
+    }}
+
+    /* Stacked Bar */
+    .stacked-bar {{
+        height: 40px;
+        background-color: #D8F3DC;
+        border: var(--border);
+        margin-bottom: 30px;
+        position: relative;
+        display: flex;
+        width: 100%;
+        box-sizing: border-box;
+    }}
+
+    .stacked-segment {{
+        height: 100%;
+        position: relative;
+        border-right: 2px solid var(--primary);
+        box-sizing: border-box;
+        transition: all 0.2s ease;
+    }}
+
+    .stacked-segment:last-child {{
+        border-right: none;
+    }}
+
+    .stacked-segment.highlighted {{
+        opacity: 1 !important;
+        transform: scaleY(1.1);
+        z-index: 2;
+        border: 2px solid var(--primary) !important;
+        margin: -1px -1px -1px -1px;
+    }}
+
+    .stacked-segment.shaded {{
+        opacity: 0.2 !important;
+        filter: grayscale(90%);
+        border-right: none !important;
+        pointer-events: none;
+    }}
+
+    .stacked-segment.highlighted:hover .stacked-segment-tooltip {{
+        opacity: 1;
+        visibility: visible;
+    }}
+
+    .stacked-segment.shaded .stacked-segment-tooltip {{
+        display: none;
+    }}
+
+    .stacked-segment-tooltip {{
+        position: absolute;
+        bottom: calc(100% + 5px);
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #D8F3DC;
+        color: black;
+        padding: 5px 10px;
+        border-radius: 2px 2px 0 0;
+        box-shadow: 2px 2px 0px var(--primary);
+        border: var(--border);
+        font-size: 16px;
+        white-space: nowrap;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.2s ease;
+        z-index: 100;
+    }}
+
+    .stacked-segment-tooltip::after {{
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        margin-left: -5px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: #D8F3DC transparent transparent transparent;
+    }}
+
+    #all-albums-album-view .stacked-segment:hover .stacked-segment-tooltip,
+    #years-view .stacked-segment:hover .stacked-segment-tooltip {{
+        opacity: 1;
+        visibility: visible;
+    }}
+
+    /* Minutes & Stats */
+    .minutes-header {{
+        font-size: 1.2rem;
+        font-weight: bold;
+        margin-bottom: 15px;
+        padding: 10px;
+        background-color: #FFF5E6;
+        border: var(--border);
+        display: inline-block;
+    }}
+
+    .total-minutes-row {{
+        background-color: var(--secondary);
+        padding: 15px;
+        margin: 15px 0;
+        border: var(--border);
+        box-shadow: var(--shadow);
+    }}
+
+    .total-minutes-text {{
+        font-weight: bold;
+        font-size: 1.1rem;
+        flex-grow: 1;
+    }}
+
+    .total-minutes-value {{
+        font-weight: bold;
+        font-size: 1.1rem;
+        color: var(--accent);
+        margin-right: 15px;
+    }}
+
+    .total-minutes {{
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: var(--accent);
+    }}
+
+    /* Calendar */
+    .calendar-list {{
+        list-style-type: none;
+        padding: 0;
+    }}
+
+    .calendar-list h2 {{
+        border-bottom: var(--border);
+        padding-bottom: 5px;
+        margin-top: 30px;
+    }}
+
+    .calendar-item {{
+        display: flex;
+        align-items: center;
+        padding: 12px 15px;
+        border-bottom: 2px solid #f0f0f0;
+        gap: 20px;
+    }}
+
+    .calendar-date {{
+        font-weight: bold;
+        min-width: 100px;
+        text-align: center;
+    }}
+
+    .calendar-event {{
+        flex-grow: 1;
+    }}
+
+    /* Legend */
+    .legend {{
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 20px;
+    }}
+
+    .legend-item {{
+        display: flex;
+        align-items: center;
+        margin-right: 15px;
+    }}
+
+    .legend-color {{
+        width: 20px;
+        height: 20px;
+        border: var(--border);
+        margin-right: 5px;
+    }}
+
+    /* Trend Indicators */
+    .trend-indicator {{
+        font-weight: bold;
+        margin-left: 10px;
+        font-weight: 900;
+    }}
+
+    .up {{
+        color: green;
+    }}
+
+    .down {{
+        color: red;
+    }}
+
+    .same {{
+        color: #666;
+    }}
+
+    .new {{
+        color: var(--accent);
+    }}
+
+    /* Icons */
+    .fa-heart, .fa-music {{
+        margin: 0 5px;
+    }}
+
+    /* Responsive Design */
+    @media (max-width: 768px) {{
+        .nav-tabs {{
+            gap: 8px;
+            padding-bottom: 8px;
+            flex-wrap: wrap;
+        }}
+
+        .nav-tab {{
+            padding: 6px 12px;
+            margin-bottom: 8px;
+        }}
+
+        .total-minutes-text, .total-minutes-value {{
+            font-size: 0.9rem;
+        }}
+
+        body {{
+            font-size: 0.9rem;
+        }}
+    }}
+
+    @media (max-width: 600px) {{
+        .album-info-box {{
+            flex-direction: column;
+        }}
+        
+        .album-cover {{
+            width: 100%;
+            height: auto;
+            aspect-ratio: 1/1;
+            border-right: none;
+            border-bottom: var(--border);
+        }}
+        
+        .album-cover img {{
+            width: 100%;
+            height: auto;
+        }}
+    }}
+</style>
 </head>
+
+
 <body>
     <header>
-        <h1>In Summation</h1>
+        <h1>In Summation <i class="fas fa-star" style="color: yellow; font-size: 1.2rem;"></i></h1> 
 
     </header>
     
@@ -1296,106 +1283,285 @@ def generate_html_report(results, album_colors, taylor_version_mapping):
         <div id="home-view" class="stats-view active">
             <h2>👋 Ohh, hi!! Welcome to <i>In Summation</i>. </h2>
 
-            
-    {f'''
-    <div class="card" style="background-color: var(--secondary); border: var(--border); box-shadow: var(--shadow); margin: 20px 0; padding: 15px;">
-        <h3 style="margin-top: 0; color: var(--primary);">"{random_quote['quote']}"</h3>
-        <p style="margin: 0; font-size: 0.9rem; color: #666;">
-            — {random_quote['song']} • {random_quote['album']}
-        </p>
-    </div>
-    ''' if random_quote else ''}
-    
-    <h2>From the Vault <span id="current-date" style="display: none;"></span></h2>
-    
-    <!-- Today Through the Years -->
-    <div class="album-row total-minutes-row" style="margin-top: 20px; background-color: var(--highlight);">
-        <div class="album-percentage total-minutes-value" style="text-align: left; color: black; flex-grow: 1; font-weight: 400;">
-            Do you really wanna know where I was <span id="current-month-name" style="color: #E91E63; font-weight: bold;"></span> <span id="day-ordinal" style="color: #E91E63; font-weight: bold;"></span>?
+        {f'''
+        <div class="card" style="background-color: var(--secondary); border: var(--border); box-shadow: var(--shadow); margin: 20px 0; padding: 15px;">
+            <h3 style="margin-top: 0; color: var(--primary);">"{random_quote['quote']}"</h3>
+            <p style="margin: 0; font-size: 0.9rem; color: #666;">
+                — {random_quote['song']} • {random_quote['album']}
+            </p>
         </div>
-    </div>
+        ''' if random_quote else ''}
 
-    {"".join([f"""
-    <div class="album-row">
-        <div class="album-info">
-            <div class="album-color" style="background-color: var(--accent);"></div>
-            <span>{year}</span>
-        </div>
-        <div class="album-percentage">{song}</div>
-    </div>
-    """ for year, song in sorted(time_capsule_songs.items(), reverse=True)])}
-    
-    <!-- Weekly Ranking -->
-    <div class="album-row total-minutes-row" style="margin-top: 30px; background-color: var(--highlight);">
-        <div class="album-percentage total-minutes-value" style="text-align: left; color: black; flex-grow: 1; font-weight: 400;">
-            But you keep my old scarf from that very <span id="week-ordinal" style="color: #E91E63; font-weight: bold;"></span> week
-        </div>
-    </div>
-    <ul class="song-list">
-        {"".join([f"""
-        <li class="song-item">
-            <div class="album-info" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
-                <div style="display: flex; align-items: center; gap: 10px;">
-                    <div class="song-number" style="background-color: var(--accent);">{i+1}</div>
-                    <span class="song-title">{song}</span>
-                </div>
-                <div class="play-count" style="margin-left: auto;">{count} <i class="fa-solid fa-play"></i></div>
+        
+        <h2>From the Vault <span id="current-date" style="display: none;"></span></h2>
+        
+        <!-- Today Through the Years -->
+        <div class="album-row total-minutes-row" style="margin-top: 20px; background-color: var(--highlight);">
+            <div class="album-percentage total-minutes-value" style="text-align: left; color: black; flex-grow: 1; font-weight: 400;">
+                Do you really wanna know where I was <span id="current-month-name" style="color: #E91E63; font-weight: bold;"></span> <span id="day-ordinal" style="color: #E91E63; font-weight: bold;"></span>?
             </div>
-        </li>
-        """ for i, (song, count) in enumerate(weekly_ranking)])}
-    </ul>
-    
-    <!-- Monthly Ranking -->
-    <div class="album-row total-minutes-row" style="margin-top: 30px; background-color: var(--highlight);">
-        <div class="album-percentage total-minutes-value" style="text-align: left; color: black; flex-grow: 1; font-weight: 400;">
-            I go back to <span id="current-month" style="color: #E91E63; font-weight: bold;">{current_month_name}</span> all the time
         </div>
-    </div>
-    <ul class="song-list">
-        {"".join([f"""
-        <li class="song-item">
-            <div class="album-info" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
-                <div style="display: flex; align-items: center; gap: 10px;">
-                    <div class="song-number" style="background-color: var(--accent);">{i+1}</div>
-                    <span class="song-title">{song}</span>
-                </div>
-                <div class="play-count" style="margin-left: auto;">{count} <i class="fa-solid fa-play"></i></div>
-            </div>
-        </li>
-        """ for i, (song, count) in enumerate(monthly_ranking)])}
-    </ul>
-    
-    <script>
-        // Update the date when the page loads
-        document.addEventListener('DOMContentLoaded', function() {{
-            const now = new Date();
-            const options = {{ month: 'long', day: 'numeric' }};
-            document.getElementById('current-date').textContent = now.toLocaleDateString('en-US', options);
-            
-            // Add month name
-            document.getElementById('current-month-name').textContent = now.toLocaleDateString('en-US', {{ month: 'long' }});
-            
-            // Add ordinal suffix to day
-            const day = now.getDate();
-            const ordinal = (day) => {{
-                if (day > 3 && day < 21) return 'th';
-                switch (day % 10) {{
-                    case 1: return "st";
-                    case 2: return "nd";
-                    case 3: return "rd";
-                    default: return "th";
-                }}
-            }};
-            document.getElementById('day-ordinal').textContent = day + ordinal(day);
-            
-            // Add ordinal suffix to week
-            const week = {current_week};
-            document.getElementById('week-ordinal').textContent = week + ordinal(week);
-        }});
-    </script>
-</div>
 
+        {"".join([f"""
+        <div class="album-row">
+            <div class="album-info">
+                <div class="album-color" style="background-color: var(--accent);"></div>
+                <span>{year}</span>
+            </div>
+            <div class="album-percentage">{song}</div>
+        </div>
+        """ for year, song in sorted(time_capsule_songs.items(), reverse=True)])}
+
+<p style="margin-top: 10px; border-bottom: var(--border)"></p>
+
+
+        {"".join([f"""
+        <div class="album-row" style="padding: 8px 15px;">
+            <div class="album-info">
+                <div class="album-color" style="background-color: {album_colors.get(era, '#CCCCCC')};"></div>
+                <span style="font-size: 0.9rem;">{year}</span>
+            </div>
+            <div class="album-percentage" style="font-size: 0.9rem;">{era}</div>
+        </div>
+        """ for year, era in sorted(time_capsule_eras.items(), reverse=True)])}
+        
+        <!-- Weekly Ranking -->
+        <div class="album-row total-minutes-row" style="margin-top: 30px; margin-bottom: 30px; background-color: var(--highlight);">
+            <div class="album-percentage total-minutes-value" style="text-align: left; color: black; flex-grow: 1; font-weight: 400;">
+                But you keep my old scarf from that very <span id="week-ordinal" style="color: #E91E63; font-weight: bold;"></span> week
+            </div>
+        </div>
+
+        <!-- Top Era for the week -->
+
+
+        <div class="album-row" style="padding: 8px 15px;">
+            <div class="album-info">
+                <div class="album-color" style="background-color: {album_colors.get(weekly_top_era[0], '#CCCCCC')};"></div>
+                <span style="font-size: 0.9rem;">{weekly_top_era[0]}</span>
+            </div>
+            <div class="album-percentage" style="font-size: 0.9rem;">{weekly_top_era[1]} plays</div>
+        </div>
+
+        <!-- Weekly Songs -->
+<p style="margin-top: 10px; border-bottom: var(--border)"></p>
+
+
+        <ul class="song-list">
+            {"".join([f"""
+            <li class="song-item">
+                <div class="album-info" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <div class="song-number" style="background-color: var(--accent);">{i+1}</div>
+                        <span class="song-title">{song}</span>
+                    </div>
+                    <div class="play-count" style="margin-left: auto;">{count} <i class="fa-solid fa-play"></i></div>
+                </div>
+            </li>
+            """ for i, (song, count) in enumerate(weekly_ranking)])}
+        </ul>
+        
+        <!-- Monthly Ranking -->
+        <div class="album-row total-minutes-row" style="margin-top: 30px; margin-bottom: 30px; background-color: var(--highlight);">
+            <div class="album-percentage total-minutes-value" style="text-align: left; color: black; flex-grow: 1; font-weight: 400;">
+                I go back to <span id="current-month" style="color: #E91E63; font-weight: bold;">{current_month_name}</span> all the time
+            </div>
+        </div>
+        
+        <div class="album-row" style="padding: 8px 15px;">
+            <div class="album-info">
+                <div class="album-color" style="background-color: {album_colors.get(monthly_top_era[0], '#CCCCCC')};"></div>
+                <span style="font-size: 0.9rem;">{monthly_top_era[0]}</span>
+            </div>
+            <div class="album-percentage" style="font-size: 0.9rem;">{monthly_top_era[1]} plays</div>
+        </div>
+
+<p style="margin-top: 10px; border-bottom: var(--border)"></p>
+
+
+        <ul class="song-list">
+            {"".join([f"""
+            <li class="song-item">
+                <div class="album-info" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <div class="song-number" style="background-color: var(--accent);">{i+1}</div>
+                        <span class="song-title">{song}</span>
+                    </div>
+                    <div class="play-count" style="margin-left: auto;">{count} <i class="fa-solid fa-play"></i></div>
+                </div>
+            </li>
+            """ for i, (song, count) in enumerate(monthly_ranking)])}
+        </ul>
+        
+        <script>
+            // Update the date when the page loads
+            document.addEventListener('DOMContentLoaded', function() {{
+                const now = new Date();
+                const options = {{ month: 'long', day: 'numeric' }};
+                document.getElementById('current-date').textContent = now.toLocaleDateString('en-US', options);
+                
+                // Add month name
+                document.getElementById('current-month-name').textContent = now.toLocaleDateString('en-US', {{ month: 'long' }});
+                
+                // Add ordinal suffix to day
+                const day = now.getDate();
+                const ordinal = (day) => {{
+                    if (day > 3 && day < 21) return 'th';
+                    switch (day % 10) {{
+                        case 1: return "st";
+                        case 2: return "nd";
+                        case 3: return "rd";
+                        default: return "th";
+                    }}
+                }};
+                document.getElementById('day-ordinal').textContent = day + ordinal(day);
+                
+                // Add ordinal suffix to week
+                const week = {current_week};
+                document.getElementById('week-ordinal').textContent = week + ordinal(week);
+            }});
+        </script>
+    </div>
             
+
+<!-- TAB2 - ERAS -->
+            <div id="albums-view" class="stats-view">
+                <!-- Album Navigation Tabs -->
+            <div class="nav-tabs">
+                <button class="nav-tab active" onclick="showAlbumView('all-albums')">Swiftie Era</button>
+                {"".join([f"""
+                <button class="nav-tab" onclick="showAlbumView('{album}')">{album}</button>
+                """ for album in custom_album_order if album in results['total_album_minutes'] or album == "Other"])}
+            </div>
+                
+                <!-- All Albums View -->
+                <div id="all-albums-album-view" class="stats-view active">
+                    <h2>Yearly Breakdown</h2>
+
+                    
+                <div class="stacked-bar">
+                    {"".join([f"""
+                    <div class="stacked-segment" style="width: {(minutes / total_taylor_minutes) * 100 if total_taylor_minutes > 0 else 0}%; background-color: {album_colors.get(album, '#FFFFFF')};">
+                        <div class="stacked-segment-tooltip">
+                            <b>{album}</b><br>
+                            {round(minutes)} min ({(minutes / total_taylor_minutes) * 100 if total_taylor_minutes > 0 else 0:.1f}%)
+                        </div>
+                    </div>
+                    """ for album, minutes in sorted(results['total_album_minutes'].items(), key=lambda x: x[1], reverse=True)])}
+                    {"".join([f"""
+                    <div class="stacked-segment" style="width: 0%; background-color: {album_colors.get('Other', '#FFFFFF')};">
+                        <div class="stacked-segment-tooltip">
+                            <b>Other</b><br>
+                            0 min (0%)
+                        </div>
+                    </div>
+                    """ if "Other" not in results['total_album_minutes'] else ""])}
+                </div>
+                    
+                    {"".join([f"""
+                    <div class="album-row">
+                        <div class="album-info">
+                            <div class="album-color" style="background-color: {album_colors.get(album, '#FFFFFF')};"></div>
+                            <span>{album}</span>
+                        </div>
+                        <div class="album-percentage">{round(minutes)} min</div>
+                    </div>
+                    """ for album, minutes in sorted_albums])}
+                    
+                    <div class="album-row total-minutes-row">
+                        <div class="album-info">
+                            <div class="album-color" style="background-color: var(--accent);"></div>
+                            <span class="total-minutes-text"><i>In Summation</i></span>
+                        </div>
+                        <div class="album-percentage total-minutes-value">{round(total_taylor_minutes)} min</div>
+                    </div>
+                </div>
+                
+                <!-- Individual Album Views -->
+                {"".join([f"""
+                <div id="{album}-album-view" class="stats-view">
+                
+
+                    <h2>Yearly Breakdown</h2>
+
+                    <div class="stacked-bar">
+                        {"".join([f"""
+                        <div class="stacked-segment {'highlighted' if a == album else 'shaded'}" 
+                            style="width: {(m / total_taylor_minutes) * 100 if total_taylor_minutes > 0 else 0}%; 
+                                    background-color: {album_colors.get(a, '#FFFFFF')};">
+                            <div class="stacked-segment-tooltip">
+                                <b>{a}</b><br>
+                                {round(m)} min ({(m / total_taylor_minutes) * 100 if total_taylor_minutes > 0 else 0:.1f}%)
+                            </div>
+                        </div>
+                        """ for a, m in sorted(results['total_album_minutes'].items(), key=lambda x: x[1], reverse=True)])}
+                    </div>
+                    
+                    {"".join([f"""
+                    <div class="album-row">
+                        <div class="album-info">
+                            <div class="album-color" style="background-color: {album_colors.get(album, '#FFFFFF')};"></div>
+                            <span>{year}</span>
+                        </div>
+                        <div class="album-percentage">{round(minutes)} min</div>
+                    </div>
+                    """ for year, minutes in sorted((y, m) for y, albums in results['album_minutes_by_year'].items() for album_name, m in albums.items() if album_name == album)])}
+                    
+                    <div class="album-row total-minutes-row">
+                        <div class="album-info">
+                            <div class="album-color" style="background-color: {album_colors.get(album, '#FFFFFF')};"></div>
+                            <span class="total-minutes-text"><i>In Summation</i></span>
+                        </div>
+                        <div class="album-percentage total-minutes-value">{round(results['total_album_minutes'][album])} min</div>
+                    </div>
+                </div>
+                """ for album, _ in sorted_albums])}
+
+
+            <h2>Song Breakdown</h2>
+
+            <!-- All Albums Songs View -->
+            <div id="all-albums-songs-view" class="stats-view active">
+                    <!-- For all other song lists, use this structure: -->
+                    <ul class="song-list">
+                        {"".join([f"""
+                        <li class="{'total-minutes-row' if i < 3 else 'song-item'}">
+                            <div class="album-info" style="display: flex; align-items: center; width: 100%;">
+                                <div class="song-number {'song-number-top' if i < 3 else ''}" 
+                                    style="background-color: var(--accent); flex-shrink: 0; min-width: 25px; width: 25px; height: 25px; display: flex; align-items: center; justify-content: center;">
+                                    {i+1}
+                                </div>
+                                <span class="{'total-minutes-text' if i < 3 else 'song-title'}" style="flex: 1; min-width: 0; padding: 0 10px; word-wrap: break-word; text-align: left;">
+                                    {song}
+                                </span>
+                                <div class="{'album-percentage total-minutes-value' if i < 3 else 'play-count'}" style="flex-shrink: 0; margin-left: auto;">
+                                    {count} <i class="fa-solid fa-play"></i>
+                                </div>
+                            </div>
+                        </li>
+                        """ for i, (song, count) in enumerate(top_songs)])}
+                    </ul>
+                    </div>
+
+            <!-- Album Songs Views -->
+            {"".join([f"""
+            <div id="{album}-songs-view" class="stats-view">
+                <ul class="song-list">
+                    {"".join([f"""
+                    <li class="{'total-minutes-row' if i < 3 else 'song-item'}">
+                        <div class="album-info">
+                            <div class="song-number {'song-number-top' if i < 3 else ''}" 
+                                style="background-color: {album_colors.get(album, '#FFFFFF')};">{i+1}</div>
+                            <span class="{'total-minutes-text' if i < 3 else 'song-title'}">{song}</span>
+                            {f'<div class="album-percentage total-minutes-value">{count} <i class="fa-solid fa-play"></i></div>' if i < 3 else ''}
+                        </div>
+                    </li>
+                    """ for i, (song, count) in enumerate(get_top_songs_for_album(results, album, taylor_version_mapping))])}
+                </ul>
+            </div>
+            """ for album, _ in sorted_albums])}
+            </div>
+
         <!-- TAB - By Year -->
         <div id="years-view" class="stats-view">
             <!-- Year Navigation Tabs -->
@@ -1546,140 +1712,10 @@ def generate_html_report(results, album_colors, taylor_version_mapping):
             """ for year in sorted(results['taylor_minutes_by_year'].keys())])}
             </div>
 
-
-<!-- TAB2 - ERAS -->
-<div id="albums-view" class="stats-view">
-    <!-- Album Navigation Tabs -->
-<div class="nav-tabs">
-    <button class="nav-tab active" onclick="showAlbumView('all-albums')">Swiftie Era</button>
-    {"".join([f"""
-    <button class="nav-tab" onclick="showAlbumView('{album}')">{album}</button>
-    """ for album in custom_album_order if album in results['total_album_minutes'] or album == "Other"])}
-</div>
     
-    <!-- All Albums View -->
-    <div id="all-albums-album-view" class="stats-view active">
-        <h2>Yearly Breakdown</h2>
 
-        
-    <div class="stacked-bar">
-        {"".join([f"""
-        <div class="stacked-segment" style="width: {(minutes / total_taylor_minutes) * 100 if total_taylor_minutes > 0 else 0}%; background-color: {album_colors.get(album, '#FFFFFF')};">
-            <div class="stacked-segment-tooltip">
-                <b>{album}</b><br>
-                {round(minutes)} min ({(minutes / total_taylor_minutes) * 100 if total_taylor_minutes > 0 else 0:.1f}%)
-            </div>
-        </div>
-        """ for album, minutes in sorted(results['total_album_minutes'].items(), key=lambda x: x[1], reverse=True)])}
-        {"".join([f"""
-        <div class="stacked-segment" style="width: 0%; background-color: {album_colors.get('Other', '#FFFFFF')};">
-            <div class="stacked-segment-tooltip">
-                <b>Other</b><br>
-                0 min (0%)
-            </div>
-        </div>
-        """ if "Other" not in results['total_album_minutes'] else ""])}
-    </div>
-        
-        {"".join([f"""
-        <div class="album-row">
-            <div class="album-info">
-                <div class="album-color" style="background-color: {album_colors.get(album, '#FFFFFF')};"></div>
-                <span>{album}</span>
-            </div>
-            <div class="album-percentage">{round(minutes)} min</div>
-        </div>
-        """ for album, minutes in sorted_albums])}
-        
-        <div class="album-row total-minutes-row">
-            <div class="album-info">
-                <div class="album-color" style="background-color: var(--accent);"></div>
-                <span class="total-minutes-text"><i>In Summation</i></span>
-            </div>
-            <div class="album-percentage total-minutes-value">{round(total_taylor_minutes)} min</div>
-        </div>
-    </div>
-    
-    <!-- Individual Album Views -->
-    {"".join([f"""
-    <div id="{album}-album-view" class="stats-view">
-       
-
-        <h2>Yearly Breakdown</h2>
-
-         <div class="stacked-bar">
-            {"".join([f"""
-            <div class="stacked-segment {'highlighted' if a == album else 'shaded'}" 
-                 style="width: {(m / total_taylor_minutes) * 100 if total_taylor_minutes > 0 else 0}%; 
-                        background-color: {album_colors.get(a, '#FFFFFF')};">
-                <div class="stacked-segment-tooltip">
-                    <b>{a}</b><br>
-                    {round(m)} min ({(m / total_taylor_minutes) * 100 if total_taylor_minutes > 0 else 0:.1f}%)
-                </div>
-            </div>
-            """ for a, m in sorted(results['total_album_minutes'].items(), key=lambda x: x[1], reverse=True)])}
-        </div>
-        
-        {"".join([f"""
-        <div class="album-row">
-            <div class="album-info">
-                <div class="album-color" style="background-color: {album_colors.get(album, '#FFFFFF')};"></div>
-                <span>{year}</span>
-            </div>
-            <div class="album-percentage">{round(minutes)} min</div>
-        </div>
-        """ for year, minutes in sorted((y, m) for y, albums in results['album_minutes_by_year'].items() for album_name, m in albums.items() if album_name == album)])}
-        
-        <div class="album-row total-minutes-row">
-            <div class="album-info">
-                <div class="album-color" style="background-color: {album_colors.get(album, '#FFFFFF')};"></div>
-                <span class="total-minutes-text"><i>In Summation</i></span>
-            </div>
-            <div class="album-percentage total-minutes-value">{round(results['total_album_minutes'][album])} min</div>
-        </div>
-    </div>
-    """ for album, _ in sorted_albums])}
-
-
-<h2>Song Breakdown</h2>
-
-<!-- All Albums Songs View -->
-<div id="all-albums-songs-view" class="stats-view active">
-    <ul class="song-list">
-        {"".join([f"""
-        <li class="{'total-minutes-row' if i < 3 else 'song-item'}">
-            <div class="album-info">
-                <div class="song-number {'song-number-top' if i < 3 else ''}" 
-                    style="background-color: var(--accent);">{i+1}</div>
-                <span class="{'total-minutes-text' if i < 3 else 'song-title'}">{song}</span>
-                {f'<div class="album-percentage total-minutes-value">{count} <i class="fa-solid fa-play"></i></div>' if i < 3 else ''}
-            </div>
-        </li>
-        """ for i, (song, count) in enumerate(top_songs)])}
-    </ul>
-</div>
-
-<!-- Album Songs Views -->
-{"".join([f"""
-<div id="{album}-songs-view" class="stats-view">
-    <ul class="song-list">
-        {"".join([f"""
-        <li class="{'total-minutes-row' if i < 3 else 'song-item'}">
-            <div class="album-info">
-                <div class="song-number {'song-number-top' if i < 3 else ''}" 
-                    style="background-color: {album_colors.get(album, '#FFFFFF')};">{i+1}</div>
-                <span class="{'total-minutes-text' if i < 3 else 'song-title'}">{song}</span>
-                {f'<div class="album-percentage total-minutes-value">{count} <i class="fa-solid fa-play"></i></div>' if i < 3 else ''}
-            </div>
-        </li>
-        """ for i, (song, count) in enumerate(get_top_songs_for_album(results, album, taylor_version_mapping))])}
-    </ul>
-</div>
-""" for album, _ in sorted_albums])}
-</div>
-
-    
-    
+            
+<!-- TAB 4 RANKING -->
     
 
     <div id="ranking-view" class="stats-view">
